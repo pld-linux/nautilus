@@ -9,6 +9,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 # Source0-md5:	d7e011c2495531986c7f042021a2055c
+Patch0:		%{name}-vcategories.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.2
 BuildRequires:	ORBit2-devel >= 2.7.2
@@ -102,6 +103,7 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 intltoolize --copy --force
