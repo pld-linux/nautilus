@@ -3,44 +3,44 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.3.3
+Version:	2.3.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
-# Source0-md5:	84a11b878133516ebb9dd1a4c1abe700
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	d7e011c2495531986c7f042021a2055c
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.2
-BuildRequires:	ORBit2-devel >= 2.7.0
+BuildRequires:	ORBit2-devel >= 2.7.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.3.3
+BuildRequires:	eel-devel >= 2.3.4
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.1
-BuildRequires:	gnome-desktop-devel >= 2.3.1
-BuildRequires:	gnome-vfs2-devel >= 2.3.3
-BuildRequires:	gtk+2-devel >= 2.2.1
+BuildRequires:	glib2-devel >= 2.2.2
+BuildRequires:	gnome-desktop-devel >= 2.3.3
+BuildRequires:	gnome-vfs2-devel >= 2.3.4
+BuildRequires:	gtk+2-devel >= 2.2.2
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.12
-BuildRequires:	libbonobo-devel >= 2.3.1
-BuildRequires:	libbonoboui-devel >= 2.2.0
+BuildRequires:	libbonobo-devel >= 2.3.3
+BuildRequires:	libbonoboui-devel >= 2.3.3
 BuildRequires:	libgnome-devel >= 2.3.3
-BuildRequires:	libgnomecanvas-devel >= 2.2.0
+BuildRequires:	libgnomecanvas-devel >= 2.3.0
 BuildRequires:	libgnomeui-devel >= 2.3.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 2.2.4
-BuildRequires:	libxml2-devel >= 2.5.3
-BuildRequires:	pango-devel >= 1.2.1
+BuildRequires:	librsvg-devel >= 2.3.0
+BuildRequires:	libxml2-devel >= 2.5.7
+BuildRequires:	pango-devel >= 1.2.3
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.0.4
+Requires:	gnome-icon-theme >= 1.0.5
 Requires:	gnome-mime-data >= 2.3.0
-Requires:	eel >= 2.3.3
-Requires:	libbonobo >= 2.3.1
+Requires:	eel >= 2.3.4
+Requires:	libbonobo >= 2.3.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
