@@ -133,7 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/vfs/modules/*
 %config /etc/pam.d/*
 %config /etc/security/console.apps/*
-%{_bindir}/*
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_libdir}/vfs/modules/*
 %{_mandir}/man?/*
