@@ -134,11 +134,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/*.a
+rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/*.{la,a}
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets/
-
+mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -157,7 +156,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
-%{_libdir}/bonobo/lib*.la
 %{_libdir}/bonobo/servers/*
 %{_datadir}/gnome/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
