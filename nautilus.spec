@@ -4,11 +4,11 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.0.4
+Version:	2.0.5
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/releases/final/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
 Requires:	gnome-mime-data >= 2.0.0
@@ -17,7 +17,7 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 1.0.3
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.0.3
+BuildRequires:	eel-devel >= 2.0.5
 BuildRequires:	esound-devel >= 0.2.28
 BuildRequires:	freetype-devel
 BuildRequires:	GConf2-devel >= 1.2.1
@@ -36,10 +36,10 @@ BuildRequires:	libgnomeui >= 2.0.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.0.1
-BuildRequires:	libxml2-devel >= 2.4.23
+BuildRequires:	libxml2-devel >= 2.4.24
 # need check medusa for building with gnome-vfs2
 #BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	ORBit2-devel >= 2.4.1
+BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	pango-devel >= 1.0.4
 Prereq:		/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
