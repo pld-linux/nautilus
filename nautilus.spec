@@ -146,7 +146,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/X11
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
-%attr(755,root,root) %{_libdir}/bonobo/lib*.??
+%{_libdir}/bonobo/lib*.la
+%attr(755,root,root) %{_libdir}/bonobo/lib*.so
 %{_libdir}/bonobo/servers/*
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
