@@ -2,58 +2,37 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	1.0.6
-Release:	7
+Version:	1.1.13
+Release:	0.1
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-applnk.patch
-Patch2:		%{name}-aclocal.patch
-Patch3:		%{name}-amfix.patch
-Patch4:		%{name}-bonobo-workaround.patch
-Patch5:		%{name}-cpp.patch
-Patch6:		%{name}-omf-encoding.patch
-Patch7:		%{name}-mozilla-profile-startup.patch
-Patch8:		%{name}-ac25.patch
+Source0:	%{name}/%{name}-%{version}.tar.bz2
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf-devel >= 0.12
-BuildRequires:	ORBit-devel >= 0.5.7
+BuildRequires:	GConf2-devel
+BuildRequires:	ORBit2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-devel >= 1.0.9
-BuildRequires:	control-center-devel >= 1.3
-BuildRequires:	eel-devel >= 1.0.2
-BuildRequires:	esound-devel >= 0.2.22
-BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gdk-pixbuf-devel >= 0.10.0
+BuildRequires:	bonobo-activation-devel
+BuildRequires:	eel-devel
+BuildRequires:	esound-devel
+BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-applets
-BuildRequires:	gnome-core-devel >= 1.4.0.4
-BuildRequires:	gnome-http-devel
-BuildRequires:	gnome-libs-devel >= 1.2.11
-BuildRequires:	gnome-vfs-devel >= 1.0.3
-BuildRequires:	gtk+-devel >= 1.2.9
-BuildRequires:	imlib-devel >= 1.9.8
+BuildRequires:	gnome-vfs2-devel
+BuildRequires:	gtk+2-devel
 BuildRequires:	intltool
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 1.0.1
-BuildRequires:	libxml-devel >= 1.8.10
-BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	mozilla-devel >= 0.9.8
-BuildRequires:	oaf-devel >= 0.6.5
-BuildRequires:	scrollkeeper >= 0.1.4
-BuildRequires:	xpdf >= 0.90
-Requires:	gnome-http
-Requires:	GConf >= 1.0.2
+BuildRequires:	librsvg-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	medusa-devel
+BuildRequires:	scrollkeeper
 Prereq:		/sbin/ldconfig
 Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_sysconfdir	/etc/X11/GNOME2
 %define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
-%define		_sysconfdir	/etc/X11/GNOME
 
 %description
 Nautilus integrates access to files, applications, media,
@@ -101,56 +80,11 @@ Static Nautilus libraries.
 %description static -l pl
 Biblioteki statyczne Nautilusa.
 
-%package mozilla
-Summary:	Nautilus component for use with Mozilla
-Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
-Group:		X11/Window Managers
-Requires:	%{name} = %{version}
-Requires:	mozilla >= 0.8
-Conflicts:	mozilla = M18
-Conflicts:	mozilla = M17
-
-%description mozilla
-This enables the use of embedded Mozilla as a Nautilus component.
-
-%description mozilla -l pl
-Ten pakiet pozwala na u¿ywanie wbudowanej Mozilli jako sk³adnika
-Nautilusa.
-
-%description mozilla -l pt_BR
-Espe pacote permite a utilização do Mozilla como um componente
-Nautilus.
-
-%prep -q
+%prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
 
 %build
-rm -f missing
-sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
-mv -f configure.in.tmp configure.in
-gettextize --force --copy
-xml-i18n-toolize --force --copy --automake
-libtoolize --copy --force
-aclocal
-autoconf
-automake -a -c -f
-CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
-CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
-LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"
 %configure \
-	%{?debug:--enable-more-warnings} \
-	%{!?debug:--disable-more-warnings} \
-	--with-mozilla-lib-place=%{_libdir} \
-	--with-mozilla-include-place=%{_includedir}/mozilla \
 	--enable-static
 
 %{__make}
@@ -160,7 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
+	pkgconfigdir=%{_pkgconfigdir} \
+	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 gzip -9nf ChangeLog NEWS README
 
@@ -234,7 +169,7 @@ scrollkeeper-update
 %{_datadir}/oaf/Nautilus_View_sidebar-loser.oaf
 %{_datadir}/oaf/Nautilus_View_text.oaf
 %{_datadir}/oaf/Nautilus_View_tree.oaf
-%{_omf_dest_dir}/omf/%{name}
+%{_omf_dest_dir}/%{name}
 %{_datadir}/idl/*
 
 %files devel
@@ -249,8 +184,3 @@ scrollkeeper-update
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 %{_libdir}/vfs/modules/*.a
-
-%files mozilla
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/nautilus-mozilla-content-view
-%{_datadir}/oaf/Nautilus_View_mozilla.oaf
