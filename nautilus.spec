@@ -7,6 +7,7 @@ License:	GPL
 Group:		Utilities/File
 Group(pl):	Narzêdzia/Pliki
 Source0:	http://download.eazel.com/source/%{name}-%{version}.tar.gz
+Patch0:		%{name}-mozpath.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	ORBit-devel
 BuildRequires:	w3c-libwww-devel >= 5.2.8
@@ -17,6 +18,7 @@ BuildRequires:	gnome-vfs-devel >= 0.3.1
 BuildRequires:	bonobo-devel >= 0.18
 BuildRequires:	gtkhtml-devel >= 0.6.1
 BuildRequires:	medusa-devel >= 0.2
+BuildRequires:	mozilla-devel >= 5.M17-3
 BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,8 +32,10 @@ GNU Nautilus jest mened¿erem plików i graficzn± pow³ok± dla GNOME.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
+autoconf
 gettextize --force --copy
 %configure
 
