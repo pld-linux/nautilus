@@ -1,5 +1,5 @@
---- Makefile.am.orig	Sun Jul 22 12:55:16 2001
-+++ Makefile.am	Sun Jul 22 13:12:14 2001
+--- ./Makefile.am.orig	Sun Jul 22 12:55:16 2001
++++ ./Makefile.am	Sun Jul 22 13:12:14 2001
 @@ -58,7 +58,7 @@
  appicondir = $(datadir)/pixmaps
  appicon_DATA = nautilus-launch-icon.png
