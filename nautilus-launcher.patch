@@ -191,7 +191,7 @@ diff -Nuard nautilus-2.4.2.orig/src/file-manager/fm-properties-window.c nautilus
 +	command_field = nautilus_entry_new ();
 +	window->details->command_field = NAUTILUS_ENTRY (command_field);
 +	if (should_show_command_target (window)) {
-+		guint last_row = append_title_field (table, _("E_xecute"), &command_label);
++		guint last_row = append_title_field (table, _("E_xecute:"), &command_label);
 +		gtk_widget_show (command_field);
 +		gtk_table_attach (table,
 +			  command_field,
