@@ -3,8 +3,8 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.0.7
-Release:	2
+Version:	2.0.8
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.0/%{name}-%{version}.tar.bz2
@@ -26,7 +26,7 @@ BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-desktop-devel >= 2.0.8
 BuildRequires:	gnome-vfs2-devel >= 2.0.4
 BuildRequires:	gtk+2-devel >= 2.0.6
-BuildRequires:	intltool
+BuildRequires:	intltool >= 0.23
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	libbonoboui-devel >= 2.0.3
