@@ -3,7 +3,7 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.1.4
+Version:	2.1.6
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -15,33 +15,33 @@ BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	ORBit2-devel >= 2.5.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.1.0-3
+BuildRequires:	bonobo-activation-devel >= 2.1.1
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.1.4
-BuildRequires:	esound-devel >= 0.2.29
+BuildRequires:	eel-devel >= 2.1.6
+BuildRequires:	esound-devel >= 0.2.3
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.1.3
+BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gnome-desktop-devel >= 2.1.0
-BuildRequires:	gnome-vfs2-devel >= 2.1.4
-BuildRequires:	gtk+2-devel >= 2.1.3
+BuildRequires:	gnome-vfs2-devel >= 2.1.5
+BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libbonobo-devel >= 2.1.0-3
 BuildRequires:	libbonoboui-devel >= 2.0.3
-BuildRequires:	libgnome-devel >= 2.1.1-2
-BuildRequires:	libgnomecanvas-devel >= 2.1.0
-BuildRequires:	libgnomeui-devel >= 2.1.1-3
+BuildRequires:	libgnome-devel >= 2.1.5
+BuildRequires:	libgnomecanvas-devel >= 2.1.5
+BuildRequires:	libgnomeui-devel >= 2.1.5
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.1.0
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	pango-devel >= 1.1.2
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 0.1.4
+Requires:	gnome-icon-theme >= 0.1.5
 Requires:	gnome-mime-data >= 2.0.1
-Requires:	eel >= 2.1.4
+Requires:	eel >= 2.1.6
 Requires:	bonobo-activation >= 2.1.0-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -153,7 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/idl/*
 %{_datadir}/gnome
 %{_datadir}/nautilus
-%{_pixmapsdir}/*.png
+#%{_pixmapsdir}/*.png
 %{_pixmapsdir}/nautilus
 
 %files libs
