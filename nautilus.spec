@@ -1,8 +1,10 @@
+# TODO:
+# separate libnautilus
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	1.1.17
+Version:	2.0.0
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
@@ -10,36 +12,36 @@ Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{vers
 URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 0.9.9
+BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 1.1.15
-BuildRequires:	esound-devel >= 0.2.23
+BuildRequires:	eel-devel >= 2.0.0
+BuildRequires:	esound-devel >= 0.2.27
 BuildRequires:	freetype-devel
-BuildRequires:	GConf2-devel
+BuildRequires:	GConf2-devel >= 1.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	gnome-desktop-devel >= 1.5.11
-BuildRequires:	gnome-vfs2-devel >= 1.9.16
+BuildRequires:	gnome-desktop-devel >= 2.0.0
+BuildRequires:	gnome-vfs2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.6
-BuildRequires:	libbonobo-devel >= 1.113.0
-BuildRequires:	libbonoboui-devel >= 1.116.1
-BuildRequires:	libgnome >= 1.105.0
-BuildRequires:	libgnomecanvas >= 1.105.0
-BuildRequires:	libgnomeui >= 1.110.1
+BuildRequires:	libbonobo-devel >= 2.0.0
+BuildRequires:	libbonoboui-devel >= 2.0.0
+BuildRequires:	libgnome >= 2.0.1
+BuildRequires:	libgnomecanvas >= 2.0.0
+BuildRequires:	libgnomeui >= 2.0.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2.3
 BuildRequires:	librsvg-devel >= 1.1.6
-BuildRequires:	libxml2-devel >= 2.4.7
+BuildRequires:	libxml2-devel >= 2.4.22
 # need check medusa for building with gnome-vfs2
 #BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	ORBit2-devel
-BuildRequires:	pango-devel
-BuildRequires:	scrollkeeper
+BuildRequires:	ORBit2-devel >= 2.4.0
+BuildRequires:	pango-devel >= 1.0.2
+#BuildRequires:	scrollkeeper >= 0.3.6
 Prereq:		/sbin/ldconfig
-Prereq:		scrollkeeper
+#Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -117,12 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-scrollkeeper-update
 GCONF_CONFIG_SOURCE="" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
 
-%postun
-/sbin/ldconfig
-scrollkeeper-update
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -144,7 +143,6 @@ scrollkeeper-update
 %{_datadir}/nautilus
 %{_pixmapsdir}/*.png
 %{_pixmapsdir}/nautilus
-%{_omf_dest_dir}/nautilus
 
 %files devel
 %defattr(644,root,root,755)
