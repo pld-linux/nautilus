@@ -2,46 +2,44 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.4.2
-Release:	2
+Version:	2.6.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	2023d525f1d81b6752ce7b118728b19c
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	a8baee6e907d36fd19f4082d6cfd3a9e
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
-Patch2:		%{name}-launcher.patch
+Patch2:		%{name}-includes.patch
+Patch3:		%{name}-locale-names.patch
+Patch4:		%{name}-disable_medusa.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.8.0
+BuildRequires:	GConf2-devel >= 2.5.90
+BuildRequires:	ORBit2-devel >= 2.10.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.4.2
-BuildRequires:	esound-devel >= 0.2.30
+BuildRequires:	eel-devel >= 2.6.0
+BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.3
-BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gnome-vfs2-devel >= 2.4.0
-BuildRequires:	gtk+2-devel >= 2.2.4
-BuildRequires:	intltool
+BuildRequires:	gnome-desktop-devel >= 2.5.90
+BuildRequires:	gnome-vfs2-devel >= 2.6.0
+BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-BuildRequires:	libbonobo-devel >= 2.4.0
-BuildRequires:	libbonoboui-devel >= 2.4.0
-BuildRequires:	libgnome-devel >= 2.4.0
-BuildRequires:	libgnomecanvas-devel >= 2.4.0
-BuildRequires:	libgnomeui-devel >= 2.4.0
+BuildRequires:	libbonoboui-devel >= 2.5.4
+BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 2.4.0
+BuildRequires:	librsvg-devel >= 1:2.6.2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-BuildRequires:	pango-devel >= 1.2.5
+BuildRequires:	popt-devel
+BuildRequires:	pkgconfig
+BuildRequires:	startup-notification-devel >= 0.5
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.0.9
-Requires:	gnome-mime-data >= 2.3.1
+Requires:	gnome-icon-theme >= 1.2.0
+Requires:	gnome-mime-data >= 2.4.0
 Requires:	mpg123-esd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -63,8 +61,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.4.1
-Requires:	libbonobo >= 2.4.0
+Requires:	eel >= 2.6.0
+Requires:	libbonobo >= 2.6.0
 
 %description libs
 Nautilus libraries.
@@ -77,9 +75,9 @@ Summary:	Libraries and include files for developing Nautilus components
 Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
-Requires:	%{name}-libs = %{version}
-Requires:	eel-devel >= 2.4.0
-Requires:	librsvg-devel >= 2.4.0
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	eel-devel >= 2.6.0
+Requires:	librsvg-devel >= 1:2.6.2
 
 %description devel
 This package provides the necessary development libraries and include
@@ -96,7 +94,7 @@ utilizando componentes do nautilus.
 Summary:	Static Nautilus libraries
 Summary(pl):	Biblioteki statyczne Nautilusa
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Nautilus libraries.
@@ -109,10 +107,14 @@ Biblioteki statyczne Nautilusa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
+
+mv po/{no,nb}.po
 
 %build
-intltoolize --copy --force
 glib-gettextize --copy --force
+intltoolize --copy --force
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -157,7 +159,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
-%{_datadir}/gnome/network
 %{_datadir}/nautilus
 %{_sysconfdir}/gconf/schemas/*
 %{_sysconfdir}/X11/*
@@ -172,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus*.so
 %{_libdir}/libnautilus*.la
-%{_includedir}/libnautilus
+%{_includedir}/*
 %{_pkgconfigdir}/*.pc
 
 %files static
