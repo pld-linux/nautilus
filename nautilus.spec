@@ -2,38 +2,38 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.5.7
+Version:	2.5.8
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	5eb9fdfae7e8df8e758b71e2b8de58df
+# Source0-md5:	43da4a678ae7c768bd76d4dbe3a4aa44
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
 Patch2:		%{name}-includes.patch
-#Patch2:		%{name}-gtk23.patch
+Patch3:		%{name}-locale-names.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.5.0
-BuildRequires:	ORBit2-devel >= 2.9.2
+BuildRequires:	ORBit2-devel >= 2.9.8
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.5.7
+BuildRequires:	eel-devel >= 2.5.8
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.3.1
-BuildRequires:	gnome-desktop-devel >= 2.5.1
-BuildRequires:	gnome-vfs2-devel >= 2.5.7
-BuildRequires:	gtk+2-devel >= 2.3.1
+BuildRequires:	glib2-devel >= 2.3.2
+BuildRequires:	gnome-desktop-devel >= 2.5.90
+BuildRequires:	gnome-vfs2-devel >= 2.5.8
+BuildRequires:	gtk+2-devel >= 2.3.2
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-BuildRequires:	libbonobo-devel >= 2.5.1
-BuildRequires:	libbonoboui-devel >= 2.5.1
-BuildRequires:	libgnome-devel >= 2.5.1
-BuildRequires:	libgnomecanvas-devel >= 2.5.1
-BuildRequires:	libgnomeui-devel >= 2.5.2
+BuildRequires:	libbonobo-devel >= 2.5.4
+BuildRequires:	libbonoboui-devel >= 2.5.3
+BuildRequires:	libgnome-devel >= 2.5.90
+BuildRequires:	libgnomecanvas-devel >= 2.5.90
+BuildRequires:	libgnomeui-devel >= 2.5.90
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.5.0
@@ -41,7 +41,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	pango-devel >= 1.3.1
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.1.7
+Requires:	gnome-icon-theme >= 1.1.8
 Requires:	gnome-mime-data >= 2.4.0
 Requires:	mpg123-esd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -110,6 +110,9 @@ Biblioteki statyczne Nautilusa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+
+mv po/{no,nb}.po
 
 %build
 glib-gettextize --copy --force
@@ -154,7 +157,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/control-center-2.0/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
-%{_datadir}/gnome/network
 %{_datadir}/nautilus
 %{_sysconfdir}/gconf/schemas/*
 %{_sysconfdir}/X11/*
