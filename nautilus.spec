@@ -3,7 +3,7 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.6
-Release:	9
+Release:	10
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -18,6 +18,7 @@ Patch7:		%{name}-mozilla-profile-startup.patch
 Patch8:		%{name}-ac25.patch
 Patch9:		%{name}-dblib_fix.patch
 Patch10:	%{name}-ac_fix.patch
+Patch11:	%{name}-new_mozilla.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
@@ -136,6 +137,7 @@ Nautilus.
 %patch8 -p1
 %patch9
 %patch10
+%patch11 -p1
 
 %build
 rm -f missing
