@@ -1,0 +1,24 @@
+--- ./configure.in.orig	Sun Jul 22 11:48:01 2001
++++ ./configure.in	Sun Jul 22 11:48:51 2001
+@@ -695,8 +695,8 @@
+ 
+ dnl Checks for i18n
+ ALL_LINGUAS="az ca cs da de el en_GB es fi fr ga gl hu it ja ko lt nl nn no pl pt_BR ro ru sk sl sv ta tr uk zh_TW.Big5"
+-AM_GNOME_GETTEXT
+-# AM_GNOME_GETTEXT above substs $DATADIRNAME
++AM_GNU_GETTEXT
++# AM_GNU_GETTEXT above substs $DATADIRNAME
+ # this is the directory where the *.{mo,gmo} files are installed
+ gnomelocaledir='${prefix}/${DATADIRNAME}/locale'
+ AC_SUBST(gnomelocaledir)
+--- ./aclocal.m4.orig	Sun Jul 22 12:00:41 2001
++++ ./aclocal.m4	Sun Jul 22 12:00:52 2001
+@@ -2073,7 +2073,7 @@
+     AC_SUBST(POSUB)
+   ])
+ 
+-AC_DEFUN(AM_GNOME_GETTEXT,
++AC_DEFUN(AM_GNU_GETTEXT,
+   [AC_REQUIRE([AC_PROG_MAKE_SET])dnl
+    AC_REQUIRE([AC_PROG_CC])dnl
+    AC_REQUIRE([AC_PROG_RANLIB])dnl
