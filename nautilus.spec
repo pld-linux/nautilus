@@ -4,7 +4,7 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR): Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -13,6 +13,11 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
 Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
+Patch3: 	%{name}-gmc.patch.bz2
+# Dzimi removed this patch because its possibe hi is making a big with
+# right panel in nautilus
+#Patch4:		%{name}-noflash.patch.bz2
+Patch5:		%{name}-moz093.patch.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
@@ -38,6 +43,7 @@ BuildRequires:	mozilla-devel >= 0.8
 BuildRequires:	oaf-devel >= 0.6.5
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
+Requires:	gnome-http
 Requires:	GConf >= 1.0.2
 Prereq:		/sbin/ldconfig
 Prereq:		scrollkeeper
@@ -126,6 +132,9 @@ Nautilus.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
+%patch3 -p1
+#%patch4 -p1
+%patch5 -p1
 
 %build
 rm missing
