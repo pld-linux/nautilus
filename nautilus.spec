@@ -20,7 +20,7 @@ Patch5:		%{name}-bonobo-workaround.patch
 #Patch6:		%{name}-gmc.patch.bz2
 #Patch7:		%{name}-noflash.patch.bz2
 #Patch8:		%{name}-moz093.patch.bz2
-Patch9:	%{name}-cpp.patch
+Patch9:		%{name}-cpp.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
@@ -164,10 +164,13 @@ Nautilus.
 rm -f missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
-xml-i18n-toolize --force
+gettextize --force --copy
+xml-i18n-toolize --force --copy --automake
 aclocal
 autoconf
 automake -a -c
+CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
+LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"; export LDFLAGS
 %configure \
 	%{?debug:--enable-more-warnings} \
 	%{!?debug:--disable-more-warnings} \
@@ -182,7 +185,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
+	omf_dest_dir=%{_omf_dest_dir}/omf/%{name} \
+	modulesconfdir=/etc/X11/GNOME/vfs/modules
 
 gzip -9nf ChangeLog NEWS README
 
@@ -202,32 +206,37 @@ scrollkeeper-update
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc *.gz
-%attr(755,root,root) %{_bindir}/nautilus-clean.sh
-%attr(755,root,root) %{_bindir}/nautilus-verify-rpm.sh
-%attr(755,root,root) %{_bindir}/nautilus-restore-settings-to-default.sh
 %attr(755,root,root) %{_bindir}/gnome-db2html2
+%attr(755,root,root) %{_bindir}/gnome-db2html3
 %attr(755,root,root) %{_bindir}/gnome-info2html2
 %attr(755,root,root) %{_bindir}/gnome-man2html2
 %attr(755,root,root) %{_bindir}/hyperbola
 %attr(755,root,root) %{_bindir}/nautilus
 %attr(755,root,root) %{_bindir}/nautilus-adapter
+%attr(755,root,root) %{_bindir}/nautilus-clean.sh
 %attr(755,root,root) %{_bindir}/nautilus-content-loser
 %attr(755,root,root) %{_bindir}/nautilus-error-dialog
 %attr(755,root,root) %{_bindir}/nautilus-hardware-view
 %attr(755,root,root) %{_bindir}/nautilus-history-view
 %attr(755,root,root) %{_bindir}/nautilus-image-view
+%attr(755,root,root) %{_bindir}/nautilus-launcher-applet
 %attr(755,root,root) %{_bindir}/nautilus-music-view
 %attr(755,root,root) %{_bindir}/nautilus-news
 %attr(755,root,root) %{_bindir}/nautilus-notes
+%attr(755,root,root) %{_bindir}/nautilus-preferences-applet
+%attr(755,root,root) %{_bindir}/nautilus-restore-settings-to-default.sh
 %attr(755,root,root) %{_bindir}/nautilus-sample-content-view
 %attr(755,root,root) %{_bindir}/nautilus-sidebar-loser
 %attr(755,root,root) %{_bindir}/nautilus-text-view
 %attr(755,root,root) %{_bindir}/nautilus-throbber
-%attr(755,root,root) %{_bindir}/run-nautilus
-%attr(755,root,root) %{_bindir}/nautilus-launcher-applet
+%attr(755,root,root) %{_bindir}/nautilus-verify-rpm.sh
 %attr(755,root,root) %{_bindir}/nautilus-xml-migrate
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_bindir}/run-nautilus
+%attr(755,root,root) %{_libdir}/libnautilus.so.*.*
+%attr(755,root,root) %{_libdir}/libnautilus-*.so.*.*
+%attr(755,root,root) %{_libdir}/libnautilus-*.so
 %attr(755,root,root) %{_libdir}/vfs/modules/*.so
+%attr(755,root,root) %{_libdir}/vfs/modules/*.la
 %{_mandir}/man1/*
 %{_sysconfdir}/vfs/modules/*.conf
 %{_sysconfdir}/CORBA/servers/*
@@ -235,10 +244,12 @@ scrollkeeper-update
 %{_datadir}/gnome/ui/*.xml
 %{_datadir}/nautilus
 %{_pixmapsdir}/*
-%{_datadir}/oaf/Nautilus_View_help.oaf
 %{_datadir}/oaf/Nautilus_ComponentAdapterFactory_std.oaf
+%{_datadir}/oaf/Nautilus_Control_throbber.oaf
+%{_datadir}/oaf/Nautilus_shell.oaf
 %{_datadir}/oaf/Nautilus_View_content-loser.oaf
 %{_datadir}/oaf/Nautilus_View_hardware.oaf
+%{_datadir}/oaf/Nautilus_View_help.oaf
 %{_datadir}/oaf/Nautilus_View_history.oaf
 %{_datadir}/oaf/Nautilus_View_image.oaf
 %{_datadir}/oaf/Nautilus_View_music.oaf
@@ -248,19 +259,16 @@ scrollkeeper-update
 %{_datadir}/oaf/Nautilus_View_sidebar-loser.oaf
 %{_datadir}/oaf/Nautilus_View_text.oaf
 %{_datadir}/oaf/Nautilus_View_tree.oaf
-%{_datadir}/oaf/Nautilus_shell.oaf
-%{_datadir}/oaf/Nautilus_Control_throbber.oaf
 %{_omf_dest_dir}/omf/%{name}
+%{_datadir}/idl/*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/vfs/modules/*.la
+%attr(755,root,root) %{_libdir}/libnautilus.la
+%attr(755,root,root) %{_libdir}/libnautilus.so
 %attr(755,root,root) %{_libdir}/*.sh
 %attr(755,root,root) %{_bindir}/nautilus-config
 %{_includedir}/libnautilus
-%{_datadir}/idl/*
 
 %files static
 %defattr(644,root,root,755)
