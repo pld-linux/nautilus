@@ -6,7 +6,7 @@ diff -ur nautilus-2.8.0.orig/nautilus-file-management-properties.desktop.in naut
  Type=Application
  StartupNotify=true
 -Categories=GNOME;Application;Settings;
-+Categories=GTK;GNOME;Settings;Capplet;
++Categories=GTK;GNOME;Settings;X-Capplet;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=nautilus
  X-GNOME-Bugzilla-Component=Preferences
