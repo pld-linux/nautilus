@@ -1,0 +1,269 @@
+diff -Nur nautilus-0.5/components/adapter/nautilus-adapter-embed-strategy.c nautilus-0.5.new/components/adapter/nautilus-adapter-embed-strategy.c
+--- nautilus-0.5/components/adapter/nautilus-adapter-embed-strategy.c	Mon Oct 23 16:36:53 2000
++++ nautilus-0.5.new/components/adapter/nautilus-adapter-embed-strategy.c	Sun Nov 19 20:11:50 2000
+@@ -120,7 +120,7 @@
+ 
+ 	CORBA_exception_init (&ev);
+ 
+-	control = Bonobo_Unknown_query_interface (component,
++	control = Bonobo_Unknown_queryInterface (component,
+ 						  "IDL:Bonobo/Control:1.0", &ev);
+ 	
+ 
+@@ -130,7 +130,7 @@
+ 		return nautilus_adapter_control_embed_strategy_new (control, CORBA_OBJECT_NIL);
+ 	}
+ 
+-	embeddable = Bonobo_Unknown_query_interface (component,
++	embeddable = Bonobo_Unknown_queryInterface (component,
+ 						     "IDL:Bonobo/Embeddable:1.0", &ev);
+ 	
+ 	if (ev._major == CORBA_NO_EXCEPTION && !CORBA_Object_is_nil (embeddable, &ev)) {
+diff -Nur nautilus-0.5/components/adapter/nautilus-adapter-load-strategy.c nautilus-0.5.new/components/adapter/nautilus-adapter-load-strategy.c
+--- nautilus-0.5/components/adapter/nautilus-adapter-load-strategy.c	Tue Oct  3 06:12:50 2000
++++ nautilus-0.5.new/components/adapter/nautilus-adapter-load-strategy.c	Sun Nov 19 20:11:50 2000
+@@ -136,7 +136,7 @@
+ 
+ 	CORBA_exception_init (&ev);
+ 
+-	progressive_data_sink = Bonobo_Unknown_query_interface (component,
++	progressive_data_sink = Bonobo_Unknown_queryInterface (component,
+ 								"IDL:Bonobo/ProgressiveDataSink:1.0", &ev);
+ 	
+ 
+@@ -147,7 +147,7 @@
+ 	}
+ 
+ 
+-	persist_stream = Bonobo_Unknown_query_interface (component,
++	persist_stream = Bonobo_Unknown_queryInterface (component,
+ 							 "IDL:Bonobo/PersistStream:1.0", &ev);
+ 	
+ 	if (ev._major == CORBA_NO_EXCEPTION && !CORBA_Object_is_nil (persist_stream, &ev)) {
+@@ -157,7 +157,7 @@
+ 	}
+ 
+ 
+-	persist_file = Bonobo_Unknown_query_interface (component,
++	persist_file = Bonobo_Unknown_queryInterface (component,
+ 						       "IDL:Bonobo/PersistFile:1.0", &ev);
+ 	
+ 
+diff -Nur nautilus-0.5/components/adapter/nautilus-adapter-progressive-load-strategy.c nautilus-0.5.new/components/adapter/nautilus-adapter-progressive-load-strategy.c
+--- nautilus-0.5/components/adapter/nautilus-adapter-progressive-load-strategy.c	Fri Oct 20 10:45:48 2000
++++ nautilus-0.5.new/components/adapter/nautilus-adapter-progressive-load-strategy.c	Sun Nov 19 20:11:50 2000
+@@ -208,7 +208,7 @@
+ 	gnome_vfs_file_info_clear (&file_info);
+ 
+ 	if (result == GNOME_VFS_OK && file_info.valid_fields | GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
+-		Bonobo_ProgressiveDataSink_set_size (strategy->details->progressive_data_sink, 
++		Bonobo_ProgressiveDataSink_setSize (strategy->details->progressive_data_sink, 
+ 						     (long) file_info.size, &ev);
+ 		CHECK_IF_STOPPED;
+ 	}
+@@ -219,7 +219,7 @@
+ 		if (result == GNOME_VFS_OK) {
+ 			iobuf->_length = bytes_read;
+ 
+-			Bonobo_ProgressiveDataSink_add_data (strategy->details->progressive_data_sink, iobuf, &ev);
++			Bonobo_ProgressiveDataSink_addData (strategy->details->progressive_data_sink, iobuf, &ev);
+ 			
+ 			CHECK_IF_STOPPED;
+ 			
+diff -Nur nautilus-0.5/components/history/nautilus-history-view.c nautilus-0.5.new/components/history/nautilus-history-view.c
+--- nautilus-0.5/components/history/nautilus-history-view.c	Fri Oct  6 01:47:34 2000
++++ nautilus-0.5.new/components/history/nautilus-history-view.c	Sun Nov 19 20:12:44 2000
+@@ -69,7 +69,7 @@
+ 	g_return_val_if_fail (NAUTILUS_IS_VIEW (view), CORBA_OBJECT_NIL);
+ 	
+ 	CORBA_exception_init (ev);
+-	return Bonobo_Unknown_query_interface 
++	return Bonobo_Unknown_queryInterface 
+ 		(bonobo_control_get_control_frame (nautilus_view_get_bonobo_control (view)),
+ 		 "IDL:Nautilus/HistoryFrame:1.0", ev);
+ }
+diff -Nur nautilus-0.5/libnautilus/nautilus-distributed-undo.h nautilus-0.5.new/libnautilus/nautilus-distributed-undo.h
+--- nautilus-0.5/libnautilus/nautilus-distributed-undo.h	Tue Nov  7 15:30:22 2000
++++ nautilus-0.5.new/libnautilus/nautilus-distributed-undo.h	Sun Nov 19 20:11:50 2000
+@@ -260,7 +260,7 @@
+ /** prototypes **/
+ #define Nautilus_Undo_Transaction_ref Bonobo_Unknown_ref
+ #define Nautilus_Undo_Transaction_unref Bonobo_Unknown_unref
+-#define Nautilus_Undo_Transaction_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_Undo_Transaction_query_interface Bonobo_Unknown_queryInterface
+    Nautilus_Undo_MenuItem
+       *Nautilus_Undo_Transaction__get_undo_menu_item(Nautilus_Undo_Transaction
+ 						     _obj,
+@@ -277,7 +277,7 @@
+ 				       CORBA_Environment * ev);
+ #define Nautilus_Undo_Manager_ref Bonobo_Unknown_ref
+ #define Nautilus_Undo_Manager_unref Bonobo_Unknown_unref
+-#define Nautilus_Undo_Manager_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_Undo_Manager_query_interface Bonobo_Unknown_queryInterface
+    void Nautilus_Undo_Manager_append(Nautilus_Undo_Manager _obj,
+ 				     const Nautilus_Undo_Transaction
+ 				     transaction, CORBA_Environment * ev);
+@@ -288,7 +288,7 @@
+ 				   CORBA_Environment * ev);
+ #define Nautilus_Undo_Context_ref Bonobo_Unknown_ref
+ #define Nautilus_Undo_Context_unref Bonobo_Unknown_unref
+-#define Nautilus_Undo_Context_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_Undo_Context_query_interface Bonobo_Unknown_queryInterface
+    Nautilus_Undo_Manager
+       Nautilus_Undo_Context__get_undo_manager(Nautilus_Undo_Context _obj,
+ 					      CORBA_Environment * ev);
+diff -Nur nautilus-0.5/libnautilus/nautilus-undo.c nautilus-0.5.new/libnautilus/nautilus-undo.c
+--- nautilus-0.5/libnautilus/nautilus-undo.c	Fri Oct  6 01:47:43 2000
++++ nautilus-0.5.new/libnautilus/nautilus-undo.c	Sun Nov 19 20:11:50 2000
+@@ -255,7 +255,7 @@
+ 	/* Find the undo manager. */
+ 	control_frame = bonobo_control_get_control_frame (control);
+ 	if (!CORBA_Object_is_nil (control_frame, &ev)) {
+-		undo_context = Bonobo_Control_query_interface
++		undo_context = Bonobo_Control_queryInterface
+ 			(control_frame, "IDL:Nautilus/Undo/Context:1.0", &ev);
+ 		if (!CORBA_Object_is_nil (undo_context, &ev)) {
+ 			manager = Nautilus_Undo_Context__get_undo_manager (undo_context, &ev);
+diff -Nur nautilus-0.5/libnautilus/nautilus-view-component.h nautilus-0.5.new/libnautilus/nautilus-view-component.h
+--- nautilus-0.5/libnautilus/nautilus-view-component.h	Tue Nov  7 15:30:21 2000
++++ nautilus-0.5.new/libnautilus/nautilus-view-component.h	Sun Nov 19 20:11:51 2000
+@@ -781,7 +781,7 @@
+ /** prototypes **/
+ #define Nautilus_View_ref Bonobo_Unknown_ref
+ #define Nautilus_View_unref Bonobo_Unknown_unref
+-#define Nautilus_View_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_View_query_interface Bonobo_Unknown_queryInterface
+    void Nautilus_View_load_location(Nautilus_View _obj,
+ 				    const Nautilus_URI location,
+ 				    CORBA_Environment * ev);
+@@ -795,7 +795,7 @@
+ 				    CORBA_Environment * ev);
+ #define Nautilus_ViewFrame_ref Bonobo_Unknown_ref
+ #define Nautilus_ViewFrame_unref Bonobo_Unknown_unref
+-#define Nautilus_ViewFrame_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_ViewFrame_query_interface Bonobo_Unknown_queryInterface
+    void Nautilus_ViewFrame_open_location(Nautilus_ViewFrame _obj,
+ 					 const Nautilus_URI location,
+ 					 CORBA_Environment * ev);
+@@ -829,7 +829,7 @@
+ 				     CORBA_Environment * ev);
+ #define Nautilus_Zoomable_ref Bonobo_Unknown_ref
+ #define Nautilus_Zoomable_unref Bonobo_Unknown_unref
+-#define Nautilus_Zoomable_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_Zoomable_query_interface Bonobo_Unknown_queryInterface
+    CORBA_float Nautilus_Zoomable__get_zoom_level(Nautilus_Zoomable _obj,
+ 						 CORBA_Environment * ev);
+    void Nautilus_Zoomable__set_zoom_level(Nautilus_Zoomable _obj,
+@@ -852,7 +852,7 @@
+ 				      CORBA_Environment * ev);
+ #define Nautilus_ZoomableFrame_ref Bonobo_Unknown_ref
+ #define Nautilus_ZoomableFrame_unref Bonobo_Unknown_unref
+-#define Nautilus_ZoomableFrame_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_ZoomableFrame_query_interface Bonobo_Unknown_queryInterface
+    void
+       Nautilus_ZoomableFrame_report_zoom_level_changed(Nautilus_ZoomableFrame
+ 						       _obj,
+@@ -862,7 +862,7 @@
+ 						       ev);
+ #define Nautilus_HistoryFrame_ref Bonobo_Unknown_ref
+ #define Nautilus_HistoryFrame_unref Bonobo_Unknown_unref
+-#define Nautilus_HistoryFrame_query_interface Bonobo_Unknown_query_interface
++#define Nautilus_HistoryFrame_query_interface Bonobo_Unknown_queryInterface
+    Nautilus_HistoryList
+       *Nautilus_HistoryFrame_get_history_list(Nautilus_HistoryFrame _obj,
+ 					      CORBA_Environment * ev);
+diff -Nur nautilus-0.5/libnautilus/nautilus-view.c nautilus-0.5.new/libnautilus/nautilus-view.c
+--- nautilus-0.5/libnautilus/nautilus-view.c	Fri Oct  6 01:47:43 2000
++++ nautilus-0.5.new/libnautilus/nautilus-view.c	Sun Nov 19 20:11:51 2000
+@@ -312,7 +312,7 @@
+ 	
+ 	CORBA_exception_init (ev);
+ 
+-	view_frame = Bonobo_Unknown_query_interface 
++	view_frame = Bonobo_Unknown_queryInterface 
+ 		(bonobo_control_get_control_frame (nautilus_view_get_bonobo_control (view)),
+ 		 "IDL:Nautilus/ViewFrame:1.0", ev);
+ 
+diff -Nur nautilus-0.5/libnautilus/nautilus-zoomable.c nautilus-0.5.new/libnautilus/nautilus-zoomable.c
+--- nautilus-0.5/libnautilus/nautilus-zoomable.c	Thu Sep 14 19:10:16 2000
++++ nautilus-0.5.new/libnautilus/nautilus-zoomable.c	Sun Nov 19 20:11:51 2000
+@@ -538,7 +538,7 @@
+ 	CORBA_exception_init (&ev);
+ 	
+ 	if (CORBA_Object_is_nil (view->details->zoomable_frame, &ev)) {
+-		view->details->zoomable_frame = Bonobo_Unknown_query_interface 
++		view->details->zoomable_frame = Bonobo_Unknown_queryInterface 
+ 			(bonobo_control_get_control_frame 
+ 			 (BONOBO_CONTROL (nautilus_zoomable_get_bonobo_control (view))),
+ 			 "IDL:Nautilus/ZoomableFrame:1.0", &ev);
+diff -Nur nautilus-0.5/src/nautilus-window.c nautilus-0.5.new/src/nautilus-window.c
+--- nautilus-0.5/src/nautilus-window.c	Mon Nov  6 14:41:55 2000
++++ nautilus-0.5.new/src/nautilus-window.c	Sun Nov 19 20:11:51 2000
+@@ -125,7 +125,7 @@
+ 
+ NAUTILUS_DEFINE_CLASS_BOILERPLATE (NautilusWindow,
+ 				   nautilus_window,
+-				   BONOBO_TYPE_WIN)
++				   BONOBO_TYPE_WINDOW)
+ 
+ static void
+ nautilus_window_initialize_class (NautilusWindowClass *klass)
+@@ -341,7 +341,7 @@
+ 	/* CORBA and Bonobo setup, which must be done before the location bar setup */
+ 	window->details->ui_container = bonobo_ui_container_new ();
+ 	bonobo_ui_container_set_win (window->details->ui_container,
+-				     BONOBO_WIN (window));
++				     BONOBO_WINDOW (window));
+ 
+ 	/* Load the user interface from the XML file. */
+ 	window->details->shell_ui = bonobo_ui_component_new ("Nautilus Shell");
+@@ -420,7 +420,7 @@
+ 		e_paned_set_position (E_PANED (window->content_hbox), sidebar_width);
+ 	}
+ 	gtk_widget_show (window->content_hbox);
+-	bonobo_win_set_contents (BONOBO_WIN (window), window->content_hbox);
++	bonobo_window_set_contents (BONOBO_WINDOW (window), window->content_hbox);
+ 	
+ 	/* set up the index panel */
+ 	
+@@ -496,8 +496,8 @@
+ 		if (GTK_VALUE_STRING (*arg) == NULL) {
+ 			return;
+ 		}
+-		old_name = bonobo_win_get_name (BONOBO_WIN (object));
+-		bonobo_win_set_name (BONOBO_WIN (object), GTK_VALUE_STRING (*arg));
++		old_name = bonobo_window_get_name (BONOBO_WINDOW (object));
++		bonobo_window_set_name (BONOBO_WINDOW (object), GTK_VALUE_STRING (*arg));
+ 		/* This hack of using the time when the name first
+ 		 * goes non-NULL to be window-constructed time is
+ 		 * completely lame. But it works, so for now we leave
+@@ -521,7 +521,7 @@
+ {
+ 	switch(arg_id) {
+ 	case ARG_APP_ID:
+-		GTK_VALUE_STRING (*arg) = bonobo_win_get_name (BONOBO_WIN (object));
++		GTK_VALUE_STRING (*arg) = bonobo_window_get_name (BONOBO_WINDOW (object));
+ 		break;
+ 	case ARG_APP:
+ 		GTK_VALUE_OBJECT (*arg) = GTK_OBJECT (NAUTILUS_WINDOW (object)->application);
+diff -Nur nautilus-0.5/src/nautilus-window.h nautilus-0.5.new/src/nautilus-window.h
+--- nautilus-0.5/src/nautilus-window.h	Sat Oct  7 02:34:52 2000
++++ nautilus-0.5.new/src/nautilus-window.h	Sun Nov 19 20:11:51 2000
+@@ -49,7 +49,7 @@
+ #endif
+ 
+ typedef struct {
+-        BonoboWinClass parent_spot;
++        BonoboWindowClass parent_spot;
+ } NautilusWindowClass;
+ 
+ typedef struct NautilusWindowStateInfo NautilusWindowStateInfo;
+@@ -64,7 +64,7 @@
+ typedef struct NautilusWindowDetails NautilusWindowDetails;
+ 
+ struct NautilusWindow {
+-        BonoboWin parent_object;
++        BonoboWindow parent_object;
+         
+         NautilusWindowDetails *details;
+         
