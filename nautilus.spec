@@ -5,9 +5,9 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.0.7
-Release:	1
+Release:	2
 License:	GPL
-Group:		X11/Window Managers
+Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/2.0.2/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
@@ -62,12 +62,23 @@ S³u¿y równie¿ bardzo dobrze jako przegl±darka stron WWW.
 %description -l pt_BR
 O nautilus é um excelente gerenciador de arquivos para o GNOME.
 
+%package libs
+Summary:	Nautilus libraries
+Summary(pl):	Biblioteki Nautilusa
+Group:		X11/Libraries
+
+%description libs
+Nautilus libraries.
+
+%description libs -l pl
+Biblioteki Nautilusa.
+
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
 Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
-Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Group:		X11/Development/Libraries
+Requires:	%{name}-libs = %{version}
 Requires:	eel-devel
 Requires:	librsvg-devel
 
@@ -85,7 +96,7 @@ utilizando componentes do nautilus.
 %package static
 Summary:	Static Nautilus libraries
 Summary(pl):	Biblioteki statyczne Nautilusa
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -137,7 +148,6 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/b
 %{_sysconfdir}/X11
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/bonobo/lib*.??
 %{_libdir}/bonobo/servers/*
 %{_datadir}/applications/*
@@ -146,6 +156,10 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/b
 %{_datadir}/nautilus
 %{_pixmapsdir}/*.png
 %{_pixmapsdir}/nautilus
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
