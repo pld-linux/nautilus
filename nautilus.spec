@@ -21,7 +21,7 @@ BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
 BuildRequires:	eel-devel >= 2.5.91
-BuildRequires:	esound-devel >= 0.2.30
+BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.5.90
