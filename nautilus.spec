@@ -3,7 +3,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.4.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
@@ -129,6 +129,10 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/*.a
 
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
+mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets/
+
+
 %find_lang %{name} --with-gnome --all-name
 
 %clean
@@ -148,7 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
 %{_libdir}/bonobo/lib*.la
 %{_libdir}/bonobo/servers/*
-%{_datadir}/control-center-2.0/capplets/*.desktop
+%{_datadir}/gnome/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
 %{_datadir}/gnome/network
