@@ -11,6 +11,7 @@ Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
 Group(pl):	X11/Zarz±dcy Okien
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-DESTDIR.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	glib-devel >= 1.2.9
 BuildRequires:	gtk+-devel >= 1.2.9
@@ -107,11 +108,12 @@ Nautilus, and getting multimedia to work, such as eog and mpg123.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
-%configure \
+%configure2_13 \
 	--enable-more-warnings \
 	--prefix=%{_prefix} \
 	--datadir=%{_datadir} \
