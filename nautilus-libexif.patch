@@ -1,7 +1,7 @@
-diff -aurN nautilus-2.7.1.orig/components/image_properties/nautilus-image-properties-view.c nautilus-2.7.1/components/image_properties/nautilus-image-properties-view.c
---- nautilus-2.7.1.orig/components/image_properties/nautilus-image-properties-view.c	2004-03-09 12:23:37.000000000 +0100
-+++ nautilus-2.7.1/components/image_properties/nautilus-image-properties-view.c	2004-06-27 01:37:20.856928056 +0200
-@@ -129,8 +129,9 @@
+diff -aurN nautilus-2.7.1.orig/src/nautilus-image-properties-page.c nautilus-2.7.1/src/nautilus-image-properties-page.c
+--- nautilus-2.7.1.orig/src/nautilus-image-properties-page.c	2004-03-09 12:23:37.000000000 +0100
++++ nautilus-2.7.1/src/nautilus-image-properties-page.c	2004-06-27 01:37:20.856928056 +0200
+@@ -149,8 +149,9 @@
  	if (attribute->found) {
  		return;
  	}
