@@ -4,7 +4,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.1.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -15,7 +15,7 @@ BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.1.0
+BuildRequires:	bonobo-activation-devel >= 2.1.0-3
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
 BuildRequires:	eel-devel >= 2.1.3
@@ -24,13 +24,13 @@ BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-desktop-devel >= 2.1.0
-BuildRequires:	gnome-vfs2-devel >= 2.0.4-3
+BuildRequires:	gnome-vfs2-devel >= 2.1.3-3
 BuildRequires:	gtk+2-devel >= 2.1.1
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
-BuildRequires:	libbonobo-devel >= 2.1.0
+BuildRequires:	libbonobo-devel >= 2.1.0-3
 BuildRequires:	libbonoboui-devel >= 2.0.3
-BuildRequires:	libgnome >= 2.1.0
+BuildRequires:	libgnome >= 2.1.1-2
 BuildRequires:	libgnomecanvas >= 2.1.0
 BuildRequires:	libgnomeui >= 2.1.1-3
 BuildRequires:	libjpeg-devel
@@ -42,12 +42,13 @@ Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 0.1.3
 Requires:	gnome-mime-data >= 2.0.1
 Requires:	eel >= 2.1.3
-Requires:	bonobo-activation >= 2.1.0
+Requires:	bonobo-activation >= 2.1.0-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
+%define		_serverdir	/usr/lib/bonobo/servers
 
 %description
 Nautilus integrates access to files, applications, media,
@@ -130,7 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	serverdir=%{_serverdir}
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -151,7 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
 %attr(755,root,root) %{_libdir}/bonobo/lib*.??
-%{_libdir}/bonobo/servers/*
+%{_serverdir}/*
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
