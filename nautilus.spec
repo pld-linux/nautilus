@@ -3,7 +3,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.7.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
@@ -14,6 +14,7 @@ Patch3:		%{name}-locale-names.patch
 Patch4:		%{name}-disable_medusa.patch
 Patch5:		%{name}-desktop.patch
 Patch6:		%{name}-launcher.patch
+Patch7:		%{name}-libexif.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.7.1
 BuildRequires:	ORBit2-devel >= 1:2.10.0
@@ -30,6 +31,7 @@ BuildRequires:	gnome-vfs2-devel >= 2.7.1
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.6.0
+BuildRequires:	libexif-devel >= 0.6.9
 BuildRequires:	libgnomeui-devel >= 2.7.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 1:2.6.2
@@ -112,6 +114,7 @@ Biblioteki statyczne Nautilusa.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 mv po/{no,nb}.po
 
