@@ -1,57 +1,11 @@
-diff -urN nautilus-1.0.1.1.org/Makefile.am nautilus-1.0.1.1/Makefile.am
---- nautilus-1.0.1.1.org/Makefile.am	Sun Apr  8 19:37:55 2001
-+++ nautilus-1.0.1.1/Makefile.am	Sun Apr  8 19:39:40 2001
-@@ -117,23 +117,23 @@
+--- nautilus-1.0.5.orig/Makefile.am	Thu Oct 11 19:56:56 2001
++++ nautilus-1.0.5/Makefile.am	Tue Oct 30 19:46:41 2001
+@@ -107,7 +107,7 @@
  ##################################################################
  
  dist-hook: nautilus.spec
 -	cp nautilus.spec $(distdir)
 +	cp nautilus.spec $(DESTDIR)$(distdir)
  
- # This is ridiculous, but automake apparently won't allow conditionals
- # in EXTRA_DIST.
- 
--	mkdir -p $(distdir)/eazel-logos
-+	mkdir -p $(DESTDIR)$(distdir)/eazel-logos
- 	list='$(EAZEL_LOGOS_ICONS)'; \
- 	for i in $$list; \
- 	do \
--		cp $$i $(distdir)/eazel-logos; \
-+		cp $$i $(DESTDIR)$(distdir)/eazel-logos; \
- 	done
- 
--	mkdir -p $(distdir)/eazel-logos/throbber
-+	mkdir -p $(DESTDIR)$(distdir)/eazel-logos/throbber
- 	list='$(EAZEL_LOGOS_THROBBER)'; \
- 	for i in $$list; \
- 	do \
--		cp $$i $(distdir)/eazel-logos/throbber; \
-+		cp $$i $(DESTDIR)$(distdir)/eazel-logos/throbber; \
- 	done
- 
  ##################################################################
-@@ -155,18 +155,18 @@
- # an automake DATA rule because it's easier to deal with the relative paths
- # like this.
- 
--	$(mkinstalldirs) $(icondir)
-+	$(mkinstalldirs) $(DESTDIR)$(icondir)
- 	@list='$(EAZEL_LOGOS_ICONS)'; \
- 	for i in $$list; \
- 	do \
--		echo $(INSTALL_PROGRAM) $$i $(icondir)/`basename $$i`; \
--		$(INSTALL_PROGRAM) $$i $(icondir)/`basename $$i`; \
-+		echo $(INSTALL_PROGRAM) $$i $(DESTDIR)$(icondir)/`basename $$i`; \
-+		$(INSTALL_PROGRAM) $$i $(DESTDIR)$(icondir)/`basename $$i`; \
- 	done
- 
--	$(mkinstalldirs) $(throbberdir)
-+	$(mkinstalldirs) $(DESTDIR)$(throbberdir)
- 	@list='$(EAZEL_LOGOS_THROBBER)'; \
- 	for i in $$list; \
- 	do \
--		echo $(INSTALL_PROGRAM) $$i $(throbberdir)/`basename $$i`; \
--		$(INSTALL_PROGRAM) $$i $(throbberdir)/`basename $$i`; \
-+		echo $(INSTALL_PROGRAM) $$i $(DESTDIR)$(throbberdir)/`basename $$i`; \
-+		$(INSTALL_PROGRAM) $$i $(DESTDIR)$(throbberdir)/`basename $$i`; \
- 	done
+ #
