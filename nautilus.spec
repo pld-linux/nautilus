@@ -31,7 +31,7 @@ BuildRequires:	gnome-vfs2-devel >= 2.7.4
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.6.0
-BuildRequires:	libexif-devel >= 0.6.9
+BuildRequires:	libexif-devel >= 1:0.6.9
 BuildRequires:	libgnomeui-devel >= 2.7.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 1:2.7.2
