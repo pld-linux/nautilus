@@ -2,12 +2,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.3.7
-Release:	3
+Version:	2.3.8
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	ea506ede0857efba37698159b8ef3dda
+# Source0-md5:	d456bfcb5c3c25113bdd00224e38cbd1
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
 URL:		http://nautilus.eazel.com/
@@ -17,12 +17,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.3.7-2
-BuildRequires:	esound-devel >= 0.2.29
+BuildRequires:	eel-devel >= 2.3.8
+BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.2
-BuildRequires:	gnome-desktop-devel >= 2.3.4-2
+BuildRequires:	gnome-desktop-devel >= 2.3.6
 BuildRequires:	gnome-vfs2-devel >= 2.3.5
 BuildRequires:	gtk+2-devel >= 2.2.2
 BuildRequires:	intltool
@@ -41,7 +41,7 @@ BuildRequires:	pango-devel >= 1.2.3
 Requires(post):	GConf2
 Requires:	eel >= 2.3.7-2
 Requires:	gnome-icon-theme >= 1.0.5
-Requires:	gnome-mime-data >= 2.3.0
+Requires:	gnome-mime-data >= 2.3.1
 Requires:	libbonobo >= 2.3.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -76,7 +76,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}
-Requires:	eel-devel >= 2.3.7-2
+Requires:	eel-devel >= 2.3.8
 Requires:	librsvg-devel
 
 %description devel
