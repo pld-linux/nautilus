@@ -129,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc *.gz
-%{_sysconfdir}/CORBA/servers/*
+#%{_sysconfdir}/CORBA/servers/*
 %{_sysconfdir}/vfs/modules/*
 %config /etc/pam.d/*
 %config /etc/security/console.apps/*
