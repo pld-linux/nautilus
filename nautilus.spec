@@ -4,7 +4,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.1.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -48,8 +48,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix			/usr/X11R6
 %define		_mandir			%{_prefix}/man
 %define		_sysconfdir		/etc/X11/GNOME2
-%define		_bonobo_dir		/usr/lib/bonobo
-%define		_bonobo_server_dir	%{_bonobo_dir}/servers
 
 %description
 Nautilus integrates access to files, applications, media,
@@ -132,9 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir} \
-	bonobodir=%{_bonobo_dir} \
-	serverdir=%{_bonobo_server_dir}
+	pkgconfigdir=%{_pkgconfigdir}
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -154,8 +150,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/X11
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
-%attr(755,root,root) %{_bonobo_dir}/lib*.??
-%{_bonobo_server_dir}/*
+%attr(755,root,root) %{_libdir}/bonobo/lib*.??
+%{_libdir}/bonobo/servers/*
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
