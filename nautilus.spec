@@ -13,7 +13,7 @@ BuildRequires:	ORBit2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel
-BuildRequires:	eel-devel >= 1.1.11
+BuildRequires:	eel-devel >= 1.1.14
 BuildRequires:	esound-devel
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
