@@ -1,7 +1,9 @@
 # Note that this is NOT a relocatable package
 
-Summary:	Nautilus is a network user environment
-Summary(pl):	nautilus - pow³oka gnome i menad¿er plików
+Summary:	Nautilus is a file manager for the GNOME desktop environment.
+Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
+Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
+Summary(es):	Nautilus is a file manager for the GNOME desktop environment.
 Name:		nautilus
 Version:	1.0.4
 Release:	1
@@ -12,6 +14,7 @@ Group(de):	X11/Fenstermanager
 Group(pl):	X11/Zarz±dcy Okien
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-use_AM_GNU_GETTEXT.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	glib-devel >= 1.2.9
 BuildRequires:	gtk+-devel >= 1.2.9
@@ -50,8 +53,16 @@ GNOME desktop project.
 %description -l pl
 GNU Nautilus jest mened¿erem plików i graficzn± pow³ok± dla GNOME.
 
+%description -l pt_BR
+O nautilus é um excelente gerenciador de arquivos para o GNOME.
+
+%description -l es
+nautilus is an excellent file manager for the GNOME desktop environment
+
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
+Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
+Summary(es):	Libraries and include files for developing nautilus components
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
@@ -64,6 +75,14 @@ files to allow you to develop Nautilus components.
 
 %description devel -l pl
 Biblioteki i pliki nag³ówkowe potrzebne do programowania.
+
+%description -l pt_BR devel
+Este pacote fornece os arquivos necessários para desenvolvimento utilizando
+componentes do nautilus.
+
+%description -l es devel
+This package provides the necessary development libraries and include files to
+allow you to develop nautilus components.
 
 %package mozilla
 Summary:	Nautilus component for use with Mozilla
@@ -78,6 +97,9 @@ Conflicts:	mozilla = M17
 %description mozilla
 This enables the use of embedded Mozilla as a Nautilus component.
 
+%description mozilla -l pt_BR
+Espe pacote permite a utilização do Mozilla como um componente Nautilus.
+
 %package extras
 Summary:	Extra goodies to use with Nautilus
 Group:		X11/Window Managers
@@ -87,6 +109,9 @@ Requires:	xpdf >= 0.90
 
 %description extras
 This is a meta-package that requires useful add-ons for Nautilus.
+
+%description extras -l pt_BR
+Este é um meta-pacote que instala todos os componentes do Nautilus.
 
 %package suggested
 Summary:	Nautilus and a suggested set of components
@@ -106,11 +131,16 @@ Requires:	%name-extras = %{version}
 This is a meta-package that requires packages useful for running
 Nautilus, and getting multimedia to work, such as eog and mpg123.
 
+%description suggested -l pt_BR
+Este é um meta-pacote que instala alguns pacotes complementares para o Nautilus.
+
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
+rm missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
 %configure2_13 \
@@ -129,14 +159,13 @@ CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
-#    sysconfdir=$RPM_BUILD_ROOT/%{_sysconfdir} \
-#   datadir=$RPM_BUILD_ROOT/%{_datadir} \
-#    includedir=$RPM_BUILD_ROOT/%{_includedir} \
-#    libdir=$RPM_BUILD_ROOT/%{_libdir} \
-#    bindir=$RPM_BUILD_ROOT/%{_bindir} install
+#	sysconfdir=$RPM_BUILD_ROOT/%{_sysconfdir} \
+#	datadir=$RPM_BUILD_ROOT/%{_datadir} \
+#	includedir=$RPM_BUILD_ROOT/%{_includedir} \
+#	libdir=$RPM_BUILD_ROOT/%{_libdir} \
+#	bindir=$RPM_BUILD_ROOT/%{_bindir} install
 
-gzip -9nf 
-%doc AUTHORS COPYING COPYING-DOCS COPYING.LIB TRADEMARK_NOTICE ChangeLog NEWS README
+gzip -9nf ChangeLog NEWS README
 
 %post
 if ! grep %{_libdir} /etc/ld.so.conf > /dev/null ; then
