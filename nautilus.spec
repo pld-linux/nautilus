@@ -16,12 +16,13 @@ BuildRequires:	glib-devel >= 1.2.9
 BuildRequires:	gtk+-devel >= 1.2.9
 BuildRequires:	imlib-devel >= 1.9.8
 BuildRequires:	libxml-devel >= 1.8.10
+BuildRequires:	gdk-pixbuf-devel >= 0.10.0
 BuildRequires:	gnome-libs-devel >= 1.2.11
+BuildRequires:	gnome-vfs-devel >= 1.0
+BuildRequires:	gnome-http-devel
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
 BuildRequires:	oaf-devel >= 0.6.5
-BuildRequires:	gnome-vfs-devel >= 1.0.1
-BuildRequires:	gdk-pixbuf-devel >= 0.10.0
 BuildRequires:	bonobo-devel >= 0.37
 BuildRequires:	popt-devel >= 1.5
 BuildRequires:	freetype-devel >= 2.0.1
