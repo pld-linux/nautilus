@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 scrollkeeper-update
 
-%postun 
+%postun
 /sbin/ldconfig
 scrollkeeper-update
 
