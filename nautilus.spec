@@ -141,8 +141,8 @@ gettextize --force --copy
 xml-i18n-toolize --force --copy --automake
 libtoolize --copy --force
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
 LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"
