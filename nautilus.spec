@@ -136,7 +136,8 @@ automake -a -c
 	%{?debug:--enable-more-warnings} \
 	%{!?debug:--disable-more-warnings} \
 	--with-mozilla-lib-place=%{_libdir} \
-	--with-mozilla-include-place=%{_includedir}/mozilla
+	--with-mozilla-include-place=%{_includedir}/mozilla \
+	--enable-static
 
 %{__make}
 
@@ -227,7 +228,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.a
+%{_libdir}/lib*.a
+%{_libdir}/vfs/modules/*.a
 
 %files mozilla
 %defattr(644,root,root,755)
