@@ -1,7 +1,7 @@
 Summary:	nautilus - gnome shell and file manager
-Summary(pl):	nautilus - pow³oka gnome i mened¿er plików
+Summary(pl):	nautilus - pow³oka gnome i menad¿er plików
 Name:		nautilus
-Version:	1.0
+Version:	1.0.1.1
 Release:	1
 License:	GPL
 Group:		Utilities/File
@@ -9,6 +9,8 @@ Group(pl):	Narzêdzia/Pliki
 Source0:	ftp://ftp.gnome.org/pub/GNOME/unstable/sources/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-time.patch
 Patch1:		%{name}-DESTDIR.patch
+Patch2:		%{name}-gettext.patch
+Patch3:		%{name}-m4-gnome.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	perl
 BuildRequires:	esound-devel >= 0.2.7
@@ -35,14 +37,32 @@ BuildRequires:	XFree86-devel
 BuildRequires:	rpm-devel >= 4.0.2
 BuildRequires:	db1-devel
 BuildRequires:	db3-devel
-BuildRequires:	gettext-devel
 BuildRequires:	ammonite-devel >= 1.0.0
+BuildRequires:	libxml-devel
 BuildRequires:	automake
 BuildRequires:	autoconf
+# TODO: conditional build
+# BuildRequires list for nautilus-installer
+# BuildRequires:	glibc-static
+# BuildRequires:	gdk-pixbuf-static
+# BuildRequires:	gtk+-static
+# BuildRequires:	XFree86-static
+# BuildRequires:	gnome-libs-static
+# BuildRequires:	imlib-static
+# BuildRequires:	esound-static
+# BuildRequires:	audiofile-static
+# BuildRequires:	db1-static
+# BuildRequires:	db3-static
+# BuildRequires:	libghttp-static
+# BuildRequires:	zlib-static
+# BuildRequires:	libxml-static
+
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_sysconfdir	/etc/X11/GNOME
+%define		_localstatedir  /var
 
 %description
 GNU Nautilus is a free software file manager and graphical shell for GNOME.
@@ -69,16 +89,19 @@ Biblioteki i pliki nag³ówkowe potrzebne do programowania.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 gettextize --force --copy
-automake -a -c --no-force -i
+aclocal -I %{_aclocaldir}/gnome
+autoconf
+automake -a -c
 %configure \
 	--enable-eazel-services \
 	--with-mozilla-include-place=%{_includedir}/mozilla \
 	--with-mozilla-lib-place=%{_libdir} \
-	--disable-installer
-	# --enable-installer requires lot of -static versions
+#	--enable-installer
 
 %{__make}
 
@@ -86,7 +109,12 @@ automake -a -c --no-force -i
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	realsysconfdir=/etc \
+	Applicationsdir=%{_applnkdir}/Applications
+
+install -d $RPM_BUILD_ROOT%{_datadir}/idl
+mv $RPM_BUILD_ROOT%{_prefix}/idl/* $RPM_BUILD_ROOT%{_datadir}/idl
 
 %find_lang %{name}
 
@@ -101,21 +129,24 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc *.gz
+%{_sysconfdir}/CORBA/servers/*
 %{_sysconfdir}/vfs/modules/*
-%attr(0755,root,root) %{_bindir}/*
-%attr(0755,root,root) %{_libdir}/vfs/modules/*
-%attr(0755,root,root) %{_libdir}/lib*.so.*.*
-%{_applnkdir}/Utilities/*
-%{_datadir}/gnome/help/%{name}
-%{_datadir}/gnome/ui/*
-%{_datadir}/hyperbola
-%{_datadir}/%{name}
-%{_datadir}/oaf/*
-%{_pixmapsdir}/*.png
-%{_pixmapsdir}/%{name}
+%config /etc/pam.d/*
+%config /etc/security/console.apps/*
+%{_bindir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/vfs/modules/*
+%{_mandir}/man?/*
+%{_applnkdir}/*/*
+%{_datadir}/gnome/ui
+%{_datadir}/nautilus
+%{_datadir}/omf/nautilus
+%{_pixmapsdir}/*.*
+%{_pixmapsdir}/nautilus
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/libnautilus
-%{_libdir}/*.la
-%{_libdir}/*.so
+%{_includedir}/*
+%attr(755,root,root) %{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_datadir}/oaf/*
