@@ -1,0 +1,17 @@
+--- nautilus-2.3.3/nautilus.desktop.in~	2002-12-17 13:21:48.000000000 +0100
++++ nautilus-2.3.3/nautilus.desktop.in	2003-06-18 18:11:37.000000000 +0200
+@@ -7,6 +7,7 @@
+ Terminal=0
+ Type=Application
+ Categories=Application;Core;
++OnlyShowIn=GNOME;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=nautilus
+ X-GNOME-Bugzilla-Component=
+--- nautilus-2.3.3/src/network-scheme.desktop.in~	2003-01-16 10:49:05.000000000 +0100
++++ nautilus-2.3.3/src/network-scheme.desktop.in	2003-06-18 18:13:25.000000000 +0200
+@@ -8,3 +8,4 @@
+ Type=Application
+ Icon=gnome-fs-network
+ Categories=Application;Core;
++OnlyShowIn=GNOME;
