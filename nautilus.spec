@@ -1,7 +1,6 @@
 Summary:	Nautilus is a file manager for the GNOME desktop environment
-Summary(es):	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow≥oka GNOME i menadøer plikÛw
-Summary(pt_BR): Nautilus È um gerenciador de arquivos para o GNOME
+Summary(pt_BR):	Nautilus È um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.4
 Release:	2
@@ -13,7 +12,7 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
 Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
-Patch3: 	%{name}-gmc.patch.bz2
+Patch3:		%{name}-gmc.patch.bz2
 Patch4:		%{name}-noflash.patch.bz2
 Patch5:		%{name}-moz093.patch.bz2
 URL:		http://nautilus.eazel.com/
@@ -58,10 +57,6 @@ rich user experience. Nautilus is an free software project developed
 under the GNU General Public License and is a core component of the
 GNOME desktop project.
 
-%description -l es
-nautilus is an excellent file manager for the GNOME desktop
-environment
-
 %description -l pl
 GNU Nautilus jest menedøerem plikÛw i graficzn± pow≥ok± dla GNOME.
 
@@ -70,21 +65,20 @@ O nautilus È um excelente gerenciador de arquivos para o GNOME.
 
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
-Summary(es):	Libraries and include files for developing nautilus components
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 Requires:	%name = %{version}
 
 %description devel
 This package provides the necessary development libraries and include
 files to allow you to develop Nautilus components.
-
-%description -l es devel
-This package provides the necessary development libraries and include
-files to allow you to develop nautilus components.
 
 %description devel -l pl
 Biblioteki i pliki nag≥Ûwkowe potrzebne do programowania.
@@ -95,21 +89,26 @@ utilizando componentes do nautilus.
 
 %package static
 Summary:	Static Nautilus libraries
-Summary(pl):	Biblioteki staticzne Nautilusa
+Summary(pl):	Biblioteki statyczne Nautilusa
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 Requires:	%name-devel = %{version}
 
 %description static
 Static Nautilus libraries.
 
 %description -l pl static
-Biblioteki staticzne Nautilusa.
+Biblioteki statyczne Nautilusa.
 
 %package mozilla
 Summary:	Nautilus component for use with Mozilla
+Summary(pl):	CzÍ∂Ê Nautilisa do uøywania z Mozill±
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
 Group(pl):	X11/Zarz±dcy Okien
@@ -120,6 +119,10 @@ Conflicts:	mozilla = M17
 
 %description mozilla
 This enables the use of embedded Mozilla as a Nautilus component.
+
+%description mozilla -l pl
+Ten pakiet pozwala na uøywanie wbudowanej Mozilli jako sk≥adnika
+Nautilusa.
 
 %description mozilla -l pt_BR
 Espe pacote permite a utilizaÁ„o do Mozilla como um componente
@@ -139,7 +142,7 @@ Nautilus.
 %patch5 -p1
 
 %build
-rm missing
+rm -f missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
 automake -a -c
@@ -163,6 +166,9 @@ gzip -9nf ChangeLog NEWS README
 
 %find_lang %{name} --with-gnome --all-name
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 /sbin/ldconfig
 scrollkeeper-update
@@ -170,9 +176,6 @@ scrollkeeper-update
 %postun 
 /sbin/ldconfig
 scrollkeeper-update
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
