@@ -1,0 +1,16 @@
+--- configure.in.orig	Tue Aug  6 22:14:46 2002
++++ configure.in	Tue Aug  6 22:34:29 2002
+@@ -326,10 +326,10 @@
+ dnl = cdda module support
+ dnl ====================================
+ 
+-AM_CONDITIONAL(HAVE_CDDA, false);
++AM_CONDITIONAL(HAVE_CDDA, false)
+ AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
+-	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface";
+-		AM_CONDITIONAL(HAVE_CDDA, true);
++	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface"
++		AM_CONDITIONAL(HAVE_CDDA, true)
+ 	])
+ 
+ dnl ====================================

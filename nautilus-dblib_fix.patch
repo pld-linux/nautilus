@@ -1,0 +1,11 @@
+--- components/help/converters/gnome-db2html3/docbook/lib/Makefile.am~	Fri Jun  8 18:10:47 2001
++++ components/help/converters/gnome-db2html3/docbook/lib/Makefile.am	Tue Aug  6 22:10:52 2002
+@@ -1,5 +1,5 @@
+-libdir=$(datadir)/sgml/docbook/xsl-stylesheets-1.29/lib
++dblibdir=$(datadir)/sgml/docbook/xsl-stylesheets-1.29/lib
+ 
+-lib_DATA=lib.xsl
++dblib_DATA=lib.xsl
+ 
+-EXTRA_DIST=$(lib_DATA)
++EXTRA_DIST=$(dblib_DATA)
