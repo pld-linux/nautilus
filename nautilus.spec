@@ -3,11 +3,11 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.0.7
-Release:	2
+Version:	2.1.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/2.0.2/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
 Requires:	gnome-mime-data >= 2.0.1
@@ -16,25 +16,25 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 1.0.3
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.0.7
+BuildRequires:	eel-devel >= 2.1.0
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
-BuildRequires:	gnome-desktop-devel >= 2.0.8
+BuildRequires:	gnome-desktop-devel >= 2.1.0
 BuildRequires:	gnome-vfs2-devel >= 2.0.4
 BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	libbonoboui-devel >= 2.0.3
-BuildRequires:	libgnome >= 2.0.5
-BuildRequires:	libgnomecanvas >= 2.0.4
-BuildRequires:	libgnomeui >= 2.0.5
+BuildRequires:	libgnome >= 2.1.0
+BuildRequires:	libgnomecanvas >= 2.1.0
+BuildRequires:	libgnomeui >= 2.1.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 2.0.1
+BuildRequires:	librsvg-devel >= 2.1.0
 BuildRequires:	libxml2-devel >= 2.4.24
 # need check medusa for building with gnome-vfs2
 #BuildRequires:	medusa-devel >= 0.5.1
