@@ -3,7 +3,7 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.6
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -16,12 +16,11 @@ Patch1:		%{name}-applnk.patch
 Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch3:		%{name}-aclocal.patch
 Patch4:		%{name}-amfix.patch
-Patch5:		%{name}-xml-i18n-rules.patch
-Patch6:		%{name}-bonobo-workaround.patch
-#Patch7:		%{name}-gmc.patch.bz2
-#Patch8:		%{name}-noflash.patch.bz2
-#Patch9:		%{name}-moz093.patch.bz2
-Patch10:	%{name}-cpp.patch
+Patch5:		%{name}-bonobo-workaround.patch
+#Patch6:		%{name}-gmc.patch.bz2
+#Patch7:		%{name}-noflash.patch.bz2
+#Patch8:		%{name}-moz093.patch.bz2
+Patch9:	%{name}-cpp.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
@@ -49,8 +48,7 @@ BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
 BuildRequires:	automake
 BuildRequires:	autoconf
-BuildRequires:  xml-i18n-tools
-BuildConflicts:	intltool
+BuildRequires:  intltool
 Requires:	gnome-http
 Requires:	GConf >= 1.0.2
 Prereq:		/sbin/ldconfig
@@ -151,17 +149,16 @@ Nautilus.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
-#%patch7 -p1
+#%patch6 -p1
 
 # Dzimi removed this patch because its possibe hi is making a big with
 # right panel in nautilus
 
+#%patch7 -p1
 #%patch8 -p1
-#%patch9 -p1
 
-%patch10 -p1
+%patch9 -p1
 
 %build
 rm -f missing
