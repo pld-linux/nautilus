@@ -166,11 +166,11 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/b
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus.so
-%attr(755,root,root) %{_libdir}/libnautilus.la
+%{_libdir}/libnautilus.la
 %attr(755,root,root) %{_libdir}/libnautilus-adapter.so
-%attr(755,root,root) %{_libdir}/libnautilus-adapter.la
+%{_libdir}/libnautilus-adapter.la
 %attr(755,root,root) %{_libdir}/libnautilus-private.so
-%attr(755,root,root) %{_libdir}/libnautilus-private.la
+%{_libdir}/libnautilus-private.la
 %{_includedir}/libnautilus
 %{_pkgconfigdir}/*.pc
 
