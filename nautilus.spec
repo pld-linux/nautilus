@@ -4,11 +4,11 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.0.3
+Version:	2.0.4
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/releases/final/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
@@ -33,22 +33,19 @@ BuildRequires:	libgnome >= 2.0.2
 BuildRequires:	libgnomecanvas >= 2.0.2
 BuildRequires:	libgnomeui >= 2.0.3
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel >= 1.2.3
+BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.0.1
 BuildRequires:	libxml2-devel >= 2.4.23
 # need check medusa for building with gnome-vfs2
 #BuildRequires:	medusa-devel >= 0.5.1
 BuildRequires:	ORBit2-devel >= 2.4.1
 BuildRequires:	pango-devel >= 1.0.4
-#BuildRequires:	scrollkeeper >= 0.3.6
 Prereq:		/sbin/ldconfig
-#Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
-%define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
 
 %description
 Nautilus integrates access to files, applications, media,
@@ -109,7 +106,8 @@ aclocal
 %{__automake}
 
 %configure \
-	--enable-static
+	--enable-static \
+	--enable-hardware
 
 %{__make}
 
@@ -118,8 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir} \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	pkgconfigdir=%{_pkgconfigdir}
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -128,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-GCONF_CONFIG_SOURCE="" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
+GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
 
 %postun -p /sbin/ldconfig
 
