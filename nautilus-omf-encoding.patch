@@ -1,0 +1,16 @@
+--- nautilus-1.0.6/help/nautilus-user-manual/ko/nautilus-user-manual-ko.omf.omf_encoding	Thu Jan 31 15:33:31 2002
++++ nautilus-1.0.6/help/nautilus-user-manual/ko/nautilus-user-manual-ko.omf	Thu Jan 31 15:33:39 2002
+@@ -1,4 +1,4 @@
+-<?xml version="1.0" standalone="no"?>
++<?xml version="1.0" standalone="no" encoding="EUC-KR"?>
+ <omf>
+   <resource>
+     <title>
+--- nautilus-1.0.6/help/nautilus-quick-reference/ko/nautilus-quick-reference-ko.omf.omf_encoding	Thu Jan 31 15:27:55 2002
++++ nautilus-1.0.6/help/nautilus-quick-reference/ko/nautilus-quick-reference-ko.omf	Thu Jan 31 15:32:18 2002
+@@ -1,4 +1,4 @@
+-<?xml version="1.0" standalone="no"?>
++<?xml version="1.0" standalone="no" encoding="EUC-KR"?>
+ <omf>
+   <resource>
+     <title>
