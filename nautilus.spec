@@ -3,7 +3,7 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.1.6
+Version:	2.1.91
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -11,38 +11,38 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-eel.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 1.2.1
-BuildRequires:	ORBit2-devel >= 2.5.0
+BuildRequires:	GConf2-devel >= 2.1.90
+BuildRequires:	ORBit2-devel >= 2.5.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.1.1
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.1.6
+BuildRequires:	eel-devel >= 2.1.91
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.0
-BuildRequires:	gnome-desktop-devel >= 2.1.0
-BuildRequires:	gnome-vfs2-devel >= 2.1.5
+BuildRequires:	gnome-desktop-devel >= 2.1.90
+BuildRequires:	gnome-vfs2-devel >= 2.1.91
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
-BuildRequires:	libbonobo-devel >= 2.1.0-3
-BuildRequires:	libbonoboui-devel >= 2.0.3
-BuildRequires:	libgnome-devel >= 2.1.5
-BuildRequires:	libgnomecanvas-devel >= 2.1.5
-BuildRequires:	libgnomeui-devel >= 2.1.5
+BuildRequires:	libbonobo-devel >= 2.1.1
+BuildRequires:	libbonoboui-devel >= 2.1.2
+BuildRequires:	libgnome-devel >= 2.1.90
+BuildRequires:	libgnomecanvas-devel >= 2.1.90
+BuildRequires:	libgnomeui-devel >= 2.1.90
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 2.1.0
-BuildRequires:	libxml2-devel >= 2.4.24
-BuildRequires:	pango-devel >= 1.1.2
+BuildRequires:	librsvg-devel >= 2.1.5
+BuildRequires:	libxml2-devel >= 2.5.1
+BuildRequires:	pango-devel >= 1.2.0
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 0.1.5
+Requires:	gnome-icon-theme >= 0.91
 Requires:	gnome-mime-data >= 2.0.1
-Requires:	eel >= 2.1.6
-Requires:	bonobo-activation >= 2.1.0-3
+Requires:	eel >= 2.1.91
+Requires:	bonobo-activation >= 2.1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
