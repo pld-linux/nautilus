@@ -21,7 +21,7 @@ BuildRequires:	gnome-vfs2-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	intltool
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel
+BuildRequires:	librsvg-devel >= 1.1.6
 BuildRequires:	libxml2-devel
 BuildRequires:	medusa-devel
 BuildRequires:	scrollkeeper
