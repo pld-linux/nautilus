@@ -2,14 +2,15 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.5.3
+Version:	2.5.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	1bf67b60ef3543544518166f3632fc8c
+# Source0-md5:	b1d9e8cadbc61c92465df712a2dbc013
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
+Patch2:		%{name}-includes.patch
 #Patch2:		%{name}-gtk23.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.3
@@ -18,7 +19,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.5.3
+BuildRequires:	eel-devel >= 2.5.4
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -32,7 +33,7 @@ BuildRequires:	libbonobo-devel >= 2.5.1
 BuildRequires:	libbonoboui-devel >= 2.5.1
 BuildRequires:	libgnome-devel >= 2.5.1
 BuildRequires:	libgnomecanvas-devel >= 2.5.1
-BuildRequires:	libgnomeui-devel >= 2.5.1
+BuildRequires:	libgnomeui-devel >= 2.5.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.5.0
@@ -108,7 +109,7 @@ Biblioteki statyczne Nautilusa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%%patch2 -p1
+%patch2 -p1
 
 %build
 glib-gettextize --copy --force
