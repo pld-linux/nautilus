@@ -3,10 +3,11 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.6
-Release:	10
+Release:	13
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org/mirror/gnome.org/sources/nautilus/1.0//%{name}-%{version}.tar.bz2
+# Source0-md5:	1a55dd341ed1d854bf668a5e5ed468bc
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
 Patch2:		%{name}-aclocal.patch
@@ -19,7 +20,7 @@ Patch8:		%{name}-ac25.patch
 Patch9:		%{name}-dblib_fix.patch
 Patch10:	%{name}-ac_fix.patch
 Patch11:	%{name}-new_mozilla.patch
-URL:		http://nautilus.eazel.com/
+Patch12:	%{name}-omf.patch
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
 BuildRequires:	autoconf
@@ -29,7 +30,7 @@ BuildRequires:	control-center-devel >= 1.3
 BuildRequires:	eel-devel >= 1.0.2
 BuildRequires:	esound-devel >= 0.2.22
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gdk-pixbuf-gnome-devel >= 0.10.0
+BuildRequires:	gdk-pixbuf-gnome-devel >= 0.22.0-3
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-applets
 BuildRequires:	gnome-core-devel >= 1.4.0.4
@@ -41,16 +42,17 @@ BuildRequires:	imlib-devel >= 1.9.8
 BuildRequires:	intltool
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 1.0.1
+BuildRequires:	libtool
 BuildRequires:	libxml-devel >= 1.8.10
 BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	mozilla-devel >= 0.9.9
+BuildRequires:	mozilla-devel >= 1.2.1
 BuildRequires:	oaf-devel >= 0.6.5
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	scrollkeeper
 Requires:	gnome-http
 Requires:	GConf >= 1.0.2
-Prereq:		/sbin/ldconfig
-Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -109,7 +111,7 @@ Summary:	Nautilus component for use with Mozilla
 Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
 Group:		X11/Window Managers
 Requires:	%{name} = %{version}
-Requires:	mozilla >= 0.8
+Requires:	mozilla >= 1.1
 Conflicts:	mozilla = M18
 Conflicts:	mozilla = M17
 
@@ -138,19 +140,20 @@ Nautilus.
 %patch9
 %patch10
 %patch11 -p1
+%patch12 -p1
 
 %build
 rm -f missing
 sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
 mv -f configure.in.tmp configure.in
-gettextize --force --copy
+%{__gettextize}
 xml-i18n-toolize --force --copy --automake
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
-CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
+CPPFLAGS="`/usr/bin/nspr-config --cflags` -DNEW_H=\<new.h\>"; export CPPFLAGS
 LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"
 %configure \
 	%{?debug:--enable-more-warnings} \
