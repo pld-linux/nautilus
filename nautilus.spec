@@ -9,7 +9,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.10.0
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.10/%{name}-%{version}.tar.bz2
@@ -42,10 +42,11 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.17
 BuildRequires:	popt-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.196
 BuildRequires:	startup-notification-devel >= 0.8
-Requires(post):	GConf2
+Requires(post,preun):	GConf2
+Requires(post,postun):	desktop-file-utils
 Requires:	gnome-icon-theme >= 2.10.0
-Requires:	gnome-mime-data >= 2.4.2
 Requires:	gnome-vfs2 >= 2.10.0-2
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	nautilus-gtkhtml
@@ -143,11 +144,24 @@ install %{SOURCE1} .
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+umask 022
+%gconf_schema_install /etc/gconf/schemas/apps_nautilus_preferences.schemas
+/usr/bin/update-desktop-database
+
+%preun
+if [ $1 = 0 ]; then
+	%gconf_schema_uninstall /etc/gconf/schemas/apps_nautilus_preferences.schemas
+fi
+
+%postun
+if [ $1 = 0 ]; then
+	umask 022
+	/usr/bin/update-desktop-database
+fi
+
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
-
-%post
-%gconf_schema_install
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
