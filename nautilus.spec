@@ -2,7 +2,7 @@ Summary:	nautilus - gnome shell and file manager
 Summary(pl):	nautilus - pow³oka gnome i menad¿er plików
 Name:		nautilus
 Version:	1.0.1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Utilities/File
 Group(pl):	Narzêdzia/Pliki
@@ -41,6 +41,7 @@ BuildRequires:	ammonite-devel >= 1.0.0
 BuildRequires:	libxml-devel
 BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	xml-i18n-tools
 # TODO: conditional build
 # BuildRequires list for nautilus-installer
 # BuildRequires:	glibc-static
