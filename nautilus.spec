@@ -10,7 +10,8 @@ Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
-Requires:	gnome-mime-data >= 2.0.1
+BuildRequires:	GConf2-devel >= 1.2.1
+BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 1.0.3
@@ -19,7 +20,6 @@ BuildRequires:	docbook-utils >= 0.6.10
 BuildRequires:	eel-devel >= 2.1.0
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
-BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-desktop-devel >= 2.1.0
@@ -36,10 +36,10 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.1.0
 BuildRequires:	libxml2-devel >= 2.4.24
-BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	pango-devel >= 1.0.4
-Requires:	gnome-icon-theme
 Requires(post):	GConf2
+Requires:	gnome-icon-theme
+Requires:	gnome-mime-data >= 2.0.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -64,7 +64,6 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires(post,postun):	/sbin/ldconfig
 
 %description libs
 Nautilus libraries.
@@ -111,8 +110,8 @@ Biblioteki statyczne Nautilusa.
 %build
 intltoolize --copy --force
 glib-gettextize --copy --force
-libtoolize --copy --force
-aclocal
+%{__libtoolize}
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 
@@ -134,8 +133,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post libs -p /sbin/ldconfig
-%postun libs -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %post
 GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
