@@ -2,12 +2,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.6.2
+Version:	2.6.3
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	a247c541c876dbdcb0b551383d65bd7c
+# Source0-md5:	ef91c7eefd219800a3aab93e6510a5c9
 Patch1:		%{name}-mpg123-esd.patch
 Patch2:		%{name}-includes.patch
 Patch3:		%{name}-locale-names.patch
@@ -16,8 +16,8 @@ Patch5:		%{name}-desktop.patch
 Patch6:		%{name}-launcher.patch
 Patch7:		%{name}-volumes_visible.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.6.0
-BuildRequires:	ORBit2-devel >= 1:2.10.0
+BuildRequires:	GConf2-devel >= 2.6.2
+BuildRequires:	ORBit2-devel >= 1:2.10.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
@@ -26,24 +26,24 @@ BuildRequires:	eel-devel >= 2.6.2
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.6.0
-BuildRequires:	gnome-vfs2-devel >= 2.6.1
+BuildRequires:	gnome-desktop-devel >= 2.6.2
+BuildRequires:	gnome-vfs2-devel >= 2.6.1.1
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-BuildRequires:	libbonoboui-devel >= 2.6.0
+BuildRequires:	libbonoboui-devel >= 2.6.1
 BuildRequires:	libgnomeui-devel >= 2.6.1.1
 BuildRequires:	libjpeg-devel
-BuildRequires:	librsvg-devel >= 1:2.6.2
+BuildRequires:	librsvg-devel >= 1:2.6.5
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel >= 0.6
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.2.0
+Requires:	gnome-icon-theme >= 1.2.3
 Requires:	gnome-mime-data >= 2.4.0
 Requires:	mpg123-esd
-Requires:	gnome-vfs2 >= 2.6.1
+Requires:	gnome-vfs2 >= 2.6.1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -65,7 +65,7 @@ Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	eel >= 2.6.2
-Requires:	libbonobo >= 2.6.0
+Requires:	libbonobo >= 2.6.2
 
 %description libs
 Nautilus libraries.
@@ -80,7 +80,7 @@ Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.6.2
-Requires:	librsvg-devel >= 1:2.6.2
+Requires:	librsvg-devel >= 1:2.6.5
 
 %description devel
 This package provides the necessary development libraries and include
