@@ -148,13 +148,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
 %{_libdir}/bonobo/lib*.la
 %{_libdir}/bonobo/servers/*
-%{_datadir}/applications/*
 %{_datadir}/control-center-2.0/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
 %{_datadir}/gnome/network
 %{_datadir}/nautilus
 %{_pixmapsdir}/nautilus
+%{_desktopdir}/*
 
 %files libs
 %defattr(644,root,root,755)
