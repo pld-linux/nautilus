@@ -8,6 +8,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	f249e0699938ff433eda31064510e102
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.2
 BuildRequires:	ORBit2-devel >= 2.7.0
