@@ -3,7 +3,7 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.6
-Release:	6
+Release:	7
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -75,6 +75,8 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	eel-devel
+Requires:	librsvg-devel
 
 %description devel
 This package provides the necessary development libraries and include
