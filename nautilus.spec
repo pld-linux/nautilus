@@ -3,32 +3,29 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.3.1
+Version:	2.3.2
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-#Patch0:		%{name}-am.patch
-#Patch1:		%{name}-eel.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.2
 BuildRequires:	ORBit2-devel >= 2.7.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.2.1
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.3.1
+BuildRequires:	eel-devel >= 2.3.2
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.1
 BuildRequires:	gnome-desktop-devel >= 2.3.1
-BuildRequires:	gnome-vfs2-devel >= 2.3.1
+BuildRequires:	gnome-vfs2-devel >= 2.3.2
 BuildRequires:	gtk+2-devel >= 2.2.1
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.12
-BuildRequires:	libbonobo-devel >= 2.2.0
+BuildRequires:	libbonobo-devel >= 2.3.1
 BuildRequires:	libbonoboui-devel >= 2.2.0
 BuildRequires:	libgnome-devel >= 2.2.0
 BuildRequires:	libgnomecanvas-devel >= 2.2.0
@@ -39,10 +36,10 @@ BuildRequires:	librsvg-devel >= 2.2.4
 BuildRequires:	libxml2-devel >= 2.5.3
 BuildRequires:	pango-devel >= 1.2.1
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.0.2
+Requires:	gnome-icon-theme >= 1.0.3
 Requires:	gnome-mime-data >= 2.0.1
-Requires:	eel >= 2.3.1
-Requires:	bonobo-activation >= 2.2.1
+Requires:	eel >= 2.3.2
+Requires:	libbonobo >= 2.3.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -104,8 +101,6 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
 
 %build
 intltoolize --copy --force
@@ -125,8 +120,7 @@ glib-gettextize --copy --force
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	DESTDIR=$RPM_BUILD_ROOT 
 
 %find_lang %{name} --with-gnome --all-name
 
