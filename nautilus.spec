@@ -7,6 +7,8 @@ Release:	3
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
+Group(es):	X11/Administraadores De Ventanas
+Group(fr):	X11/Gestionnaires De Fenêtres
 Group(pl):	X11/Zarz±dcy Okien
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
@@ -122,6 +124,8 @@ Summary:	Nautilus component for use with Mozilla
 Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
+Group(es):	X11/Administraadores De Ventanas
+Group(fr):	X11/Gestionnaires De Fenêtres
 Group(pl):	X11/Zarz±dcy Okien
 Requires:	%{name} = %{version}
 Requires:	mozilla >= 0.8
