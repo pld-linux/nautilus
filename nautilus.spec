@@ -1,13 +1,16 @@
+%bcond_without	esd	# do not require esd daemon to play MP3 files
+#
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.8.1
-Release:	1
+Version:	2.8.2
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	f710649a204c84e61cb38352a3e4fc3b
+# Source0-md5:	d5fdec9acc37181016e8424e96d663b8
+Source1:	%{name}.PLD.readme
 Patch1:		%{name}-mpg123-esd.patch
 Patch2:		%{name}-includes.patch
 Patch3:		%{name}-disable_medusa.patch
@@ -21,7 +24,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.8.1
+BuildRequires:	eel-devel >= 2.8.2
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -42,7 +45,6 @@ Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 2.7.90
 Requires:	gnome-mime-data >= 2.4.0
 Requires:	gnome-vfs2 >= 2.8.2
-Requires:	mpg123-esd
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -107,7 +109,7 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-%patch1 -p1
+%{?with_esd:%patch1 -p1}
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -136,9 +138,11 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/*.{la,a}
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
+mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop \
+	$RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+install %{SOURCE1} .
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -153,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
+%doc ChangeLog NEWS README nautilus.PLD.readme
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
