@@ -1,4 +1,3 @@
-
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
@@ -35,12 +34,13 @@ BuildRequires:	libgnomeui-devel >= 2.3.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.3.0
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.7
 BuildRequires:	pango-devel >= 1.2.3
 Requires(post):	GConf2
+Requires:	eel >= 2.3.7
 Requires:	gnome-icon-theme >= 1.0.5
 Requires:	gnome-mime-data >= 2.3.0
-Requires:	eel >= 2.3.7
 Requires:	libbonobo >= 2.3.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -162,12 +162,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libnautilus.so
-%{_libdir}/libnautilus.la
-%attr(755,root,root) %{_libdir}/libnautilus-adapter.so
-%{_libdir}/libnautilus-adapter.la
-%attr(755,root,root) %{_libdir}/libnautilus-private.so
-%{_libdir}/libnautilus-private.la
+%attr(755,root,root) %{_libdir}/libnautilus*.so
+%{_libdir}/libnautilus*.la
 %{_includedir}/libnautilus
 %{_pkgconfigdir}/*.pc
 
