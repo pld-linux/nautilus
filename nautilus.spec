@@ -140,6 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/*/*
 %{_datadir}/gnome/ui
 %{_datadir}/nautilus
+%{_datadir}/oaf/*
 %{_datadir}/omf/nautilus
 %{_pixmapsdir}/*.*
 %{_pixmapsdir}/nautilus
@@ -149,4 +150,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %attr(755,root,root) %{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_datadir}/oaf/*
