@@ -1,0 +1,56 @@
+diff -urN nautilus-2.2.1.orig/src/nautilus-file-management-properties.c nautilus-2.2.1/src/nautilus-file-management-properties.c
+--- nautilus-2.2.1.orig/src/nautilus-file-management-properties.c	Tue Feb 25 06:44:32 2003
++++ nautilus-2.2.1/src/nautilus-file-management-properties.c	Tue Feb 25 06:45:15 2003
+@@ -132,6 +132,9 @@
+ 	5242880,
+ 	10485760,
+ 	104857600,
++	262144000,
++	524288000,
++	1048576000,
+ 	-1
+ };
+ 
+diff -urN nautilus-2.2.1.orig/src/nautilus-file-management-properties.glade nautilus-2.2.1/src/nautilus-file-management-properties.glade
+--- nautilus-2.2.1.orig/src/nautilus-file-management-properties.glade	Tue Feb 25 06:44:32 2003
++++ nautilus-2.2.1/src/nautilus-file-management-properties.glade	Tue Feb 25 06:45:15 2003
+@@ -2040,7 +2040,7 @@
+ 		  <child>
+ 		    <widget class="GtkLabel" id="label18">
+ 		      <property name="visible">True</property>
+-		      <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot;&gt;Image Files&lt;/span&gt;</property>
++		      <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot;&gt;Video and Image Files&lt;/span&gt;</property>
+ 		      <property name="use_underline">False</property>
+ 		      <property name="use_markup">True</property>
+ 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+@@ -2260,6 +2260,30 @@
+ 					  <property name="use_underline">True</property>
+ 					</widget>
+ 				      </child>
++
++				      <child>
++					<widget class="GtkMenuItem" id="250_mb1">
++					  <property name="visible">True</property>
++					  <property name="label" translatable="yes">250 MB</property>
++					  <property name="use_underline">True</property>
++					</widget>
++				      </child>
++
++				      <child>
++					<widget class="GtkMenuItem" id="500_mb1">
++					  <property name="visible">True</property>
++					  <property name="label" translatable="yes">500 MB</property>
++					  <property name="use_underline">True</property>
++					</widget>
++				      </child>
++
++				      <child>
++					<widget class="GtkMenuItem" id="1_gb1">
++					  <property name="visible">True</property>
++					  <property name="label" translatable="yes">1 GB</property>
++					  <property name="use_underline">True</property>
++					</widget>
++				      </child>
+ 				    </widget>
+ 				  </child>
+ 				</widget>
