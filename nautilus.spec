@@ -3,52 +3,54 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.6
-Release:	4
+Release:	6
 License:	GPL
 Group:		X11/Window Managers
+Group(cs):	X11/Okenní mana¾ery
 Group(de):	X11/Fenstermanager
-Group(es):	X11/Administraadores De Ventanas
-Group(fr):	X11/Gestionnaires De Fenêtres
-Group(pl):	X11/Zarz±dcy Okien
+Group(es):	X11/Administradores de Ventanas
+Group(fr):	X11/Gestionnaires de fenêtres
+Group(pl):	X11/Zarz±dcy okien
+Group(pt):	X11/Gestores de Janelas
+Group(ru):	X11/ïËÏÎÎÙÅ ÍÅÎÅÄÖÅÒÙ
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
-Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
-Patch3:		%{name}-aclocal.patch
-Patch4:		%{name}-amfix.patch
-Patch5:		%{name}-bonobo-workaround.patch
-#Patch6:		%{name}-gmc.patch.bz2
-#Patch7:		%{name}-noflash.patch.bz2
-#Patch8:		%{name}-moz093.patch.bz2
-Patch9:		%{name}-cpp.patch
+Patch2:		%{name}-aclocal.patch
+Patch3:		%{name}-amfix.patch
+Patch4:		%{name}-bonobo-workaround.patch
+Patch5:		%{name}-cpp.patch
+Patch6:		%{name}-omf-encoding.patch
+Patch7:		%{name}-mozilla-profile-startup.patch
+Patch8:		%{name}-ac25.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bonobo-devel >= 1.0.9
 BuildRequires:	control-center-devel >= 1.3
-BuildRequires:	esound-devel >= 0.2.22
-BuildRequires:	gdk-pixbuf-devel >= 0.10.0
 BuildRequires:	eel-devel >= 1.0.2
+BuildRequires:	esound-devel >= 0.2.22
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gtk+-devel >= 1.2.9
-BuildRequires:	imlib-devel >= 1.9.8
-BuildRequires:	libxml-devel >= 1.8.10
+BuildRequires:	gdk-pixbuf-devel >= 0.10.0
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-applets
+BuildRequires:	gnome-core-devel >= 1.4.0.4
+BuildRequires:	gnome-http-devel
 BuildRequires:	gnome-libs-devel >= 1.2.11
 BuildRequires:	gnome-vfs-devel >= 1.0.3
-BuildRequires:	gnome-http-devel
-BuildRequires:	gnome-core-devel >= 1.4.0.4
-BuildRequires:	gnome-applets
+BuildRequires:	gtk+-devel >= 1.2.9
+BuildRequires:	imlib-devel >= 1.9.8
+BuildRequires:	intltool
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 1.0.1
+BuildRequires:	libxml-devel >= 1.8.10
 BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	mozilla-devel >= 0.8
+BuildRequires:	mozilla-devel >= 0.9.8
 BuildRequires:	oaf-devel >= 0.6.5
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
-BuildRequires:	automake
-BuildRequires:	autoconf
-BuildRequires:  intltool
 Requires:	gnome-http
 Requires:	GConf >= 1.0.2
 Prereq:		/sbin/ldconfig
@@ -58,6 +60,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
+%define		_sysconfdir	/etc/X11/GNOME
 
 %description
 Nautilus integrates access to files, applications, media,
@@ -78,11 +81,14 @@ Summary:	Libraries and include files for developing Nautilus components
 Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
+Group(cs):	Vývojové prostøedky/Knihovny
+Group(de):	Entwicklung/Bibliotheken
 Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
+Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
 Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(pt):	Desenvolvimento/Bibliotecas
 Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
 Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
@@ -102,11 +108,14 @@ utilizando componentes do nautilus.
 Summary:	Static Nautilus libraries
 Summary(pl):	Biblioteki statyczne Nautilusa
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
+Group(cs):	Vývojové prostøedky/Knihovny
+Group(de):	Entwicklung/Bibliotheken
 Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
+Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
 Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(pt):	Desenvolvimento/Bibliotecas
 Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
 Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
@@ -121,10 +130,13 @@ Biblioteki statyczne Nautilusa.
 Summary:	Nautilus component for use with Mozilla
 Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
 Group:		X11/Window Managers
+Group(cs):	X11/Okenní mana¾ery
 Group(de):	X11/Fenstermanager
-Group(es):	X11/Administraadores De Ventanas
-Group(fr):	X11/Gestionnaires De Fenêtres
-Group(pl):	X11/Zarz±dcy Okien
+Group(es):	X11/Administradores de Ventanas
+Group(fr):	X11/Gestionnaires de fenêtres
+Group(pl):	X11/Zarz±dcy okien
+Group(pt):	X11/Gestores de Janelas
+Group(ru):	X11/ïËÏÎÎÙÅ ÍÅÎÅÄÖÅÒÙ
 Requires:	%{name} = %{version}
 Requires:	mozilla >= 0.8
 Conflicts:	mozilla = M18
@@ -149,28 +161,23 @@ Nautilus.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-
-#%patch6 -p1
-
-# Dzimi removed this patch because its possibe hi is making a big with
-# right panel in nautilus
-
-#%patch7 -p1
-#%patch8 -p1
-
-%patch9 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 rm -f missing
-CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
-
-gettextize --force --copy
+sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
+mv -f configure.in.tmp configure.in
 xml-i18n-toolize --force --copy --automake
+libtoolize --copy --force
+gettextize --force --copy
 aclocal
 autoconf
 automake -a -c
+CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
-LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"; export LDFLAGS
+LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"
 %configure \
 	%{?debug:--enable-more-warnings} \
 	%{!?debug:--disable-more-warnings} \
@@ -185,8 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/omf/%{name} \
-	modulesconfdir=/etc/X11/GNOME/vfs/modules
+	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
 
 gzip -9nf ChangeLog NEWS README
 
@@ -238,9 +244,10 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/vfs/modules/*.so
 %attr(755,root,root) %{_libdir}/vfs/modules/*.la
 %{_mandir}/man1/*
-%{_sysconfdir}/X11/GNOME/vfs/modules/*.conf
+%{_sysconfdir}/vfs/modules/*.conf
 %{_sysconfdir}/CORBA/servers/*
 %{_applnkdir}/Utilities/*.desktop
+%{_applnkdir}/Help/*.desktop
 %{_datadir}/gnome/ui/*.xml
 %{_datadir}/nautilus
 %{_pixmapsdir}/*
