@@ -152,9 +152,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
-%{_datadir}/gnome
+%{_datadir}/gnome/*
 %{_datadir}/nautilus
-#%{_pixmapsdir}/*.png
 %{_pixmapsdir}/nautilus
 
 %files libs
