@@ -45,10 +45,11 @@ Requires:	eel >= 2.1.3
 Requires:	bonobo-activation >= 2.1.0-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
-%define		_sysconfdir	/etc/X11/GNOME2
-%define		_bonobo_server_dir	/usr/lib/bonobo/servers
+%define		_prefix			/usr/X11R6
+%define		_mandir			%{_prefix}/man
+%define		_sysconfdir		/etc/X11/GNOME2
+%define		_bonobodir		/usr/lib/bonobo
+%define		_bonobo_server_dir	%{_bonoboir}/servers
 
 %description
 Nautilus integrates access to files, applications, media,
@@ -132,6 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
+	bonobodir=%{_bonobodir} \
 	serverdir=%{_bonobo_server_dir}
 
 %find_lang %{name} --with-gnome --all-name
@@ -152,7 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/X11
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
-%attr(755,root,root) %{_libdir}/bonobo/lib*.??
+%attr(755,root,root) %{_bonobodir}/lib*.??
 %{_bonobo_server_dir}/*
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
@@ -180,4 +182,4 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_libdir}/bonobo/lib*.a
+%{_bonobodir}/lib*.a
