@@ -1,33 +1,48 @@
 Summary:	nautilus - gnome shell and file manager
 Summary(pl):	nautilus - pow³oka gnome i mened¿er plików
 Name:		nautilus
-Version:	0.5
+Version:	1.0
 Release:	1
 License:	GPL
 Group:		Utilities/File
 Group(pl):	Narzêdzia/Pliki
-Source0:	http://download.eazel.com/source/%{name}-%{version}.tar.gz
-Patch0:		%{name}-bonobo.patch
+Source0:	ftp://ftp.gnome.org/pub/GNOME/unstable/sources/%{name}/%{name}-%{version}.tar.gz
+Patch0:		%{name}-time.patch
+Patch1:		%{name}-DESTDIR.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	ORBit-devel
-BuildRequires:	w3c-libwww-devel >= 5.2.8
-BuildRequires:	libghttp-devel >= 1.0.7
-BuildRequires:	oaf-devel >= 0.6.0
-BuildRequires:	GConf-devel >= 0.11
-BuildRequires:	gnome-vfs-devel >= 0.4.2
-BuildRequires:	libunicode-devel >= 0.4
-BuildRequires:	bonobo-devel >= 0.28
-BuildRequires:	medusa-devel >= 0.2.2
-BuildRequires:	mozilla-devel >= 0.0.M18
+BuildRequires:	perl
+BuildRequires:	esound-devel >= 0.2.7
+BuildRequires:	ORBit-devel >= 0.5.1
+BuildRequires:	freetype-devel >= 2.0
+BuildRequires:	pam-devel
+BuildRequires:	mozilla-devel >= 0.8
+BuildRequires:	bzip2-devel
+BuildRequires:	glib-devel >= 1.2.9
+BuildRequires:	gtk+-devel >= 1.2.9
+BuildRequires:	gnome-libs-devel >= 1.2.11
+BuildRequires:	bonobo-devel >= 0.37
+BuildRequires:	gnome-vfs-devel >= 1.0
+BuildRequires:	control-center-devel >= 1.3
+BuildRequires:	oaf-devel >= 0.6.5
+BuildRequires:	GConf-devel >= 0.12
+BuildRequires:	gnome-http-devel
+BuildRequires:	gdk-pixbuf-devel >= 0.10.0
+BuildRequires:	zlib-devel >= 1.0.3
+BuildRequires:	libpng-devel
+BuildRequires:	medusa-devel >= 0.5.0
 BuildRequires:	gettext-devel
-BuildRequires:	rpm-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	rpm-devel >= 4.0.2
 BuildRequires:	db1-devel
 BuildRequires:	db3-devel
-BuildRequires:	freetype-devel >= 2.0
-BuildRequires:	binutils-static
+BuildRequires:	gettext-devel
+BuildRequires:	ammonite-devel >= 1.0.0
+BuildRequires:	automake
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 GNU Nautilus is a free software file manager and graphical shell for GNOME.
@@ -53,20 +68,25 @@ Biblioteki i pliki nag³ówkowe potrzebne do programowania.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 gettextize --force --copy
-%configure
-#	--with-mozilla-include-place=%{_includedir}/mozilla \
-#	--with-mozilla-lib-place=%{_libdir}
+automake -a -c --no-force -i
+%configure \
+	--enable-eazel-services \
+	--with-mozilla-include-place=%{_includedir}/mozilla \
+	--with-mozilla-lib-place=%{_libdir} \
+	--disable-installer
+	# --enable-installer requires lot of -static versions
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	Applicationsdir=%{_applnkdir}/Utilities
+	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
 
