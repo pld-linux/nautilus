@@ -4,8 +4,8 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.0.0
-Release:	2
+Version:	2.0.3
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -13,33 +13,33 @@ Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 1.0.0
+BuildRequires:	bonobo-activation-devel >= 1.0.3
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.0.0
-BuildRequires:	esound-devel >= 0.2.27
+BuildRequires:	eel-devel >= 2.0.3
+BuildRequires:	esound-devel >= 0.2.28
 BuildRequires:	freetype-devel
-BuildRequires:	GConf2-devel >= 1.2.0
+BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	gnome-desktop-devel >= 2.0.0
-BuildRequires:	gnome-vfs2-devel >= 2.0.0
-BuildRequires:	gtk+2-devel >= 2.0.0
+BuildRequires:	glib2-devel >= 2.0.6
+BuildRequires:	gnome-desktop-devel >= 2.0.6
+BuildRequires:	gnome-vfs2-devel >= 2.0.2
+BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	intltool
-BuildRequires:	libart_lgpl-devel >= 2.3.6
+BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libbonobo-devel >= 2.0.0
-BuildRequires:	libbonoboui-devel >= 2.0.0
-BuildRequires:	libgnome >= 2.0.1
-BuildRequires:	libgnomecanvas >= 2.0.0
-BuildRequires:	libgnomeui >= 2.0.0
+BuildRequires:	libbonoboui-devel >= 2.0.1
+BuildRequires:	libgnome >= 2.0.2
+BuildRequires:	libgnomecanvas >= 2.0.2
+BuildRequires:	libgnomeui >= 2.0.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2.3
-BuildRequires:	librsvg-devel >= 2.0.0
-BuildRequires:	libxml2-devel >= 2.4.22
+BuildRequires:	librsvg-devel >= 2.0.1
+BuildRequires:	libxml2-devel >= 2.4.23
 # need check medusa for building with gnome-vfs2
 #BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	ORBit2-devel >= 2.4.0
-BuildRequires:	pango-devel >= 1.0.2
+BuildRequires:	ORBit2-devel >= 2.4.1
+BuildRequires:	pango-devel >= 1.0.4
 #BuildRequires:	scrollkeeper >= 0.3.6
 Prereq:		/sbin/ldconfig
 #Prereq:		scrollkeeper
@@ -138,13 +138,9 @@ GCONF_CONFIG_SOURCE="" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sys
 %{_sysconfdir}/gconf/schemas/*
 %{_sysconfdir}/X11
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/nautilus-*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(755,root,root) %{_libdir}/libnautilus-history-view.so
-%attr(755,root,root) %{_libdir}/libnautilus-history-view.la
-%attr(755,root,root) %{_libdir}/libnautilus-notes-view.so
-%attr(755,root,root) %{_libdir}/libnautilus-notes-view.la
-%attr(755,root,root) %{_libdir}/libnautilus-tree-view.so
-%attr(755,root,root) %{_libdir}/libnautilus-tree-view.la
+%attr(755,root,root) %{_libdir}/bonobo/lib*.??
 %{_libdir}/bonobo/servers/*
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
@@ -167,3 +163,4 @@ GCONF_CONFIG_SOURCE="" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sys
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%{_libdir}/bonobo/lib*.a
