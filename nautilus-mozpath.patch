@@ -1,0 +1,14 @@
+diff -Nur nautilus-0.1.0/configure.in nautilus-0.1.0.new/configure.in
+--- nautilus-0.1.0/configure.in	Tue Aug 15 02:26:27 2000
++++ nautilus-0.1.0.new/configure.in	Tue Sep 12 17:18:11 2000
+@@ -69,8 +69,8 @@
+ MOZILLA_COMPONENT_CFLAGS=
+ MOZILLA_COMPONENT_LDFLAGS=
+ 
+-_mozilla_lib_place=/usr/lib/mozilla
+-_mozilla_include_place=/usr/include/mozilla
++_mozilla_lib_place=/usr/X11R6/lib
++_mozilla_include_place=/usr/X11R6/include/mozilla
+ 
+ dnl Add a flag to override the default mozilla lib dir
+ AC_ARG_WITH(mozilla-lib-place,
