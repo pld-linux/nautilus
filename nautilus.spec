@@ -16,7 +16,7 @@ Patch4:		%{name}-disable_medusa.patch
 Patch5:		%{name}-desktop.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.5.90
-BuildRequires:	ORBit2-devel >= 2.10.0
+BuildRequires:	ORBit2-devel >= 1:2.10.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
