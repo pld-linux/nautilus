@@ -2,6 +2,8 @@
 # Conditional build:
 %bcond_without	esd	# do not require esd daemon to play MP3 files
 #
+# TODO:
+# - there is no libnautilus.pc, required by nautilus-media
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
