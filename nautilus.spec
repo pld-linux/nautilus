@@ -46,6 +46,7 @@ BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
 BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:  xml-i18n-tools
 Requires:	gnome-http
 Requires:	GConf >= 1.0.2
 Prereq:		/sbin/ldconfig
