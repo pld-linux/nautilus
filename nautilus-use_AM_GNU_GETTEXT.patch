@@ -1,9 +1,9 @@
---- ./configure.in.orig	Sun Jul 22 11:48:01 2001
-+++ ./configure.in	Sun Jul 22 11:48:51 2001
-@@ -695,8 +695,8 @@
+--- nautilus-1.0.6/configure.in.orig	Thu Nov  8 02:52:37 2001
++++ nautilus-1.0.6/configure.in	Tue Nov 13 10:49:26 2001
+@@ -635,8 +635,8 @@
  
  dnl Checks for i18n
- ALL_LINGUAS="az ca cs da de el en_GB es fi fr ga gl hu it ja ko lt nl nn no pl pt_BR ro ru sk sl sv ta tr uk zh_TW.Big5"
+ ALL_LINGUAS="az ca cs da de el en_GB es fi fr ga gl hu it ja ko lt lv nl nn no pl pt pt_BR ro ru sk sl sv ta tr uk zh_TW"
 -AM_GNOME_GETTEXT
 -# AM_GNOME_GETTEXT above substs $DATADIRNAME
 +AM_GNU_GETTEXT
@@ -11,14 +11,3 @@
  # this is the directory where the *.{mo,gmo} files are installed
  gnomelocaledir='${prefix}/${DATADIRNAME}/locale'
  AC_SUBST(gnomelocaledir)
---- ./aclocal.m4.orig	Sun Jul 22 12:00:41 2001
-+++ ./aclocal.m4	Sun Jul 22 12:00:52 2001
-@@ -2073,7 +2073,7 @@
-     AC_SUBST(POSUB)
-   ])
- 
--AC_DEFUN(AM_GNOME_GETTEXT,
-+AC_DEFUN(AM_GNU_GETTEXT,
-   [AC_REQUIRE([AC_PROG_MAKE_SET])dnl
-    AC_REQUIRE([AC_PROG_CC])dnl
-    AC_REQUIRE([AC_PROG_RANLIB])dnl
