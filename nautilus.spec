@@ -2,7 +2,7 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	1.0.5
+Version:	1.0.6
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
@@ -12,13 +12,17 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
 Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
-Patch3:		%{name}-gmc.patch.bz2
-Patch4:		%{name}-noflash.patch.bz2
-Patch5:		%{name}-moz093.patch.bz2
+Patch3:		%{name}-aclocal.patch
+Patch4:		%{name}-amfix.patch
+Patch5:		%{name}-xml-i18n-rules.patch
+Patch6:		%{name}-bonobo-workaround.patch
+#Patch7:		%{name}-gmc.patch.bz2
+#Patch8:		%{name}-noflash.patch.bz2
+#Patch9:		%{name}-moz093.patch.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
-BuildRequires:	bonobo-devel >= 0.37
+BuildRequires:	bonobo-devel >= 1.0.9
 BuildRequires:	control-center-devel >= 1.3
 BuildRequires:	esound-devel >= 0.2.22
 BuildRequires:	gdk-pixbuf-devel >= 0.10.0
@@ -34,7 +38,7 @@ BuildRequires:	gnome-http-devel
 BuildRequires:	gnome-core-devel >= 1.4.0.4
 BuildRequires:	gnome-applets
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 1.0.0
+BuildRequires:	librsvg-devel >= 1.0.1
 BuildRequires:	medusa-devel >= 0.5.1
 BuildRequires:	mozilla-devel >= 0.8
 BuildRequires:	oaf-devel >= 0.6.5
@@ -67,6 +71,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
+Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
@@ -85,7 +90,7 @@ files to allow you to develop Nautilus components.
 %description devel -l pl
 Biblioteki i pliki nag³ówkowe potrzebne do programowania.
 
-%description -l pt_BR devel
+%description devel -l pt_BR
 Este pacote fornece os arquivos necessários para desenvolvimento
 utilizando componentes do nautilus.
 
@@ -105,7 +110,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static Nautilus libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne Nautilusa.
 
 %package mozilla
@@ -134,22 +139,29 @@ Nautilus.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0
-#%patch3 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+
+#%patch7 -p1
 
 # Dzimi removed this patch because its possibe hi is making a big with
 # right panel in nautilus
 
-#%patch4 -p1
-#%patch5 -p1
+#%patch8 -p1
+#%patch9 -p1
 
 %build
 rm -f missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
+xml-i18n-toolize --force
 aclocal
+autoconf
 automake -a -c
-%configure2_13 \
+%configure \
 	%{?debug:--enable-more-warnings} \
 	%{!?debug:--disable-more-warnings} \
 	--with-mozilla-lib-place=%{_libdir} \
