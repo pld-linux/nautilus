@@ -141,60 +141,60 @@ Nautilusa.
 Espe pacote permite a utilização do Mozilla como um componente
 Nautilus.
 
-%prep -q
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-
-#%patch6 -p1
-
-# Dzimi removed this patch because its possibe hi is making a big with
-# right panel in nautilus
-
-#%patch7 -p1
-#%patch8 -p1
-
-%patch9 -p1
-
-%build
-rm -f missing
-CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
-
-gettextize --force --copy
-xml-i18n-toolize --force --copy --automake
-aclocal
-autoconf
-automake -a -c
-CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
-LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"; export LDFLAGS
-%configure \
-	%{?debug:--enable-more-warnings} \
-	%{!?debug:--disable-more-warnings} \
-	--with-mozilla-lib-place=%{_libdir} \
-	--with-mozilla-include-place=%{_includedir}/mozilla \
-	--enable-static
-
-%{__make}
-
-%install
-rm -rf $RPM_BUILD_ROOT
-
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/omf/%{name} \
-	modulesconfdir=/etc/X11/GNOME/vfs/modules
-
-gzip -9nf ChangeLog NEWS README
-
-%find_lang %{name} --with-gnome --all-name
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
+#%prep -q
+#%setup -q
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
+#%patch5 -p1
+#
+##%patch6 -p1
+#
+## Dzimi removed this patch because its possibe hi is making a big with
+## right panel in nautilus
+#
+##%patch7 -p1
+##%patch8 -p1
+#
+#%patch9 -p1
+#
+#%build
+#rm -f missing
+#CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
+#
+#gettextize --force --copy
+#xml-i18n-toolize --force --copy --automake
+#aclocal
+#autoconf
+#automake -a -c
+#CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
+#LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"; export LDFLAGS
+#%configure \
+#	%{?debug:--enable-more-warnings} \
+#	%{!?debug:--disable-more-warnings} \
+#	--with-mozilla-lib-place=%{_libdir} \
+#	--with-mozilla-include-place=%{_includedir}/mozilla \
+#	--enable-static
+#
+#%{__make}
+#
+#%install
+#rm -rf $RPM_BUILD_ROOT
+#
+#%{__make} install \
+#	DESTDIR=$RPM_BUILD_ROOT \
+#	omf_dest_dir=%{_omf_dest_dir}/omf/%{name} \
+#	modulesconfdir=/etc/X11/GNOME/vfs/modules
+#
+#gzip -9nf ChangeLog NEWS README
+#
+#%find_lang %{name} --with-gnome --all-name
+#
+#%clean
+#rm -rf $RPM_BUILD_ROOT
+#
 %post
 /sbin/ldconfig
 scrollkeeper-update
@@ -238,7 +238,7 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/vfs/modules/*.so
 %attr(755,root,root) %{_libdir}/vfs/modules/*.la
 %{_mandir}/man1/*
-%{_sysconfdir}/vfs/modules/*.conf
+%{_sysconfdir}/X11/GNOME/vfs/modules/*.conf
 %{_sysconfdir}/CORBA/servers/*
 %{_applnkdir}/Utilities/*.desktop
 %{_datadir}/gnome/ui/*.xml
