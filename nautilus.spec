@@ -3,7 +3,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.3.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
@@ -12,26 +12,26 @@ Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.7.2
+BuildRequires:	ORBit2-devel >= 2.7.5-1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.3.7
+BuildRequires:	eel-devel >= 2.3.7-2
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.2
-BuildRequires:	gnome-desktop-devel >= 2.3.3
+BuildRequires:	gnome-desktop-devel >= 2.3.4-2
 BuildRequires:	gnome-vfs2-devel >= 2.3.5
 BuildRequires:	gtk+2-devel >= 2.2.2
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.12
 BuildRequires:	libbonobo-devel >= 2.3.3
-BuildRequires:	libbonoboui-devel >= 2.3.3
+BuildRequires:	libbonoboui-devel >= 2.3.3-2
 BuildRequires:	libgnome-devel >= 2.3.3
 BuildRequires:	libgnomecanvas-devel >= 2.3.0
-BuildRequires:	libgnomeui-devel >= 2.3.3
+BuildRequires:	libgnomeui-devel >= 2.3.3.1-2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.3.0
@@ -39,7 +39,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.7
 BuildRequires:	pango-devel >= 1.2.3
 Requires(post):	GConf2
-Requires:	eel >= 2.3.7
+Requires:	eel >= 2.3.7-2
 Requires:	gnome-icon-theme >= 1.0.5
 Requires:	gnome-mime-data >= 2.3.0
 Requires:	libbonobo >= 2.3.3
@@ -76,7 +76,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}
-Requires:	eel-devel
+Requires:	eel-devel >= 2.3.7-2
 Requires:	librsvg-devel
 
 %description devel
