@@ -43,8 +43,9 @@ BuildRequires:	startup-notification-devel >= 0.7
 Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 2.7.90
 Requires:	gnome-mime-data >= 2.4.0
-Requires:	mpg123-esd
 Requires:	gnome-vfs2 >= 2.8.0
+Requires:	mpg123-esd
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
