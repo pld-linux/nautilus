@@ -2,47 +2,47 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.3.9
+Version:	2.3.90
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	9e759f9c66a021edb3a033e916f1bbcf
+# Source0-md5:	09b21115b5a6d1482a3e2f72775e5baa
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.7.6
+BuildRequires:	ORBit2-devel >= 2.8.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.3.9
+BuildRequires:	eel-devel >= 2.3.90
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.2
+BuildRequires:	glib2-devel >= 2.2.3
 BuildRequires:	gnome-desktop-devel >= 2.3.7
 BuildRequires:	gnome-vfs2-devel >= 2.3.7
-BuildRequires:	gtk+2-devel >= 2.2.2
+BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.14
-BuildRequires:	libbonobo-devel >= 2.3.6
-BuildRequires:	libbonoboui-devel >= 2.3.6
-BuildRequires:	libgnome-devel >= 2.3.7
-BuildRequires:	libgnomecanvas-devel >= 2.3.7
+BuildRequires:	libbonobo-devel >= 2.4.0
+BuildRequires:	libbonoboui-devel >= 2.4.0
+BuildRequires:	libgnome-devel >= 2.4.0
+BuildRequires:	libgnomecanvas-devel >= 2.4.0
 BuildRequires:	libgnomeui-devel >= 2.3.7
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.3.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-BuildRequires:	pango-devel >= 1.2.3
+BuildRequires:	pango-devel >= 1.2.5
 Requires(post):	GConf2
-Requires:	eel >= 2.3.9
-Requires:	gnome-icon-theme >= 1.0.6
+Requires:	eel >= 2.3.90
+Requires:	gnome-icon-theme >= 1.0.8
 Requires:	gnome-mime-data >= 2.3.1
-Requires:	libbonobo >= 2.3.6
+Requires:	libbonobo >= 2.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -76,7 +76,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}
-Requires:	eel-devel >= 2.3.9
+Requires:	eel-devel >= 2.3.90
 Requires:	librsvg-devel >= 2.3.1
 
 %description devel
@@ -114,7 +114,6 @@ glib-gettextize --copy --force
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-
 %configure \
 	--enable-static \
 	--enable-hardware
