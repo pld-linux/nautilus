@@ -129,6 +129,7 @@ intltoolize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -157,6 +158,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
+%dir %{_libdir}/nautilus
+%dir %{_libdir}/nautilus/extensions-1.0
 %{_libdir}/bonobo/servers/*
 %{_datadir}/gnome/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
