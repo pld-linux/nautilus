@@ -39,9 +39,9 @@ BuildRequires:	librsvg-devel >= 2.2.4
 BuildRequires:	libxml2-devel >= 2.5.3
 BuildRequires:	pango-devel >= 1.2.1
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.0
+Requires:	gnome-icon-theme >= 1.0.2
 Requires:	gnome-mime-data >= 2.0.1
-Requires:	eel >= 2.2.1
+Requires:	eel >= 2.2.3
 Requires:	bonobo-activation >= 2.2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
