@@ -42,6 +42,7 @@ BuildRequires:	eel-devel >= 1.0
 BuildRequires:	mozilla-devel >= 0.8
 BuildRequires:	xpdf >= 0.90
 BuildRequires:  gettext-devel
+Requires:	GConf >= 1.0.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
