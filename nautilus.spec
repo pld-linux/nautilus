@@ -11,6 +11,7 @@ Group:		X11/Window Managers
 Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/releases/final/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
+Requires:	gnome-mime-data >= 2.0.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 1.0.3
