@@ -19,7 +19,7 @@ BuildRequires:	bonobo-activation-devel >= 2.1.1
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
 BuildRequires:	eel-devel >= 2.1.6
-BuildRequires:	esound-devel >= 0.2.3
+BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.0
