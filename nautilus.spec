@@ -3,7 +3,7 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.2.0
+Version:	2.2.0.1
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -18,7 +18,7 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.1.1
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.2.0
+BuildRequires:	eel-devel >= 2.2.0.1
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
@@ -28,11 +28,11 @@ BuildRequires:	gnome-vfs2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
-BuildRequires:	libbonobo-devel >= 2.1.1
-BuildRequires:	libbonoboui-devel >= 2.1.2
-BuildRequires:	libgnome-devel >= 2.1.90
-BuildRequires:	libgnomecanvas-devel >= 2.1.90
-BuildRequires:	libgnomeui-devel >= 2.1.90
+BuildRequires:	libbonobo-devel >= 2.2.0
+BuildRequires:	libbonoboui-devel >= 2.2.0
+BuildRequires:	libgnome-devel >= 2.2.0
+BuildRequires:	libgnomecanvas-devel >= 2.2.0
+BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.2.0
@@ -41,7 +41,7 @@ BuildRequires:	pango-devel >= 1.2.0
 Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 1.0
 Requires:	gnome-mime-data >= 2.0.1
-Requires:	eel >= 2.2.0
+Requires:	eel >= 2.2.0.1
 Requires:	bonobo-activation >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
