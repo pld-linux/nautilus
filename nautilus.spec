@@ -16,6 +16,8 @@ Patch5:		%{name}-cpp.patch
 Patch6:		%{name}-omf-encoding.patch
 Patch7:		%{name}-mozilla-profile-startup.patch
 Patch8:		%{name}-ac25.patch
+Patch9:		%{name}-dblib_fix.patch
+Patch10:	%{name}-ac_fix.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
@@ -132,6 +134,8 @@ Nautilus.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9
+%patch10
 
 %build
 rm -f missing
