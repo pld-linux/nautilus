@@ -1,6 +1,6 @@
 --- nautils-1.0.6.orig/acinclude.m4	Thu Jan  1 01:00:00 1970
 +++ nautilus-1.0.6/acinclude.m4	Tue Nov 13 11:22:16 2001
-@@ -0,0 +1,390 @@
+@@ -0,0 +1,359 @@
 +AC_DEFUN([AM_PATH_GNOME],
 +[dnl 
 +dnl Get the cflags and libraries from the gnome-config script
@@ -360,34 +360,3 @@
 +  AC_SUBST(FREETYPE2_LIBS)
 +  rm -f conf.freetype2test
 +])
-+
-+dnl AM_GCONF_SOURCE
-+dnl Define GCONF_SCHEMA_CONFIG_SOURCE
-+dnl
-+AC_DEFUN([AM_GCONF_SOURCE],
-+[
-+  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
-+    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool --get-default-source`
-+  else
-+    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
-+  fi
-+
-+  AC_ARG_WITH(gconf-source, 
-+  [  --with-gconf-source=sourceaddress      Config database for installing schema files.],GCONF_SCHEMA_CONFIG_SOURCE="$withval",)
-+
-+  AC_SUBST(GCONF_SCHEMA_CONFIG_SOURCE)
-+  AC_MSG_RESULT("Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation")
-+
-+  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
-+    GCONF_SCHEMA_FILE_DIR=$sysconfdir/gconf/schemas/
-+  else
-+    GCONF_SCHEMA_FILE_DIR=$GCONF_SCHEMA_FILE_DIR
-+  fi
-+
-+  AC_ARG_WITH(gconf-schema-file-dir, 
-+  [  --with-gconf-schema-file-dir=dir        Directory for installing schema files.],GCONF_SCHEMA_FILE_DIR="$withval",)
-+
-+  AC_SUBST(GCONF_SCHEMA_FILE_DIR)
-+  AC_MSG_RESULT("Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files")
-+])
-+
