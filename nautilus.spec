@@ -66,6 +66,7 @@ GNOME desktop project.
 
 %description -l pl
 GNU Nautilus jest mened¿erem plików i graficzn± pow³ok± dla GNOME.
+S³u¿y równie¿ bardzo dobrze jako przegl±darka stron WWW.
 
 %description -l pt_BR
 O nautilus é um excelente gerenciador de arquivos para o GNOME.
