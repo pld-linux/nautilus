@@ -18,3 +18,13 @@
  	-DGNOME_DISABLE_DEPRECATED"
  
  dnl FIXME: put this back once the registration_id stuff is cleared up.
+--- nautilus-2.5.0/src/Makefile.am.wiget	2003-10-28 17:09:52.000000000 +0100
++++ nautilus-2.5.0/src/Makefile.am	2003-10-28 17:10:07.000000000 +0100
+@@ -24,7 +24,6 @@
+ 	-DVERSION="\"$(VERSION)\"" 				\
+ 	-DGDK_DISABLE_DEPRECATED 				\
+ 	-DGDK_PIXBUF_DISABLE_DEPRECATED 			\
+-	-DGTK_DISABLE_DEPRECATED 				\
+ 	-DGNOME_DISABLE_DEPRECATED 				\
+ 	$(NULL)
+ 
