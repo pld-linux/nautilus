@@ -123,6 +123,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT 
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/*.a
+
 %find_lang %{name} --with-gnome --all-name
 
 %clean
@@ -141,14 +143,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/X11/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
-%{_libdir}/bonobo/lib*.la
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
+%{_libdir}/bonobo/lib*.la
 %{_libdir}/bonobo/servers/*
 %{_datadir}/applications/*
 %{_datadir}/control-center-2.0/capplets/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
-%{_datadir}/gnome/*
+%{_datadir}/gnome/network
 %{_datadir}/nautilus
 %{_pixmapsdir}/nautilus
 
@@ -170,4 +172,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_libdir}/bonobo/lib*.a
