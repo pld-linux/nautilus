@@ -2,12 +2,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.7.2
+Version:	2.7.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	61e5c920c5e2cbe0c622bf6e40f554f1
+# Source0-md5:	12ccef295fd12683c36820bb5406f04b
 Patch1:		%{name}-mpg123-esd.patch
 Patch2:		%{name}-includes.patch
 Patch3:		%{name}-locale-names.patch
@@ -22,17 +22,17 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.7.3
+BuildRequires:	eel-devel >= 2.7.4
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.7.4
-BuildRequires:	gnome-vfs2-devel >= 2.7.4
+BuildRequires:	gnome-vfs2-devel >= 2.7.91
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.6.0
 BuildRequires:	libexif-devel >= 1:0.6.9
-BuildRequires:	libgnomeui-devel >= 2.7.2
+BuildRequires:	libgnomeui-devel >= 2.7.91
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 1:2.7.2
 BuildRequires:	libtool
@@ -41,10 +41,10 @@ BuildRequires:	popt-devel
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel >= 0.6
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 1.3.5
+Requires:	gnome-icon-theme >= 1.3.7
 Requires:	gnome-mime-data >= 2.4.0
 Requires:	mpg123-esd
-Requires:	gnome-vfs2 >= 2.7.4
+Requires:	gnome-vfs2 >= 2.7.91
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -65,7 +65,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.7.3
+Requires:	eel >= 2.7.4
 Requires:	libbonobo >= 2.6.0
 
 %description libs
@@ -80,7 +80,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.7.3
+Requires:	eel-devel >= 2.7.4
 Requires:	librsvg-devel >= 1:2.7.2
 
 %description devel
