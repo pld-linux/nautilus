@@ -23,23 +23,19 @@ BuildRequires:	eel-devel >= 2.5.8
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.3.2
 BuildRequires:	gnome-desktop-devel >= 2.5.90
 BuildRequires:	gnome-vfs2-devel >= 2.5.8
-BuildRequires:	gtk+2-devel >= 2.3.2
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
-BuildRequires:	libbonobo-devel >= 2.5.4
 BuildRequires:	libbonoboui-devel >= 2.5.3
-BuildRequires:	libgnome-devel >= 2.5.90
-BuildRequires:	libgnomecanvas-devel >= 2.5.90
 BuildRequires:	libgnomeui-devel >= 2.5.90
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.5.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-BuildRequires:	pango-devel >= 1.3.1
+BuildRequires:	popt-devel
+BuildRequires:	pkgconfig
+BuildRequires:	startup-notification-devel >= 0.5
 Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 1.1.8
 Requires:	gnome-mime-data >= 2.4.0
@@ -64,7 +60,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.5.7
+Requires:	eel >= 2.5.8
 Requires:	libbonobo >= 2.5.1
 
 %description libs
@@ -78,8 +74,8 @@ Summary:	Libraries and include files for developing Nautilus components
 Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
-Requires:	%{name}-libs = %{version}
-Requires:	eel-devel >= 2.5.7
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	eel-devel >= 2.5.8
 Requires:	librsvg-devel >= 2.5.0
 
 %description devel
@@ -97,7 +93,7 @@ utilizando componentes do nautilus.
 Summary:	Static Nautilus libraries
 Summary(pl):	Biblioteki statyczne Nautilusa
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Nautilus libraries.
