@@ -3,7 +3,7 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	1.0.6
-Release:	11
+Release:	12
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -45,7 +45,7 @@ BuildRequires:	librsvg-devel >= 1.0.1
 BuildRequires:	libtool
 BuildRequires:	libxml-devel >= 1.8.10
 BuildRequires:	medusa-devel >= 0.5.1
-BuildRequires:	mozilla-devel >= 0.9.9
+BuildRequires:	mozilla-devel >= 1.1
 BuildRequires:	oaf-devel >= 0.6.5
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
@@ -111,7 +111,7 @@ Summary:	Nautilus component for use with Mozilla
 Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
 Group:		X11/Window Managers
 Requires:	%{name} = %{version}
-Requires:	mozilla >= 0.8
+Requires:	mozilla >= 1.1
 Conflicts:	mozilla = M18
 Conflicts:	mozilla = M17
 
@@ -153,7 +153,7 @@ xml-i18n-toolize --force --copy --automake
 %{__autoconf}
 %{__automake}
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
-CPPFLAGS="`/usr/bin/nspr-config --cflags`"; export CPPFLAGS
+CPPFLAGS="`/usr/bin/nspr-config --cflags` -DNEW_H=\<new.h\>"; export CPPFLAGS
 LDFLAGS="%{rpmldflags} `/usr/bin/nspr-config --libs`"
 %configure \
 	%{?debug:--enable-more-warnings} \
