@@ -14,9 +14,7 @@ Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
 Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch3: 	%{name}-gmc.patch.bz2
-# Dzimi removed this patch because its possibe hi is making a big with
-# right panel in nautilus
-#Patch4:		%{name}-noflash.patch.bz2
+Patch4:		%{name}-noflash.patch.bz2
 Patch5:		%{name}-moz093.patch.bz2
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf-devel >= 0.12
@@ -133,6 +131,10 @@ Nautilus.
 %patch1 -p1
 %patch2 -p0
 %patch3 -p1
+
+# Dzimi removed this patch because its possibe hi is making a big with
+# right panel in nautilus
+
 #%patch4 -p1
 %patch5 -p1
 
