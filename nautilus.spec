@@ -23,7 +23,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	rpm-devel
 BuildRequires:	db1-devel
 BuildRequires:	db3-devel
-BuildRequires:	freetype2-devel >= 2.0
+BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	binutils-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
