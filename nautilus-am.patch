@@ -1,0 +1,12 @@
+diff -urN nautilus-2.0.0.orig/data/Makefile.am nautilus-2.0.0/data/Makefile.am
+--- nautilus-2.0.0.orig/data/Makefile.am	Thu May  2 23:16:27 2002
++++ nautilus-2.0.0/data/Makefile.am	Fri Jun 14 16:21:41 2002
+@@ -26,8 +26,6 @@
+ 			serverconfig.desktop	\
+ 			$(NULL)
+ 
+-DESKTOP_FILES=$(DESKTOP_IN_FILES:.in=)
+-
+ nautilusdatadir = $(datadir)/nautilus
+ 
+ nautilusdata_DATA = \
