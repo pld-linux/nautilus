@@ -48,6 +48,7 @@ Requires:	gnome-icon-theme >= 2.10.0
 Requires:	gnome-mime-data >= 2.4.2
 Requires:	gnome-vfs2 >= 2.10.0
 Requires:	%{name}-libs = %{version}-%{release}
+Obsoletes:	nautilus-gtkhtml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
