@@ -3,7 +3,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.5.91
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
@@ -31,7 +31,7 @@ BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.5.4
 BuildRequires:	libgnomeui-devel >= 2.5.90
 BuildRequires:	libjpeg-devel
-BuildRequires:	librsvg-devel >= 1:2.6.1
+BuildRequires:	librsvg-devel >= 1:2.6.1-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	popt-devel
@@ -77,7 +77,7 @@ Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.5.91
-Requires:	librsvg-devel >= 1:2.6.1
+Requires:	librsvg-devel >= 1:2.6.1-2
 
 %description devel
 This package provides the necessary development libraries and include
