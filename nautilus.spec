@@ -3,13 +3,13 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.2.3.1
+Version:	2.2.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.2/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
-Patch1:		%{name}-eel.patch
+#Patch1:		%{name}-eel.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.2.0
 BuildRequires:	ORBit2-devel >= 2.6.0
@@ -18,7 +18,7 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.2.1
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.2.3.1
+BuildRequires:	eel-devel >= 2.2.4
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
@@ -105,7 +105,7 @@ Biblioteki statyczne Nautilusa.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1 - do we really need it?
 
 %build
 intltoolize --copy --force
