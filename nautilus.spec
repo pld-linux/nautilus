@@ -5,10 +5,11 @@ Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.0.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-am.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -97,8 +98,16 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+intltoolize --copy --force
+glib-gettextize --copy --force
+libtoolize --copy --force
+aclocal
+%{__autoconf}
+%{__automake}
+
 %configure \
 	--enable-static
 
