@@ -126,7 +126,7 @@ Nautilusa.
 Espe pacote permite a utilização do Mozilla como um componente
 Nautilus.
 
-%prep -q
+%prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
