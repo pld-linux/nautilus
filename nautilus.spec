@@ -20,6 +20,9 @@ BuildRequires:	gtkhtml-devel >= 0.6.1
 BuildRequires:	medusa-devel >= 0.2
 BuildRequires:	mozilla-devel >= 5.M17-3
 BuildRequires:	gettext-devel
+BuildRequires:	rpm-devel
+BuildRequires:	db3-devel
+BuildRequires:	binutils-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
