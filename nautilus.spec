@@ -4,30 +4,29 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.9.90
+Version:	2.9.91
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	1895a2d95dfd5f6f13cc3d2e18898d17
+# Source0-md5:	430e3615efe75ff07d5cc3c109987675
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-mpg123-esd.patch
 Patch1:		%{name}-includes.patch
 Patch2:		%{name}-desktop.patch
-Patch3:		%{name}-libexif.patch
-Patch4:		%{name}-capplet.patch
+Patch3:		%{name}-capplet.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.9.2
+BuildRequires:	GConf2-devel >= 2.9.90
 BuildRequires:	ORBit2-devel >= 1:2.12.1
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.9.90
+BuildRequires:	eel-devel >= 2.9.91
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.9.90
+BuildRequires:	gnome-desktop-devel >= 2.9.91
 BuildRequires:	gnome-vfs2-devel >= 2.9.90
 BuildRequires:	intltool >= 0.31
 BuildRequires:	libart_lgpl-devel >= 2.3.15
@@ -41,7 +40,7 @@ BuildRequires:	popt-devel
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel >= 0.8
 Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 2.9.90
+Requires:	gnome-icon-theme >= 2.9.91
 Requires:	gnome-mime-data >= 2.4.0
 Requires:	gnome-vfs2 >= 2.9.90
 Requires:	%{name}-libs = %{version}-%{release}
@@ -65,7 +64,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.9.90
+Requires:	eel >= 2.9.91
 Requires:	libbonobo >= 2.8.1
 
 %description libs
@@ -80,7 +79,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.9.90
+Requires:	eel-devel >= 2.9.91
 Requires:	librsvg-devel >= 1:2.9.5
 
 %description devel
@@ -112,7 +111,6 @@ Biblioteki statyczne Nautilusa.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 glib-gettextize --copy --force
