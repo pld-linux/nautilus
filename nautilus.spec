@@ -2,8 +2,8 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	1.1.13
-Release:	0.1
+Version:	1.1.16
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
@@ -17,6 +17,7 @@ BuildRequires:	eel-devel >= 1.1.11
 BuildRequires:	esound-devel
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-desktop-devel
 BuildRequires:	gnome-vfs2-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	intltool
@@ -111,9 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 scrollkeeper-update
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-for SCHEMAS in apps_nautilus_preferences.schemas; do
-        /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$SCHEMAS > /dev/null 2>&1
-done
+/usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 2>&1
 
 %postun
 /sbin/ldconfig
@@ -122,7 +121,7 @@ scrollkeeper-update
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc *.gz
-%{_sysconfdir}/gconf/schemas
+%{_sysconfdir}/gconf/schemas/*
 %{_sysconfdir}/X11
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
