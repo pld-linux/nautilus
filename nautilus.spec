@@ -9,7 +9,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.10.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.10/%{name}-%{version}.tar.bz2
@@ -30,14 +30,14 @@ BuildRequires:	eel-devel >= 2.10.0
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.10.0
-BuildRequires:	gnome-vfs2-devel >= 2.10.0
-BuildRequires:	intltool >= 0.31
+BuildRequires:	gnome-desktop-devel >= 2.10.0-2
+BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
+BuildRequires:	intltool >= 0.33
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libbonobo-devel >= 2.8.1
 BuildRequires:	libexif-devel >= 1:0.6.9
-BuildRequires:	libgnomeui-devel >= 2.10.0
-BuildRequires:	librsvg-devel >= 1:2.9.5
+BuildRequires:	libgnomeui-devel >= 2.10.0-2
+BuildRequires:	librsvg-devel >= 1:2.9.5-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.17
 BuildRequires:	popt-devel
@@ -46,7 +46,7 @@ BuildRequires:	startup-notification-devel >= 0.8
 Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 2.10.0
 Requires:	gnome-mime-data >= 2.4.2
-Requires:	gnome-vfs2 >= 2.10.0
+Requires:	gnome-vfs2 >= 2.10.0-2
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	nautilus-gtkhtml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -85,7 +85,7 @@ Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.10.0
-Requires:	librsvg-devel >= 1:2.9.5
+Requires:	librsvg-devel >= 1:2.9.5-2
 
 %description devel
 This package provides the necessary development libraries and include
