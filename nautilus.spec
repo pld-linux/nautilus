@@ -84,7 +84,10 @@ Biblioteki statyczne Nautilusa.
 %setup -q
 
 %build
-%configure \
+if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
+        CPPFLAGS="`pkg-config libpng12 --cflags`"
+fi
+%configure CPPFLAGS="$CPPFLAGS" \
 	--enable-static
 
 %{__make}
