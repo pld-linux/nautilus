@@ -39,10 +39,8 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	pango-devel >= 1.2.5
 Requires(post):	GConf2
-Requires:	eel >= 2.3.90
 Requires:	gnome-icon-theme >= 1.0.9
 Requires:	gnome-mime-data >= 2.3.1
-Requires:	libbonobo >= 2.4.0
 Requires:	mpg123-esd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -64,6 +62,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
+Requires:	eel >= 2.4.1
+Requires:	libbonobo >= 2.4.0
 
 %description libs
 Nautilus libraries.
@@ -143,8 +143,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%{_sysconfdir}/gconf/schemas/*
-%{_sysconfdir}/X11/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/nautilus-*
 %attr(755,root,root) %{_libdir}/bonobo/lib*.so
@@ -155,6 +153,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/idl/*
 %{_datadir}/gnome/network
 %{_datadir}/nautilus
+%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/X11/*
 %{_pixmapsdir}/nautilus
 %{_desktopdir}/*
 
