@@ -1,4 +1,3 @@
-# Note that this is NOT a relocatable package
 
 Summary:	Nautilus is a file manager for the GNOME desktop environment.
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
@@ -14,7 +13,8 @@ Group(de):	X11/Fenstermanager
 Group(pl):	X11/Zarz±dcy Okien
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-use_AM_GNU_GETTEXT.patch
+Patch1:		%{name}-applnk.patch
+Patch2:		%{name}-use_AM_GNU_GETTEXT.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	glib-devel >= 1.2.9
 BuildRequires:	gtk+-devel >= 1.2.9
@@ -24,6 +24,8 @@ BuildRequires:	gdk-pixbuf-devel >= 0.10.0
 BuildRequires:	gnome-libs-devel >= 1.2.11
 BuildRequires:	gnome-vfs-devel >= 1.0
 BuildRequires:	gnome-http-devel
+BuildRequires:	gnome-core-devel >= 1.4.0.4
+BuildRequires:	gnome-applets
 BuildRequires:	GConf-devel >= 0.12
 BuildRequires:	ORBit-devel >= 0.5.7
 BuildRequires:	oaf-devel >= 0.6.5
@@ -39,6 +41,7 @@ BuildRequires:	librsvg-devel >= 1.0.0
 BuildRequires:	eel-devel >= 1.0
 BuildRequires:	mozilla-devel >= 0.8
 BuildRequires:	xpdf >= 0.90
+BuildRequires:  gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -100,45 +103,12 @@ This enables the use of embedded Mozilla as a Nautilus component.
 %description mozilla -l pt_BR
 Espe pacote permite a utilização do Mozilla como um componente Nautilus.
 
-%package extras
-Summary:	Extra goodies to use with Nautilus
-Group:		X11/Window Managers
-Group(de):	X11/Fenstermanager
-Group(pl):	X11/Zarz±dcy Okien
-Requires:	xpdf >= 0.90
-
-%description extras
-This is a meta-package that requires useful add-ons for Nautilus.
-
-%description extras -l pt_BR
-Este é um meta-pacote que instala todos os componentes do Nautilus.
-
-%package suggested
-Summary:	Nautilus and a suggested set of components
-Group:		X11/Window Managers
-Group(de):	X11/Fenstermanager
-Group(pl):	X11/Zarz±dcy Okien
-Requires:	%name = %{version}
-Requires:	%name-mozilla = %{version}
-##
-## FIXME: We need to deal with the fact that trilobite builds after
-##        nautilus.
-##
-##Requires:	%name-trilobite = %{version}
-Requires:	%name-extras = %{version}
-
-%description suggested
-This is a meta-package that requires packages useful for running
-Nautilus, and getting multimedia to work, such as eog and mpg123.
-
-%description suggested -l pt_BR
-Este é um meta-pacote que instala alguns pacotes complementares para o Nautilus.
-
-%prep
+%build
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
+%patch2 -p0
+automake -a -c
 %build
 rm missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
@@ -151,39 +121,35 @@ CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 	--includedir=%{_includedir} \
 	--libdir=%{_libdir} \
 	--bindir=%{_bindir} \
+	--with-mozilla-lib-place=%{_libdir} \
+	--with-mozilla-include-place=%{_includedir}/mozilla \
 %ifarch alpha
 	--host=alpha-redhat-linux
 %endif
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
-#	sysconfdir=$RPM_BUILD_ROOT/%{_sysconfdir} \
-#	datadir=$RPM_BUILD_ROOT/%{_datadir} \
-#	includedir=$RPM_BUILD_ROOT/%{_includedir} \
-#	libdir=$RPM_BUILD_ROOT/%{_libdir} \
-#	bindir=$RPM_BUILD_ROOT/%{_bindir} install
 
+%find_lang %{name} --with-gnome --all-name
 gzip -9nf ChangeLog NEWS README
 
 %post
-if ! grep %{_libdir} /etc/ld.so.conf > /dev/null ; then
-	echo "%{_libdir}" >> /etc/ld.so.conf
-fi
 /sbin/ldconfig
 scrollkeeper-update
 
-%postun -p /sbin/ldconfig
+%postun 
+/sbin/ldconfig
 scrollkeeper-update
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-
-%defattr(0555, bin, bin)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/nautilus-clean.sh
 %attr(755,root,root) %{_bindir}/nautilus-verify-rpm.sh
@@ -199,7 +165,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nautilus-hardware-view
 %attr(755,root,root) %{_bindir}/nautilus-history-view
 %attr(755,root,root) %{_bindir}/nautilus-image-view
-# %{_bindir}/nautilus-mpg123
 %attr(755,root,root) %{_bindir}/nautilus-music-view
 %attr(755,root,root) %{_bindir}/nautilus-news
 %attr(755,root,root) %{_bindir}/nautilus-notes
@@ -211,31 +176,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nautilus-launcher-applet
 %attr(755,root,root) %{_bindir}/nautilus-xml-migrate
 %{_libdir}/libnautilus-adapter.so.0
-%{_libdir}/libnautilus-adapter.so.0.0.0
+%attr(755,root,root) %{_libdir}/libnautilus-adapter.so.0.0.0
 %{_libdir}/libnautilus-private.so.0
-%{_libdir}/libnautilus-private.so.0.0.0
+%attr(755,root,root) %{_libdir}/libnautilus-private.so.0.0.0
 %{_libdir}/libnautilus-tree-view.so.0
-%{_libdir}/libnautilus-tree-view.so.0.0.0
+%attr(755,root,root) %{_libdir}/libnautilus-tree-view.so.0.0.0
 %{_libdir}/libnautilus.so.0
-%{_libdir}/libnautilus.so.0.0.0
-%{_libdir}/libnautilus-adapter.so
-%{_libdir}/libnautilus-private.so
-%{_libdir}/libnautilus-tree-view.so
-%{_libdir}/libnautilus.so
-
-
-
-%{_libdir}/vfs/modules/*.so
-
-
-%defattr (0444, bin, bin)
+%attr(755,root,root) %{_libdir}/libnautilus.so.0.0.0
+%attr(755,root,root) %{_libdir}/libnautilus-adapter.so
+%attr(755,root,root) %{_libdir}/libnautilus-private.so
+%attr(755,root,root) %{_libdir}/libnautilus-tree-view.so
+%attr(755,root,root) %{_libdir}/libnautilus.so
+%attr(755,root,root) %{_libdir}/vfs/modules/*.so
 %config %{_sysconfdir}/vfs/modules/*.conf
 %config %{_sysconfdir}/CORBA/servers/nautilus-launcher-applet.gnorba
-%{_applnkdir}/Applications/*.desktop
+%{_applnkdir}/Utilities/*.desktop
 %{_datadir}/gnome/ui/*.xml
 %{_datadir}/nautilus/components/hyperbola/maps/*.map
 %{_datadir}/nautilus/components/hyperbola/*.xml
-%{_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_datadir}/nautilus/*.xml
 %{_datadir}/nautilus/emblems/*.png
 %{_datadir}/nautilus/linksets/*.xml
@@ -286,45 +244,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/oaf/Nautilus_View_tree.oaf
 %{_datadir}/oaf/Nautilus_shell.oaf
 %{_datadir}/oaf/Nautilus_Control_throbber.oaf
-
-# We put the idl files in the main package, not the devel package
-# because the perl corba bindings can use the .idl files at run time.
 %{_datadir}/idl/nautilus-view-component.idl
 %{_datadir}/idl/nautilus-distributed-undo.idl
-
-%defattr (-, root, root)
-%{_datadir}/gnome/help
 %{_datadir}/omf/nautilus
 
 %files devel
 %defattr(644,root,root,755)
-
-%defattr(0555, bin, bin)
 %{_libdir}/*.la
 %{_libdir}/vfs/modules/*.la
 %{_libdir}/*.sh
 %attr(755,root,root) %{_bindir}/nautilus-config
-
-%defattr(0444, bin, bin)
 %{_includedir}/libnautilus/*.h
 
 %files mozilla
 %defattr(644,root,root,755)
-
-%defattr(0555, bin, bin)
 %attr(755,root,root) %{_bindir}/nautilus-mozilla-content-view
-
-%defattr(0444, bin, bin)
 %{_datadir}/oaf/Nautilus_View_mozilla.oaf
-
-%files extras
-%defattr(644,root,root,755)
-
-%defattr(0444, bin, bin)
-%{_datadir}/nautilus/nautilus-extras.placeholder
-
-%files suggested
-%defattr(644,root,root,755)
-
-%defattr(0444, bin, bin)
-%{_datadir}/nautilus/nautilus-suggested.placeholder
