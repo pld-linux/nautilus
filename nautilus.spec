@@ -125,7 +125,7 @@ glib-gettextize --copy --force
 	--enable-static \
 	--enable-hardware
 
-%{__make}
+%{__make} bonobodir=%{_bonobo_dir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
