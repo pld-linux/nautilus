@@ -34,7 +34,7 @@ BuildRequires:	libgnomecanvas >= 2.0.0
 BuildRequires:	libgnomeui >= 2.0.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2.3
-BuildRequires:	librsvg-devel >= 1.1.6
+BuildRequires:	librsvg-devel >= 2.0.0
 BuildRequires:	libxml2-devel >= 2.4.22
 # need check medusa for building with gnome-vfs2
 #BuildRequires:	medusa-devel >= 0.5.1
