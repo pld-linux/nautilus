@@ -44,6 +44,7 @@ Requires:	eel >= 2.3.90
 Requires:	gnome-icon-theme >= 1.0.9
 Requires:	gnome-mime-data >= 2.3.1
 Requires:	libbonobo >= 2.4.0
+Requires:	mpg123-esd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
