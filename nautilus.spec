@@ -2,29 +2,30 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.4.1
+Version:	2.5.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	3e01d69809c4e6bb302c81075ed0be1e
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	e6ff9394e006e48b44b27a23a4314eed
 Patch0:		%{name}-vcategories.patch
 Patch1:		%{name}-mpg123-esd.patch
+Patch2:		%{name}-gtk23.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.8.0
+BuildRequires:	ORBit2-devel >= 2.9.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.4.1
+BuildRequires:	eel-devel >= 2.5.0
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.3
+BuildRequires:	glib2-devel >= 2.3.0
 BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gnome-vfs2-devel >= 2.4.0
-BuildRequires:	gtk+2-devel >= 2.2.4
+BuildRequires:	gnome-vfs2-devel >= 2.5.0
+BuildRequires:	gtk+2-devel >= 2.3.0
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonobo-devel >= 2.4.0
@@ -107,6 +108,7 @@ Biblioteki statyczne Nautilusa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 intltoolize --copy --force
