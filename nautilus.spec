@@ -26,7 +26,7 @@ BuildRequires:	control-center-devel >= 1.3
 BuildRequires:	eel-devel >= 1.0.2
 BuildRequires:	esound-devel >= 0.2.22
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	gdk-pixbuf-devel >= 0.10.0
+BuildRequires:	gdk-pixbuf-gnome-devel >= 0.10.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-applets
 BuildRequires:	gnome-core-devel >= 1.4.0.4
@@ -162,8 +162,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
-gzip -9nf ChangeLog NEWS README
-
 %find_lang %{name} --with-gnome --all-name
 
 %clean
@@ -179,7 +177,7 @@ scrollkeeper-update
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-db2html2
 %attr(755,root,root) %{_bindir}/gnome-db2html3
 %attr(755,root,root) %{_bindir}/gnome-info2html2
