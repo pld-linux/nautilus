@@ -6,17 +6,6 @@ Version:	1.0.6
 Release:	6
 License:	GPL
 Group:		X11/Window Managers
-Group(cs):	X11/Okenní mana¾ery
-Group(da):	X11/Vindueshåndtererene
-Group(de):	X11/Fenstermanager
-Group(es):	X11/Administradores de Ventanas
-Group(fr):	X11/Gestionnaires de fenêtres
-Group(it):	X11/Window manager
-Group(no):	X11/Vindushåndtererene
-Group(pl):	X11/Zarz±dcy okien
-Group(pt):	X11/Gestores de Janelas
-Group(ru):	X11/ïËÏÎÎÙÅ ÍÅÎÅÄÖÅÒÙ
-Group(sv):	X11/Fönsterhanterarna
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-applnk.patch
@@ -85,20 +74,6 @@ Summary:	Libraries and include files for developing Nautilus components
 Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		Development/Libraries
-Group(cs):	Vývojové prostøedky/Knihovny
-Group(da):	Udvikling/Biblioteker
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(it):	Sviluppo/Librerie
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
-Group(no):	Utvikling/Bibliotek
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(sv):	Utveckling/Bibliotek
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -116,20 +91,6 @@ utilizando componentes do nautilus.
 Summary:	Static Nautilus libraries
 Summary(pl):	Biblioteki statyczne Nautilusa
 Group:		Development/Libraries
-Group(cs):	Vývojové prostøedky/Knihovny
-Group(da):	Udvikling/Biblioteker
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(it):	Sviluppo/Librerie
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
-Group(no):	Utvikling/Bibliotek
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(sv):	Utveckling/Bibliotek
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -142,17 +103,6 @@ Biblioteki statyczne Nautilusa.
 Summary:	Nautilus component for use with Mozilla
 Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
 Group:		X11/Window Managers
-Group(cs):	X11/Okenní mana¾ery
-Group(da):	X11/Vindueshåndtererene
-Group(de):	X11/Fenstermanager
-Group(es):	X11/Administradores de Ventanas
-Group(fr):	X11/Gestionnaires de fenêtres
-Group(it):	X11/Window manager
-Group(no):	X11/Vindushåndtererene
-Group(pl):	X11/Zarz±dcy okien
-Group(pt):	X11/Gestores de Janelas
-Group(ru):	X11/ïËÏÎÎÙÅ ÍÅÎÅÄÖÅÒÙ
-Group(sv):	X11/Fönsterhanterarna
 Requires:	%{name} = %{version}
 Requires:	mozilla >= 0.8
 Conflicts:	mozilla = M18
