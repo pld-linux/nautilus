@@ -3,7 +3,7 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.1.2
+Version:	2.1.3
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -18,17 +18,17 @@ BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.1.0
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.1.1-3
+BuildRequires:	eel-devel >= 2.1.3
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-desktop-devel >= 2.1.0
 BuildRequires:	gnome-vfs2-devel >= 2.0.4-3
-BuildRequires:	gtk+2-devel >= 2.0.6
+BuildRequires:	gtk+2-devel >= 2.1.1
 BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
-BuildRequires:	libbonobo-devel >= 2.0.0
+BuildRequires:	libbonobo-devel >= 2.1.0
 BuildRequires:	libbonoboui-devel >= 2.0.3
 BuildRequires:	libgnome >= 2.1.0
 BuildRequires:	libgnomecanvas >= 2.1.0
@@ -37,11 +37,11 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.1.0
 BuildRequires:	libxml2-devel >= 2.4.24
-BuildRequires:	pango-devel >= 1.0.4
+BuildRequires:	pango-devel >= 1.1.2
 Requires(post):	GConf2
-Requires:	gnome-icon-theme
+Requires:	gnome-icon-theme >= 0.1.3
 Requires:	gnome-mime-data >= 2.0.1
-Requires:	eel >= 2.1.1-3
+Requires:	eel >= 2.1.3
 Requires:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -141,7 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun	libs -p /sbin/ldconfig
 
 %post
-GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
+%gconf_schema_install
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -155,6 +155,7 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/b
 %{_datadir}/applications/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/idl/*
+%{_datadir}/gnome
 %{_datadir}/nautilus
 %{_pixmapsdir}/*.png
 %{_pixmapsdir}/nautilus
