@@ -1,7 +1,7 @@
 --- nautils-1.0.6.orig/acinclude.m4	Thu Jan  1 01:00:00 1970
 +++ nautilus-1.0.6/acinclude.m4	Tue Nov 13 11:22:16 2001
 @@ -0,0 +1,390 @@
-+AC_DEFUN(AM_PATH_GNOME,
++AC_DEFUN([AM_PATH_GNOME],
 +[dnl 
 +dnl Get the cflags and libraries from the gnome-config script
 +dnl
@@ -141,7 +141,7 @@
 +dnl NAUTILUS_VERSION_CANON(version)
 +dnl                     1
 +
-+AC_DEFUN(NAUTILUS_VERSION_CANON, [`
++AC_DEFUN([NAUTILUS_VERSION_CANON], [`
 +
 +	dnl Assumes that there are no more than 999 revisions at a level,
 +	dnl no more than three levels of revision.
@@ -163,7 +163,7 @@
 +dnl NAUTILUS_VERSION_INSIST(package, get-version-cmd, operator, want-version-var)
 +dnl                      1        2                3         4
 +
-+AC_DEFUN(NAUTILUS_VERSION_INSIST, [
++AC_DEFUN([NAUTILUS_VERSION_INSIST], [
 +	ez_want_version=[$]$4
 +
 +	case "$3" in
@@ -200,7 +200,7 @@
 +dnl
 +dnl Shamelessly cut-n-pasted from AM_PATH_LIBART
 +dnl
-+AC_DEFUN(NAUTILUS_PATH_FREETYPE2,
++AC_DEFUN([NAUTILUS_PATH_FREETYPE2],
 +[dnl 
 +dnl Get the cflags and libraries from the freetype-config script
 +dnl
@@ -364,7 +364,7 @@
 +dnl AM_GCONF_SOURCE
 +dnl Define GCONF_SCHEMA_CONFIG_SOURCE
 +dnl
-+AC_DEFUN(AM_GCONF_SOURCE,
++AC_DEFUN([AM_GCONF_SOURCE],
 +[
 +  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
 +    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool --get-default-source`
