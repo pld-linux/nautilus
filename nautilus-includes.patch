@@ -1,0 +1,11 @@
+diff -Nru nautilus-2.5.4.orig/libnautilus-private/nautilus-icon-factory.h nautilus-2.5.4/libnautilus-private/nautilus-icon-factory.h
+--- nautilus-2.5.4.orig/libnautilus-private/nautilus-icon-factory.h	2003-12-18 18:16:01.000000000 +0100
++++ nautilus-2.5.4/libnautilus-private/nautilus-icon-factory.h	2003-12-29 14:58:10.513282856 +0100
+@@ -30,6 +30,7 @@
+ #include <gdk/gdktypes.h>
+ #include <gdk-pixbuf/gdk-pixbuf.h>
+ #include <gtk/gtkobject.h>
++#include <gtk/gtkicontheme.h>
+ #include <libnautilus-private/nautilus-file.h>
+ #include <libgnomeui/gnome-icon-theme.h>
+ #include <libgnomeui/gnome-thumbnail.h>

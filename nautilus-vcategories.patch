@@ -1,7 +1,7 @@
-diff -urN aaa/nautilus-2.4.1/nautilus.desktop.in nautilus-2.4.1/nautilus.desktop.in
---- aaa/nautilus-2.4.1/nautilus.desktop.in	2003-07-02 19:34:20.000000000 +0200
-+++ nautilus-2.4.1/nautilus.desktop.in	2003-12-12 23:58:40.000000000 +0100
-@@ -8,10 +8,8 @@
+diff -urN nautilus-2.6.0.orig/nautilus.desktop.in nautilus-2.6.0/nautilus.desktop.in
+--- nautilus-2.6.0.orig/nautilus.desktop.in	2004-03-22 19:52:44.381719912 +0100
++++ nautilus-2.6.0/nautilus.desktop.in	2004-03-22 19:54:13.206216536 +0100
+@@ -8,6 +8,7 @@
  Terminal=false
  Type=Application
  Categories=Application;Core;
@@ -9,13 +9,9 @@ diff -urN aaa/nautilus-2.4.1/nautilus.desktop.in nautilus-2.4.1/nautilus.desktop
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=nautilus
  X-GNOME-Bugzilla-Component=general
- X-Gnome-Bugzilla-OtherBinaries=nautilus-adapter;nautilus-content-loser;nautilus-sidebar-loser;nautilus-text-view;nautilus-throbber;
--
--
--
-diff -urN aaa/nautilus-2.4.1/src/network-scheme.desktop.in nautilus-2.4.1/src/network-scheme.desktop.in
---- aaa/nautilus-2.4.1/src/network-scheme.desktop.in	2003-01-16 11:03:55.000000000 +0100
-+++ nautilus-2.4.1/src/network-scheme.desktop.in	2003-12-12 23:58:17.000000000 +0100
+diff -urN nautilus-2.6.0.orig/src/network-scheme.desktop.in nautilus-2.6.0/src/network-scheme.desktop.in
+--- nautilus-2.6.0.orig/src/network-scheme.desktop.in	2004-03-22 19:52:45.220592384 +0100
++++ nautilus-2.6.0/src/network-scheme.desktop.in	2004-03-22 19:53:22.004000456 +0100
 @@ -4,7 +4,8 @@
  _Comment=View your network servers in the Nautilus file manager
  TryExec=nautilus
