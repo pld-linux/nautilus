@@ -2,13 +2,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.6.1
+Version:	2.6.2
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	50c5732c0c9736b7026bce1c6b0007dc
-Patch0:		%{name}-vcategories.patch
+# Source0-md5:	a247c541c876dbdcb0b551383d65bd7c
 Patch1:		%{name}-mpg123-esd.patch
 Patch2:		%{name}-includes.patch
 Patch3:		%{name}-locale-names.patch
@@ -23,7 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.6.1
+BuildRequires:	eel-devel >= 2.6.2
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -32,7 +31,7 @@ BuildRequires:	gnome-vfs2-devel >= 2.6.1
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.6.0
-BuildRequires:	libgnomeui-devel >= 2.6.0
+BuildRequires:	libgnomeui-devel >= 2.6.1.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 1:2.6.2
 BuildRequires:	libtool
@@ -65,7 +64,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.6.1
+Requires:	eel >= 2.6.2
 Requires:	libbonobo >= 2.6.0
 
 %description libs
@@ -80,7 +79,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.6.1
+Requires:	eel-devel >= 2.6.2
 Requires:	librsvg-devel >= 1:2.6.2
 
 %description devel
@@ -108,7 +107,6 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
