@@ -39,7 +39,7 @@ BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	pango-devel >= 1.0.4
 Requires:	gnome-icon-theme
-Prereq:		/sbin/ldconfig
+Requires(post):	GConf2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -64,6 +64,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
+Requires(post,postun):	/sbin/ldconfig
 
 %description libs
 Nautilus libraries.
@@ -133,11 +134,11 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
+%post libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
