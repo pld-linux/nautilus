@@ -32,7 +32,6 @@ BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.6.1
 BuildRequires:	libexif-devel >= 1:0.6.9
 BuildRequires:	libgnomeui-devel >= 2.7.92
-BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 1:2.8.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
