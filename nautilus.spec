@@ -42,16 +42,17 @@ BuildRequires:	imlib-devel >= 1.9.8
 BuildRequires:	intltool
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 1.0.1
+BuildRequires:	libtool
 BuildRequires:	libxml-devel >= 1.8.10
 BuildRequires:	medusa-devel >= 0.5.1
 BuildRequires:	mozilla-devel >= 0.9.9
 BuildRequires:	oaf-devel >= 0.6.5
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	scrollkeeper
 Requires:	gnome-http
 Requires:	GConf >= 1.0.2
-Prereq:		/sbin/ldconfig
-Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -145,10 +146,10 @@ Nautilus.
 rm -f missing
 sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
 mv -f configure.in.tmp configure.in
-gettextize --force --copy
+%{__gettextize}
 xml-i18n-toolize --force --copy --automake
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
