@@ -40,3 +40,13 @@
          cd $(srcdir);   \
          cp $(sgml_ents) $$ourdir
  
+--- nautilus-1.0.6/Makefile.am~	Sun Aug 11 21:24:44 2002
++++ nautilus-1.0.6/Makefile.am	Sun Aug 11 21:25:51 2002
+@@ -24,6 +24,7 @@
+ 	test 			\
+ 	user-guide		\
+ 	help			\
++	intl			\
+ 	po 			\
+ 	omf-install		\
+ 	$(NULL)
