@@ -74,7 +74,7 @@ Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
 Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
-Requires:	%name = %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 This package provides the necessary development libraries and include
@@ -98,7 +98,7 @@ Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
 Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
-Requires:	%name-devel = %{version}
+Requires:	%{name}-devel = %{version}
 
 %description static
 Static Nautilus libraries.
@@ -112,7 +112,7 @@ Summary(pl):	Czê¶æ Nautilisa do u¿ywania z Mozill±
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
 Group(pl):	X11/Zarz±dcy Okien
-Requires:	%name = %{version}
+Requires:	%{name} = %{version}
 Requires:	mozilla >= 0.8
 Conflicts:	mozilla = M18
 Conflicts:	mozilla = M17
