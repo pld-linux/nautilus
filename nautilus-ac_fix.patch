@@ -14,3 +14,11 @@
  	])
  
  dnl ====================================
+@@ -822,6 +822,7 @@
+ applets/launcher/Makefile
+ applets/preferences-applet/Makefile
+ omf-install/Makefile
++intl/Makefile
+ ])
+ 
+ dnl <= Configuration summary =>
