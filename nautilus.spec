@@ -40,6 +40,8 @@ BuildRequires:	mozilla-devel >= 0.8
 BuildRequires:	oaf-devel >= 0.6.5
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	xpdf >= 0.90
+BuildRequires:	automake
+BuildRequires:	autoconf
 Requires:	gnome-http
 Requires:	GConf >= 1.0.2
 Prereq:		/sbin/ldconfig
@@ -145,6 +147,7 @@ Nautilus.
 rm -f missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
+aclocal
 automake -a -c
 %configure2_13 \
 	%{?debug:--enable-more-warnings} \
