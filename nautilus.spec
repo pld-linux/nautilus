@@ -30,9 +30,9 @@ BuildRequires:	intltool
 BuildRequires:	libart_lgpl-devel >= 2.3.10
 BuildRequires:	libbonobo-devel >= 2.1.0-3
 BuildRequires:	libbonoboui-devel >= 2.0.3
-BuildRequires:	libgnome >= 2.1.1-2
-BuildRequires:	libgnomecanvas >= 2.1.0
-BuildRequires:	libgnomeui >= 2.1.1-3
+BuildRequires:	libgnome-devel >= 2.1.1-2
+BuildRequires:	libgnomecanvas-devel >= 2.1.0
+BuildRequires:	libgnomeui-devel >= 2.1.1-3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.1.0
