@@ -2,12 +2,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.8.0
-Release:	4
+Version:	2.8.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	ec0df83346b3d1efa746cd593f252a8c
+# Source0-md5:	f710649a204c84e61cb38352a3e4fc3b
 Patch1:		%{name}-mpg123-esd.patch
 Patch2:		%{name}-includes.patch
 Patch3:		%{name}-disable_medusa.patch
@@ -21,12 +21,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.8.0
+BuildRequires:	eel-devel >= 2.8.1
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.7.92
-BuildRequires:	gnome-vfs2-devel >= 2.8.0
+BuildRequires:	gnome-vfs2-devel >= 2.8.2
 BuildRequires:	intltool >= 0.31
 BuildRequires:	libart_lgpl-devel >= 2.3.15
 BuildRequires:	libbonoboui-devel >= 2.6.1
@@ -42,7 +42,7 @@ BuildRequires:	startup-notification-devel >= 0.7
 Requires(post):	GConf2
 Requires:	gnome-icon-theme >= 2.7.90
 Requires:	gnome-mime-data >= 2.4.0
-Requires:	gnome-vfs2 >= 2.8.0
+Requires:	gnome-vfs2 >= 2.8.2
 Requires:	mpg123-esd
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -123,8 +123,7 @@ intltoolize --copy --force
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-static \
-	--enable-hardware
+	--enable-static
 
 %{__make}
 
