@@ -1,6 +1,6 @@
-diff -urN nautilus-1.0.org/Makefile.am nautilus-1.0/Makefile.am
---- nautilus-1.0.org/Makefile.am	Sat Mar  3 01:53:45 2001
-+++ nautilus-1.0/Makefile.am	Mon Apr  2 00:04:21 2001
+diff -urN nautilus-1.0.1.1.org/Makefile.am nautilus-1.0.1.1/Makefile.am
+--- nautilus-1.0.1.1.org/Makefile.am	Sun Apr  8 19:37:55 2001
++++ nautilus-1.0.1.1/Makefile.am	Sun Apr  8 19:39:40 2001
 @@ -117,23 +117,23 @@
  ##################################################################
  
@@ -55,9 +55,9 @@ diff -urN nautilus-1.0.org/Makefile.am nautilus-1.0/Makefile.am
 +		echo $(INSTALL_PROGRAM) $$i $(DESTDIR)$(throbberdir)/`basename $$i`; \
 +		$(INSTALL_PROGRAM) $$i $(DESTDIR)$(throbberdir)/`basename $$i`; \
  	done
-diff -urN nautilus-1.0.org/components/services/trilobite/helper/Makefile.am nautilus-1.0/components/services/trilobite/helper/Makefile.am
---- nautilus-1.0.org/components/services/trilobite/helper/Makefile.am	Fri Oct 27 04:18:59 2000
-+++ nautilus-1.0/components/services/trilobite/helper/Makefile.am	Sun Apr  1 23:57:09 2001
+diff -urN nautilus-1.0.1.1.org/components/services/trilobite/helper/Makefile.am nautilus-1.0.1.1/components/services/trilobite/helper/Makefile.am
+--- nautilus-1.0.1.1.org/components/services/trilobite/helper/Makefile.am	Sun Apr  8 19:38:02 2001
++++ nautilus-1.0.1.1/components/services/trilobite/helper/Makefile.am	Sun Apr  8 19:40:13 2001
 @@ -11,10 +11,10 @@
  		&& mv $(srcdir)/eazel-helper.security.tmp $(srcdir)/eazel-helper.security
  
@@ -66,10 +66,10 @@ diff -urN nautilus-1.0.org/components/services/trilobite/helper/Makefile.am naut
 -	cp $(srcdir)/eazel-helper.security $(sysconfdir)/security/console.apps/eazel-helper
 -	mkdir -p $(sysconfdir)/pam.d
 -	cp $(srcdir)/eazel-helper.pam $(sysconfdir)/pam.d/eazel-helper
-+	mkdir -p $(DESTDIR)$(sysconfdir)/security/console.apps
-+	cp $(srcdir)/eazel-helper.security $(DESTDIR)$(sysconfdir)/security/console.apps/eazel-helper
-+	mkdir -p $(DESTDIR)$(sysconfdir)/pam.d
-+	cp $(srcdir)/eazel-helper.pam $(DESTDIR)$(sysconfdir)/pam.d/eazel-helper
++	mkdir -p $(DESTDIR)$(realsysconfdir)/security/console.apps
++	cp $(srcdir)/eazel-helper.security $(DESTDIR)$(realsysconfdir)/security/console.apps/eazel-helper
++	mkdir -p $(DESTDIR)$(realsysconfdir)/pam.d
++	cp $(srcdir)/eazel-helper.pam $(DESTDIR)$(realsysconfdir)/pam.d/eazel-helper
  
  ## This and bin_SCRIPTS is a hack to ensure
  ## that eazel-helper.security is build during
