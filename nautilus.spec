@@ -103,16 +103,18 @@ This enables the use of embedded Mozilla as a Nautilus component.
 %description mozilla -l pt_BR
 Espe pacote permite a utilização do Mozilla como um componente Nautilus.
 
-%build
+%prep -q
 %setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
-automake -a -c
+
+
 %build
 rm missing
 CFLAGS="%{rpmcflags} -DENABLE_SCROLLKEEPER_SUPPORT"
 
+automake -a -c
 %configure2_13 \
 	--enable-more-warnings \
 	--prefix=%{_prefix} \
