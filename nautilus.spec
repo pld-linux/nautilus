@@ -2,8 +2,8 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	nautilus - pow³oka GNOME i menad¿er plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	1.0.4
-Release:	2
+Version:	1.0.5
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -22,14 +22,14 @@ BuildRequires:	bonobo-devel >= 0.37
 BuildRequires:	control-center-devel >= 1.3
 BuildRequires:	esound-devel >= 0.2.22
 BuildRequires:	gdk-pixbuf-devel >= 0.10.0
-BuildRequires:	eel-devel >= 1.0
+BuildRequires:	eel-devel >= 1.0.2
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	gtk+-devel >= 1.2.9
 BuildRequires:	imlib-devel >= 1.9.8
 BuildRequires:	libxml-devel >= 1.8.10
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel >= 1.2.11
-BuildRequires:	gnome-vfs-devel >= 1.0
+BuildRequires:	gnome-vfs-devel >= 1.0.3
 BuildRequires:	gnome-http-devel
 BuildRequires:	gnome-core-devel >= 1.4.0.4
 BuildRequires:	gnome-applets
@@ -135,13 +135,13 @@ Nautilus.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
-%patch3 -p1
+#%patch3 -p1
 
 # Dzimi removed this patch because its possibe hi is making a big with
 # right panel in nautilus
 
 #%patch4 -p1
-%patch5 -p1
+#%patch5 -p1
 
 %build
 rm -f missing
