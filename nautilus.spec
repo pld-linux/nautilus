@@ -2,8 +2,6 @@
 # Conditional build:
 %bcond_without	esd	# do not require esd daemon to play MP3 files
 #
-# TODO:
-# - there is no libnautilus.pc, required by nautilus-media
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
@@ -42,7 +40,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.17
 BuildRequires:	popt-devel
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.196
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	startup-notification-devel >= 0.8
 Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
@@ -70,6 +68,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
+Requires(post,postun):	/sbin/ldconfig
 Requires:	eel >= 2.10.0
 Requires:	libbonobo >= 2.8.1
 
@@ -119,8 +118,8 @@ Biblioteki statyczne Nautilusa.
 %patch3 -p1
 
 %build
-glib-gettextize --copy --force
-intltoolize --copy --force
+%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -145,23 +144,20 @@ install %{SOURCE1} .
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-%gconf_schema_install /etc/gconf/schemas/apps_nautilus_preferences.schemas
-/usr/bin/update-desktop-database
+%gconf_schema_install apps_nautilus_preferences.schemas
+%update_desktop_database_post
 
 %preun
-if [ $1 = 0 ]; then
-	%gconf_schema_uninstall /etc/gconf/schemas/apps_nautilus_preferences.schemas
-fi
+%gconf_schema_uninstall apps_nautilus_preferences.schemas
 
 %postun
-if [ $1 = 0 ]; then
-	umask 022
-	/usr/bin/update-desktop-database
-fi
+%update_desktop_database_postun
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
+%post libs
+%ldconfig_post
+
+%postun libs
+%ldconfig_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
