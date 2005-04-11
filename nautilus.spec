@@ -6,17 +6,18 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.10.0
-Release:	4
+Version:	2.10.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	b29a02be8733a82e002179e2e0f3fe83
+# Source0-md5:	976d725db15e901bc881dfb8c50145c1
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-mpg123-esd.patch
 Patch1:		%{name}-includes.patch
 Patch2:		%{name}-desktop.patch
 Patch3:		%{name}-capplet.patch
+Patch4:		%{name}-pango_fonts_size.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -24,7 +25,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.10.0
+BuildRequires:	eel-devel >= 2.10.1
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -116,6 +117,7 @@ Biblioteki statyczne Nautilusa.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__glib_gettextize}
