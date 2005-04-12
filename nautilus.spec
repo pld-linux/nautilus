@@ -69,7 +69,6 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires(post,postun):	/sbin/ldconfig
 Requires:	eel >= 2.10.0
 Requires:	libbonobo >= 2.8.1
 
