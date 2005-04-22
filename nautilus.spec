@@ -7,7 +7,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.10.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.10/%{name}-%{version}.tar.bz2
@@ -45,6 +45,7 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	startup-notification-devel >= 0.8
 Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
+Requires:	eel >= 2.10.1
 Requires:	gnome-icon-theme >= 2.10.0
 Requires:	gnome-vfs2 >= 2.10.0-2
 Requires:	%{name}-libs = %{version}-%{release}
