@@ -1,17 +1,23 @@
-diff -ur nautilus-2.10.0.orig/libnautilus-private/nautilus-icon-container.c nautilus-2.10.0/libnautilus-private/nautilus-icon-container.c
---- nautilus-2.10.0.orig/libnautilus-private/nautilus-icon-container.c	2005-02-22 09:33:11.000000000 +0100
-+++ nautilus-2.10.0/libnautilus-private/nautilus-icon-container.c	2005-04-09 23:32:26.000000000 +0200
-@@ -4355,7 +4355,12 @@
+diff -aurN nautilus-2.10.1.orig/libnautilus-private/nautilus-icon-container.c nautilus-2.10.1/libnautilus-private/nautilus-icon-container.c
+--- nautilus-2.10.1.orig/libnautilus-private/nautilus-icon-container.c	2005-02-18 09:57:17.000000000 +0100
++++ nautilus-2.10.1/libnautilus-private/nautilus-icon-container.c	2005-05-17 09:41:54.000000000 +0200
+@@ -4353,13 +4353,13 @@
  
- 	details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALLEST] = -3 * PANGO_SCALE;
-         details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALLER] = -3 * PANGO_SCALE;
+         details->zoom_level = NAUTILUS_ZOOM_LEVEL_STANDARD;
+ 
+-	details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALLEST] = -3 * PANGO_SCALE;
+-        details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALLER] = -3 * PANGO_SCALE;
 -        details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALL] = -2 * PANGO_SCALE;
-+	/* 
-+	 * Olivier Fock Ping (04/09/05)
-+	 * Set the factor to -1 for NAUTILUS_ZOOM_LEVEL_SMALL (75%)
-+	 * because the original value (-2) makes the text unreadable.
-+	 */
++	details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALLEST] = -1 * PANGO_SCALE;
++        details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALLER] = -1 * PANGO_SCALE;
 +        details->font_size_table[NAUTILUS_ZOOM_LEVEL_SMALL] = -1 * PANGO_SCALE;
          details->font_size_table[NAUTILUS_ZOOM_LEVEL_STANDARD] = 0 * PANGO_SCALE;
-         details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGE] = 2 * PANGO_SCALE;
-         details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGER] = 4 * PANGO_SCALE;
+-        details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGE] = 2 * PANGO_SCALE;
+-        details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGER] = 4 * PANGO_SCALE;
+-        details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGEST] = 4 * PANGO_SCALE;
++        details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGE] = 0 * PANGO_SCALE;
++        details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGER] = 0 * PANGO_SCALE;
++        details->font_size_table[NAUTILUS_ZOOM_LEVEL_LARGEST] = 0 * PANGO_SCALE;
+ 
+ 	container->details = details;
+ 
