@@ -1,8 +1,0 @@
-Programs suggested for daily use with nautilus in PLD:
-
-- for audio playback (previewing audio files):
-  - sox
-  - mpg123-esd (or mpg123)
-  - vorbis-tools (ogg123 is currently broken)
-  note: there is no MIDI playback
-
