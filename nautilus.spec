@@ -39,7 +39,6 @@ BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	librsvg-devel >= 1:2.9.5-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.17
-BuildRequires:	popt-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	startup-notification-devel >= 0.8
