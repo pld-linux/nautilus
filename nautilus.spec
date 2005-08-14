@@ -1,22 +1,17 @@
-#
-# Conditional build:
-%bcond_without	esd	# do not require esd daemon to play MP3 files
-#
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.11.91
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.11/%{name}-%{version}.tar.bz2
 # Source0-md5:	20b3d9551afc4f40fd5c90d2fc4dfd35
 Source1:	%{name}.PLD.readme
-Patch0:		%{name}-mpg123-esd.patch
-Patch1:		%{name}-includes.patch
-Patch2:		%{name}-desktop.patch
-Patch3:		%{name}-capplet.patch
+Patch0:		%{name}-includes.patch
+Patch1:		%{name}-desktop.patch
+Patch2:		%{name}-capplet.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.11.1
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -113,10 +108,9 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-%{?with_esd:%patch0 -p1}
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__glib_gettextize}
@@ -167,9 +161,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/nautilus/extensions-1.0
 %{_libdir}/bonobo/servers/*
 %{_datadir}/nautilus
-%{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
-%{_pixmapsdir}/nautilus
 %{_desktopdir}/*
+%{_pixmapsdir}/nautilus
+%{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
 %files libs
 %defattr(644,root,root,755)
