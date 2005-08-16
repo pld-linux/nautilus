@@ -24,7 +24,7 @@ BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.10.0-2
-BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
+BuildRequires:	gnome-vfs2-devel >= 2.11.1
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libbonobo-devel >= 2.8.1
@@ -40,7 +40,7 @@ Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires:	eel >= 2.11.91
 Requires:	gnome-icon-theme >= 2.10.0
-Requires:	gnome-vfs2 >= 2.10.0-2
+Requires:	gnome-vfs2 >= 2.11.1
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
