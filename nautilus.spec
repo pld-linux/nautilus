@@ -1,51 +1,54 @@
 #
-# Conditional build:
-%bcond_without	esd	# do not require esd daemon to play MP3 files
+# Conditinal build:
+%bcond_with	beagle		# enable beagle search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.10.0
+Version:	2.13.92
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	b29a02be8733a82e002179e2e0f3fe83
+Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.13/%{name}-%{version}.tar.bz2
+# Source0-md5:	14c861733dc9667b43893c9afc432c9e
 Source1:	%{name}.PLD.readme
-Patch0:		%{name}-mpg123-esd.patch
-Patch1:		%{name}-includes.patch
-Patch2:		%{name}-desktop.patch
-Patch3:		%{name}-capplet.patch
+Patch0:		%{name}-includes.patch
+Patch1:		%{name}-desktop.patch
+Patch2:		%{name}-capplet.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.10.0
-BuildRequires:	ORBit2-devel >= 1:2.12.1
+BuildRequires:	GConf2-devel >= 2.12.0
+BuildRequires:	ORBit2-devel >= 1:2.12.3
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-BuildRequires:	cdparanoia-III-devel
+%{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.10.0
+BuildRequires:	eel-devel >= 2.13.92
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.10.0
-BuildRequires:	gnome-vfs2-devel >= 2.10.0
-BuildRequires:	intltool >= 0.31
+BuildRequires:	gnome-desktop-devel >= 2.12.1
+BuildRequires:	gnome-vfs2-devel >= 2.13.2
+BuildRequires:	intltool >= 0.33
 BuildRequires:	libart_lgpl-devel >= 2.3.17
-BuildRequires:	libbonobo-devel >= 2.8.1
-BuildRequires:	libexif-devel >= 1:0.6.9
-BuildRequires:	libgnomeui-devel >= 2.10.0
-BuildRequires:	librsvg-devel >= 1:2.9.5
+BuildRequires:	libbonobo-devel >= 2.10.1
+BuildRequires:	libexif-devel >= 1:0.6.12
+BuildRequires:	libgnomeui-devel >= 2.12.0
+BuildRequires:	librsvg-devel >= 1:2.9.5-2
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.6.17
-BuildRequires:	popt-devel
+BuildRequires:	libxml2-devel >= 2.6.21
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	startup-notification-devel >= 0.8
-Requires(post):	GConf2
-Requires:	gnome-icon-theme >= 2.10.0
-Requires:	gnome-mime-data >= 2.4.2
-Requires:	gnome-vfs2 >= 2.10.0
+Requires(post,preun):	GConf2
+Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	shared-mime-info
+Requires:	gnome-icon-theme >= 2.12.0
+Requires:	gnome-vfs2 >= 2.13.2
 Requires:	%{name}-libs = %{version}-%{release}
+Obsoletes:	gstreamer-player-nautilus
+Obsoletes:	nautilus-gtkhtml
+Obsoletes:	nautilus-media
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -66,8 +69,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.10.0
-Requires:	libbonobo >= 2.8.1
+Requires:	eel >= 2.13.92
+Requires:	libbonobo >= 2.10.1
 
 %description libs
 Nautilus libraries.
@@ -81,8 +84,8 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.10.0
-Requires:	librsvg-devel >= 1:2.9.5
+Requires:	eel-devel >= 2.13.4
+Requires:	librsvg-devel >= 1:2.9.5-2
 
 %description devel
 This package provides the necessary development libraries and include
@@ -109,20 +112,21 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-%{?with_esd:%patch0 -p1}
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
-glib-gettextize --copy --force
-intltoolize --copy --force
+%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-static
+	--enable-static \
+	%{?!with_beagle:--disable-beagle} \
+	--disable-update-mimedb
 %{__make}
 
 %install
@@ -133,6 +137,8 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+
+# kill it - use banner instead
 install %{SOURCE1} .
 
 %find_lang %{name} --with-gnome --all-name
@@ -140,11 +146,24 @@ install %{SOURCE1} .
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
-
 %post
-%gconf_schema_install
+umask 022
+update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
+%gconf_schema_install apps_nautilus_preferences.schemas
+%update_desktop_database_post
+
+%preun
+%gconf_schema_uninstall apps_nautilus_preferences.schemas
+
+%postun
+%update_desktop_database_postun
+if [ $1 = 0 ]; then
+	umask 022
+	update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
+fi
+
+%post	libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -153,10 +172,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-1.0
 %{_libdir}/bonobo/servers/*
+%{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
-%{_sysconfdir}/gconf/schemas/*
-%{_pixmapsdir}/nautilus
 %{_desktopdir}/*
+%{_pixmapsdir}/nautilus
+%{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
 %files libs
 %defattr(644,root,root,755)
