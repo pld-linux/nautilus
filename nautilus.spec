@@ -28,7 +28,7 @@ BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.12.1
-BuildRequires:	gnome-vfs2-devel >= 2.13.2
+BuildRequires:	gnome-vfs2-devel >= 2.13.92
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libbonobo-devel >= 2.10.1
@@ -44,7 +44,7 @@ Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires:	gnome-icon-theme >= 2.12.0
-Requires:	gnome-vfs2 >= 2.13.2
+Requires:	gnome-vfs2 >= 2.13.92
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -85,6 +85,7 @@ Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.13.4
+Requires:	gnome-vfs2-devel >= 2.13.92
 Requires:	librsvg-devel >= 1:2.9.5-2
 
 %description devel
