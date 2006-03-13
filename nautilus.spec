@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.13.92
+Version:	2.14.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	14c861733dc9667b43893c9afc432c9e
+Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
+# Source0-md5:	27eb19e3be7cf103ba1fa9f3123c5d13
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
@@ -23,17 +23,17 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.13.92
+BuildRequires:	eel-devel >= 2.14.0
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.12.1
-BuildRequires:	gnome-vfs2-devel >= 2.13.92
+BuildRequires:	gnome-vfs2-devel >= 2.14.0
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libbonobo-devel >= 2.10.1
 BuildRequires:	libexif-devel >= 1:0.6.12
-BuildRequires:	libgnomeui-devel >= 2.12.0
+BuildRequires:	libgnomeui-devel >= 2.14.0
 BuildRequires:	librsvg-devel >= 1:2.9.5-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.21
@@ -44,7 +44,7 @@ Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires:	gnome-icon-theme >= 2.12.0
-Requires:	gnome-vfs2 >= 2.13.92
+Requires:	gnome-vfs2 >= 2.14.0
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -69,7 +69,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.13.92
+Requires:	eel >= 2.14.0
 Requires:	libbonobo >= 2.10.1
 
 %description libs
@@ -84,8 +84,8 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.13.4
-Requires:	gnome-vfs2-devel >= 2.13.92
+Requires:	eel-devel >= 2.14.0
+Requires:	gnome-vfs2-devel >= 2.14.0
 Requires:	librsvg-devel >= 1:2.9.5-2
 
 %description devel
