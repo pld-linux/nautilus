@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.14.0
-Release:	3
+Version:	2.14.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	27eb19e3be7cf103ba1fa9f3123c5d13
+# Source0-md5:	d8bad8b9141bc823c612abb7d460b725
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
@@ -23,7 +23,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.14.0
+BuildRequires:	eel-devel >= 2.14.1
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -69,7 +69,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.14.0
+Requires:	eel >= 2.14.1
 Requires:	libbonobo >= 2.10.1
 
 %description libs
@@ -84,7 +84,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.14.0
+Requires:	eel-devel >= 2.14.1
 Requires:	gnome-vfs2-devel >= 2.14.0
 Requires:	librsvg-devel >= 1:2.9.5-2
 
