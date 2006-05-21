@@ -1,0 +1,15 @@
+===================================================================
+RCS file: /cvs/gnome/nautilus/src/nautilus-window-manage-views.c,v
+retrieving revision 1.365
+retrieving revision 1.365.2.1
+diff -u -r1.365 -r1.365.2.1
+--- nautilus-window-manage-views.c	2006/03/18 07:13:52	1.365
++++ src/nautilus-window-manage-views.c	2006/05/08 23:17:09	1.365.2.1
+@@ -960,6 +960,7 @@
+ 
+ 			/* We disconnected this, so we need to re-connect it */
+ 			viewed_file = nautilus_file_get (window->details->location);
++			nautilus_window_set_viewed_file (window, viewed_file);
+ 			nautilus_file_monitor_add (viewed_file, &window->details->viewed_file, 0);
+ 			g_signal_connect_object (viewed_file, "changed",
+ 						 G_CALLBACK (viewed_file_changed_callback), window, 0);
