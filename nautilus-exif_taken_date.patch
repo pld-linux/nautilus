@@ -1,0 +1,43 @@
+diff -Nur nautilus-2.14.1/src/nautilus-image-properties-page.c nautilus-2.14.1.new/src/nautilus-image-properties-page.c
+--- nautilus-2.14.1/src/nautilus-image-properties-page.c	2006-03-18 07:45:15.000000000 +0100
++++ nautilus-2.14.1.new/src/nautilus-image-properties-page.c	2006-05-09 17:53:34.000000000 +0200
+@@ -191,7 +191,7 @@
+ 	return utf8_value;
+ }
+ 
+-static void
++static gboolean
+ append_tag_value_pair (GString *string, ExifData *data, ExifTag tag, gchar *description) 
+ {
+         char *utf_attribute;
+@@ -203,13 +203,14 @@
+ 	if ((utf_attribute == NULL) || (utf_value == NULL)) {
+ 		g_free (utf_attribute);
+ 		g_free (utf_value);
+-   		return;
++   		return FALSE;
+ 	}
+ 
+ 	g_string_append_printf (string, "<b>%s:</b> %s\n", (description != NULL) ? description : utf_attribute, utf_value);
+ 
+         g_free (utf_attribute);
+         g_free (utf_value);
++	return TRUE;
+ }
+ 
+ static void
+@@ -218,7 +219,13 @@
+ 	if (exifdata->ifd[0] && exifdata->ifd[0]->count) {
+                 append_tag_value_pair (string, exifdata, EXIF_TAG_MAKE, _("Camera Brand"));
+                 append_tag_value_pair (string, exifdata, EXIF_TAG_MODEL, _("Camera Model"));
+-                append_tag_value_pair (string, exifdata, EXIF_TAG_DATE_TIME, _("Date Taken"));
++
++                /* Choose which date to show in order of relevance */
++                if (!append_tag_value_pair (string, exifdata, EXIF_TAG_DATE_TIME_ORIGINAL, _("Date Taken")))
++                {
++			append_tag_value_pair (string, exifdata, EXIF_TAG_DATE_TIME, _("Date Modified"));
++                }
++
+                 append_tag_value_pair (string, exifdata, EXIF_TAG_EXPOSURE_TIME, _("Exposure Time"));
+                 append_tag_value_pair (string, exifdata, EXIF_TAG_EXPOSURE_PROGRAM, _("Exposure Program"));
+                 append_tag_value_pair (string, exifdata, EXIF_TAG_APERTURE_VALUE, _("Aperture Value"));
