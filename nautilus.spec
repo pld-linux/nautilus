@@ -7,7 +7,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.14.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
@@ -16,6 +16,15 @@ Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
+Patch3:		%{name}-copy_label.patch
+Patch4:		%{name}-dnd-user-owned.patch
+Patch5:		%{name}-dont_delete_wrong_bookmark.patch
+Patch6:		%{name}-exif_taken_date.patch
+Patch7:		%{name}-fix_sftp_ftp_permissions_display.patch
+Patch8:		%{name}-fix_slow_filesystems_crasher.patch
+Patch9:		%{name}-make_open_folder_translatable.patch
+Patch10:	%{name}-sort_volumes_list.patch
+Patch11:	%{name}-width_of_text_selection.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
@@ -116,6 +125,15 @@ Biblioteki statyczne Nautilusa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
+%patch4 -p0
+%patch5 -p0
+%patch6 -p1
+%patch7 -p0
+%patch8 -p0
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
 
 %build
 %{__glib_gettextize}
