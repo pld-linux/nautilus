@@ -7,7 +7,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.14.1
-Release:	1
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
@@ -16,9 +16,18 @@ Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
+Patch3:		%{name}-copy_label.patch
+Patch4:		%{name}-dnd-user-owned.patch
+Patch5:		%{name}-dont_delete_wrong_bookmark.patch
+Patch6:		%{name}-exif_taken_date.patch
+Patch7:		%{name}-fix_sftp_ftp_permissions_display.patch
+Patch8:		%{name}-fix_slow_filesystems_crasher.patch
+Patch9:		%{name}-make_open_folder_translatable.patch
+Patch10:	%{name}-sort_volumes_list.patch
+Patch11:	%{name}-width_of_text_selection.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.12.0
-BuildRequires:	ORBit2-devel >= 1:2.12.3
+BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
@@ -27,11 +36,11 @@ BuildRequires:	eel-devel >= 2.14.1
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.12.1
+BuildRequires:	gnome-desktop-devel >= 2.14.0
 BuildRequires:	gnome-vfs2-devel >= 2.14.0
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libart_lgpl-devel >= 2.3.17
-BuildRequires:	libbonobo-devel >= 2.10.1
+BuildRequires:	libbonobo-devel >= 2.14.0
 BuildRequires:	libexif-devel >= 1:0.6.12
 BuildRequires:	libgnomeui-devel >= 2.14.0
 BuildRequires:	librsvg-devel >= 1:2.9.5-2
@@ -43,7 +52,7 @@ BuildRequires:	startup-notification-devel >= 0.8
 Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.12.0
+Requires:	gnome-icon-theme >= 2.14.0
 Requires:	gnome-vfs2 >= 2.14.0
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
@@ -70,7 +79,7 @@ Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	eel >= 2.14.1
-Requires:	libbonobo >= 2.10.1
+Requires:	libbonobo >= 2.14.0
 
 %description libs
 Nautilus libraries.
@@ -116,6 +125,15 @@ Biblioteki statyczne Nautilusa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
+%patch4 -p0
+%patch5 -p0
+%patch6 -p1
+%patch7 -p0
+%patch8 -p0
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
 
 %build
 %{__glib_gettextize}
