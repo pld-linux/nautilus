@@ -7,7 +7,7 @@ Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.14.1
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
@@ -37,23 +37,23 @@ BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.14.0
-BuildRequires:	gnome-vfs2-devel >= 2.14.0
-BuildRequires:	intltool >= 0.33
+BuildRequires:	gnome-vfs2-devel >= 2.15.1
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libbonobo-devel >= 2.14.0
 BuildRequires:	libexif-devel >= 1:0.6.12
 BuildRequires:	libgnomeui-devel >= 2.14.0
-BuildRequires:	librsvg-devel >= 1:2.9.5-2
+BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.6.21
+BuildRequires:	libxml2-devel >= 2.6.26
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	startup-notification-devel >= 0.8
 Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.14.0
-Requires:	gnome-vfs2 >= 2.14.0
+Requires:	gnome-icon-theme >= 2.15.2
+Requires:	gnome-vfs2 >= 2.15.1
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -79,6 +79,7 @@ Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	eel >= 2.14.1
+Requires:	gnome-vfs2-libs >= 2.15.1
 Requires:	libbonobo >= 2.14.0
 
 %description libs
@@ -94,8 +95,8 @@ Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.14.1
-Requires:	gnome-vfs2-devel >= 2.14.0
-Requires:	librsvg-devel >= 1:2.9.5-2
+Requires:	gnome-vfs2-devel >= 2.15.1
+Requires:	librsvg-devel >= 1:2.15.1
 
 %description devel
 This package provides the necessary development libraries and include
@@ -139,7 +140,8 @@ Biblioteki statyczne Nautilusa.
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+# breaks Makefile creation
+##%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
@@ -155,7 +157,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{no,tk}
 
 # kill it - use banner instead
 install %{SOURCE1} .
