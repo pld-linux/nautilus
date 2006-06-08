@@ -140,7 +140,10 @@ Biblioteki statyczne Nautilusa.
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-# breaks Makefile creation
+# fix me!
+# breaks Makefile creation - temp. commented out
+# caused by multi line LINGUAS definition
+# see gucharmap-configure.patch for details
 ##%{__aclocal}
 %{__autoconf}
 %{__automake}
