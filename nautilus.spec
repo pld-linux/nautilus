@@ -6,25 +6,19 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.14.1
-Release:	4
+Version:	2.15.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	d8bad8b9141bc823c612abb7d460b725
+Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.15/%{name}-%{version}.tar.bz2
+# Source0-md5:	57d5dea7758205258d85afc30cb3afaf
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-copy_label.patch
 Patch4:		%{name}-dnd-user-owned.patch
-Patch5:		%{name}-dont_delete_wrong_bookmark.patch
-Patch6:		%{name}-exif_taken_date.patch
-Patch7:		%{name}-fix_sftp_ftp_permissions_display.patch
-Patch8:		%{name}-fix_slow_filesystems_crasher.patch
-Patch9:		%{name}-make_open_folder_translatable.patch
-Patch10:	%{name}-sort_volumes_list.patch
-Patch11:	%{name}-width_of_text_selection.patch
+Patch5:		%{name}-make_open_folder_translatable.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
@@ -32,7 +26,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.14.1
+BuildRequires:	eel-devel >= 2.15.1
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -94,7 +88,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.14.1
+Requires:	eel-devel >= 2.15.1
 Requires:	gnome-vfs2-devel >= 2.15.1
 Requires:	librsvg-devel >= 1:2.15.1
 
@@ -126,25 +120,14 @@ Biblioteki statyczne Nautilusa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
 %patch4 -p0
 %patch5 -p0
-%patch6 -p1
-%patch7 -p0
-%patch8 -p0
-%patch9 -p0
-%patch10 -p0
-%patch11 -p0
 
 %build
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-# fix me!
-# breaks Makefile creation - temp. commented out
-# caused by multi line LINGUAS definition
-# see gucharmap-configure.patch for details
-##%{__aclocal}
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
@@ -160,7 +143,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{no,tk}
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/tk
 
 # kill it - use banner instead
 install %{SOURCE1} .
