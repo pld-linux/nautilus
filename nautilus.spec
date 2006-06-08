@@ -90,7 +90,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.15.1
 Requires:	gnome-vfs2-devel >= 2.15.1
-Requires:	librsvg-devel >= 1:2.15.1
+Requires:	librsvg-devel >= 1:2.15.0
 
 %description devel
 This package provides the necessary development libraries and include
