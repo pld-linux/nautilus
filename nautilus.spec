@@ -6,44 +6,42 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.15.1
+Version:	2.15.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	57d5dea7758205258d85afc30cb3afaf
+# Source0-md5:	1c175ed790330aa48bdb62de8ac98343
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-copy_label.patch
 Patch4:		%{name}-dnd-user-owned.patch
-Patch5:		%{name}-make_open_folder_translatable.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
+%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.6}
 BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.15.1
+BuildRequires:	eel-devel >= 2.15.2
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.14.0
+BuildRequires:	gnome-desktop-devel >= 2.15.2
 BuildRequires:	gnome-vfs2-devel >= 2.15.1
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libart_lgpl-devel >= 2.3.17
-BuildRequires:	libbonobo-devel >= 2.14.0
 BuildRequires:	libexif-devel >= 1:0.6.12
-BuildRequires:	libgnomeui-devel >= 2.14.0
+BuildRequires:	libgnomeui-devel >= 2.15.1
 BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.6.26
+BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	startup-notification-devel >= 0.8
-Requires(post,preun):	GConf2
+Requires(post,preun):	GConf2 >= 2.14.0
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires:	gnome-icon-theme >= 2.15.2
@@ -72,9 +70,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.14.1
+Requires:	eel >= 2.15.2
 Requires:	gnome-vfs2-libs >= 2.15.1
-Requires:	libbonobo >= 2.14.0
 
 %description libs
 Nautilus libraries.
@@ -88,7 +85,7 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.15.1
+Requires:	eel-devel >= 2.15.2
 Requires:	gnome-vfs2-devel >= 2.15.1
 Requires:	librsvg-devel >= 1:2.15.0
 
@@ -121,7 +118,6 @@ Biblioteki statyczne Nautilusa.
 %patch1 -p1
 %patch2 -p1
 %patch4 -p0
-%patch5 -p0
 
 %build
 %{__glib_gettextize}
