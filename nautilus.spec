@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.15.4
-Release:	2
+Version:	2.15.90
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	720c96c2f4ddbd65c69eda6ab54b42ec
+# Source0-md5:	ade4e3580a9cb641b4ff51aced9124dc
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
@@ -25,27 +25,27 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.2.7}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.15.4
+BuildRequires:	eel-devel >= 2.15.90
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.15.4
-BuildRequires:	gnome-vfs2-devel >= 2.15.3
+BuildRequires:	gnome-desktop-devel >= 2.15.90
+BuildRequires:	gnome-vfs2-devel >= 2.15.90
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libart_lgpl-devel >= 2.3.17
-BuildRequires:	libexif-devel >= 1:0.6.12
-BuildRequires:	libgnomeui-devel >= 2.15.2
+BuildRequires:	libexif-devel >= 1:0.6.13
+BuildRequires:	libgnomeui-devel >= 2.15.90
 BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	startup-notification-devel >= 0.8
 Requires(post,preun):	GConf2 >= 2.14.0
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.15.3
-Requires:	gnome-vfs2 >= 2.15.3
+Requires:	gnome-icon-theme >= 2.15.90
+Requires:	gnome-vfs2 >= 2.15.90
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -70,8 +70,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.15.4
-Requires:	gnome-vfs2-libs >= 2.15.3
+Requires:	eel >= 2.15.90
+Requires:	gnome-vfs2-libs >= 2.15.90
 
 %description libs
 Nautilus libraries.
@@ -85,8 +85,8 @@ Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.15.4
-Requires:	gnome-vfs2-devel >= 2.15.3
+Requires:	eel-devel >= 2.15.90
+Requires:	gnome-vfs2-devel >= 2.15.90
 Requires:	librsvg-devel >= 1:2.15.0
 
 %description devel
@@ -126,7 +126,6 @@ Biblioteki statyczne Nautilusa.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--enable-static \
 	%{?!with_beagle:--disable-beagle} \
@@ -151,8 +150,7 @@ install %{SOURCE1} .
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
+%update_mime_database
 %gconf_schema_install apps_nautilus_preferences.schemas
 %update_desktop_database_post
 
@@ -161,10 +159,7 @@ update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
 
 %postun
 %update_desktop_database_postun
-if [ $1 = 0 ]; then
-	umask 022
-	update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
-fi
+%update_mime_database
 
 %post	libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
