@@ -1,13 +1,13 @@
 #
 # Conditinal build:
-%bcond_with	beagle		# enable beagle search
+%bcond_without	beagle		# enable beagle search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.14.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
@@ -23,7 +23,7 @@ BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
+%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.7}
 BuildRequires:	docbook-utils >= 0.6.10
 BuildRequires:	eel-devel >= 2.14.3
 BuildRequires:	esound-devel >= 1:0.2.30
