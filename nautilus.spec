@@ -2,6 +2,10 @@
 # Conditinal build:
 %bcond_without	beagle		# enable beagle search
 #
+%ifarch alpha i386 sparc sparc64
+%undefine	with_beagle
+%endif
+#
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
