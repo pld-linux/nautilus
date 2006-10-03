@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
 Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.16.0
+Version:	2.16.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	68318b70be545b6fc016017ae4e628aa
+# Source0-md5:	bac53a70c9517cda421f440721e095c9
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
@@ -23,14 +23,14 @@ BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.3
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.9}
+%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.10}
 BuildRequires:	docbook-utils >= 0.6.11
 BuildRequires:	eel-devel >= 2.16.0
 BuildRequires:	esound-devel >= 1:0.2.36
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.15.92
-BuildRequires:	gnome-vfs2-devel >= 2.16.0
+BuildRequires:	gnome-desktop-devel >= 2.16.1
+BuildRequires:	gnome-vfs2-devel >= 2.16.1
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libart_lgpl-devel >= 2.3.17
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -44,8 +44,8 @@ BuildRequires:	startup-notification-devel >= 0.8
 Requires(post,preun):	GConf2 >= 2.14.0
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.16.0
-Requires:	gnome-vfs2 >= 2.16.0
+Requires:	gnome-icon-theme >= 2.16.0.1
+Requires:	gnome-vfs2 >= 2.16.1
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -71,7 +71,7 @@ Summary:	Nautilus libraries
 Summary(pl):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	eel >= 2.16.0
-Requires:	gnome-vfs2-libs >= 2.16.0
+Requires:	gnome-vfs2-libs >= 2.16.1
 
 %description libs
 Nautilus libraries.
@@ -86,7 +86,7 @@ Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.16.0
-Requires:	gnome-vfs2-devel >= 2.16.0
+Requires:	gnome-vfs2-devel >= 2.16.1
 Requires:	librsvg-devel >= 1:2.16.0
 
 %description devel
