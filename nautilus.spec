@@ -139,8 +139,6 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/tk
-
 # kill it - use banner instead
 install %{SOURCE1} .
 
