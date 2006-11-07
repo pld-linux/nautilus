@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers/*
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/nautilus
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
