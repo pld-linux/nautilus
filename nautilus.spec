@@ -3,8 +3,8 @@
 %bcond_without	beagle		# enable beagle search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
-Summary(pl):	Nautilus - pow≥oka GNOME i zarz±dca plikÛw
-Summary(pt_BR):	Nautilus È um gerenciador de arquivos para o GNOME
+Summary(pl.UTF-8):   Nautilus - pow≈Çoka GNOME i zarzƒÖdca plik√≥w
+Summary(pt_BR.UTF-8):   Nautilus √© um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.16.3
 Release:	1
@@ -59,16 +59,16 @@ rich user experience. Nautilus is an free software project developed
 under the GNU General Public License and is a core component of the
 GNOME desktop project.
 
-%description -l pl
-GNU Nautilus jest programem do zarz±dzania plikami i graficzn± pow≥ok±
-dla GNOME. S≥uøy rÛwnieø bardzo dobrze jako przegl±darka stron WWW.
+%description -l pl.UTF-8
+GNU Nautilus jest programem do zarzƒÖdzania plikami i graficznƒÖ pow≈ÇokƒÖ
+dla GNOME. S≈Çu≈ºy r√≥wnie≈º bardzo dobrze jako przeglƒÖdarka stron WWW.
 
-%description -l pt_BR
-O nautilus È um excelente gerenciador de arquivos para o GNOME.
+%description -l pt_BR.UTF-8
+O nautilus √© um excelente gerenciador de arquivos para o GNOME.
 
 %package libs
 Summary:	Nautilus libraries
-Summary(pl):	Biblioteki Nautilusa
+Summary(pl.UTF-8):   Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	eel >= 2.16.3
 Requires:	gnome-vfs2-libs >= 2.16.3
@@ -76,13 +76,13 @@ Requires:	gnome-vfs2-libs >= 2.16.3
 %description libs
 Nautilus libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki Nautilusa.
 
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
-Summary(pl):	Pliki nag≥Ûwkowe do tworzenia komponentÛw dla Nautilusa
-Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe do tworzenia komponent√≥w dla Nautilusa
+Summary(pt_BR.UTF-8):   Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.16.3
@@ -93,23 +93,23 @@ Requires:	librsvg-devel >= 1:2.16.1
 This package provides the necessary development libraries and include
 files to allow you to develop Nautilus components.
 
-%description devel -l pl
-Biblioteki i pliki nag≥Ûwkowe potrzebne do programowania.
+%description devel -l pl.UTF-8
+Biblioteki i pliki nag≈Ç√≥wkowe potrzebne do programowania.
 
-%description devel -l pt_BR
-Este pacote fornece os arquivos necess·rios para desenvolvimento
+%description devel -l pt_BR.UTF-8
+Este pacote fornece os arquivos necess√°rios para desenvolvimento
 utilizando componentes do nautilus.
 
 %package static
 Summary:	Static Nautilus libraries
-Summary(pl):	Biblioteki statyczne Nautilusa
+Summary(pl.UTF-8):   Biblioteki statyczne Nautilusa
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Nautilus libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Nautilusa.
 
 %prep
