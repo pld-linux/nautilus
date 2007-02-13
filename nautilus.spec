@@ -3,8 +3,8 @@
 %bcond_without	beagle		# enable beagle search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
-Summary(pl.UTF-8):   Nautilus - powłoka GNOME i zarządca plików
-Summary(pt_BR.UTF-8):   Nautilus é um gerenciador de arquivos para o GNOME
+Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
+Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.16.3
 Release:	1
@@ -68,7 +68,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 
 %package libs
 Summary:	Nautilus libraries
-Summary(pl.UTF-8):   Biblioteki Nautilusa
+Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	eel >= 2.16.3
 Requires:	gnome-vfs2-libs >= 2.16.3
@@ -81,8 +81,8 @@ Biblioteki Nautilusa.
 
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
-Summary(pl.UTF-8):   Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
-Summary(pt_BR.UTF-8):   Bibliotecas e arquivos para desenvolvimento com o nautilus
+Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
+Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	eel-devel >= 2.16.3
@@ -102,7 +102,7 @@ utilizando componentes do nautilus.
 
 %package static
 Summary:	Static Nautilus libraries
-Summary(pl.UTF-8):   Biblioteki statyczne Nautilusa
+Summary(pl.UTF-8):	Biblioteki statyczne Nautilusa
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
