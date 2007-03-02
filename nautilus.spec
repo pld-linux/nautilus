@@ -3,48 +3,51 @@
 %bcond_without	beagle		# enable beagle search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
-Summary(pl):	Nautilus - pow³oka GNOME i zarz±dca plików
-Summary(pt_BR):	Nautilus é um gerenciador de arquivos para o GNOME
+Summary(pl.UTF-8):	Nautilus - powÅ‚oka GNOME i zarzÄ…dca plikÃ³w
+Summary(pt_BR.UTF-8):	Nautilus Ã© um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.14.1
+Version:	2.17.92
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	d8bad8b9141bc823c612abb7d460b725
+Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.17/%{name}-%{version}.tar.bz2
+# Source0-md5:	c8a50540efe62bba6ae1249ffc4b1237
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
+Patch3:		%{name}-copy_label.patch
+Patch4:		%{name}-dnd-user-owned.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.12.0
-BuildRequires:	ORBit2-devel >= 1:2.12.3
+BuildRequires:	GConf2-devel >= 2.16.1
+BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	beagle-devel >= 0.0.12}
-BuildRequires:	docbook-utils >= 0.6.10
-BuildRequires:	eel-devel >= 2.14.1
-BuildRequires:	esound-devel >= 1:0.2.30
+%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
+BuildRequires:	docbook-utils >= 0.6.11
+BuildRequires:	eel-devel >= 2.17.90
+BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.12.1
-BuildRequires:	gnome-vfs2-devel >= 2.14.0
-BuildRequires:	intltool >= 0.33
-BuildRequires:	libart_lgpl-devel >= 2.3.17
-BuildRequires:	libbonobo-devel >= 2.10.1
-BuildRequires:	libexif-devel >= 1:0.6.12
-BuildRequires:	libgnomeui-devel >= 2.14.0
-BuildRequires:	librsvg-devel >= 1:2.9.5-2
+BuildRequires:	gnome-desktop-devel >= 2.17.92
+BuildRequires:	gnome-vfs2-devel >= 2.17.91
+BuildRequires:	intltool >= 0.35.5
+BuildRequires:	libart_lgpl-devel >= 2.3.19
+BuildRequires:	libexif-devel >= 1:0.6.13
+BuildRequires:	libgnomeui-devel >= 2.17.92
+BuildRequires:	librsvg-devel >= 1:2.16.1
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.6.21
+BuildRequires:	libxml2-devel >= 1:2.6.27
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	startup-notification-devel >= 0.8
-Requires(post,preun):	GConf2
+Requires(post,preun):	GConf2 >= 2.16.1
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk+2
+Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.12.0
-Requires:	gnome-vfs2 >= 2.14.0
+Requires:	gnome-icon-theme >= 2.17.91
+Requires:	gnome-vfs2 >= 2.17.91
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -58,57 +61,57 @@ rich user experience. Nautilus is an free software project developed
 under the GNU General Public License and is a core component of the
 GNOME desktop project.
 
-%description -l pl
-GNU Nautilus jest programem do zarz±dzania plikami i graficzn± pow³ok±
-dla GNOME. S³u¿y równie¿ bardzo dobrze jako przegl±darka stron WWW.
+%description -l pl.UTF-8
+GNU Nautilus jest programem do zarzÄ…dzania plikami i graficznÄ… powÅ‚okÄ…
+dla GNOME. SÅ‚uÅ¼y rÃ³wnieÅ¼ bardzo dobrze jako przeglÄ…darka stron WWW.
 
-%description -l pt_BR
-O nautilus é um excelente gerenciador de arquivos para o GNOME.
+%description -l pt_BR.UTF-8
+O nautilus Ã© um excelente gerenciador de arquivos para o GNOME.
 
 %package libs
 Summary:	Nautilus libraries
-Summary(pl):	Biblioteki Nautilusa
+Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.14.1
-Requires:	libbonobo >= 2.10.1
+Requires:	eel >= 2.17.90
+Requires:	gnome-vfs2-libs >= 2.17.91
 
 %description libs
 Nautilus libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki Nautilusa.
 
 %package devel
 Summary:	Libraries and include files for developing Nautilus components
-Summary(pl):	Pliki nag³ówkowe do tworzenia komponentów dla Nautilusa
-Summary(pt_BR):	Bibliotecas e arquivos para desenvolvimento com o nautilus
+Summary(pl.UTF-8):	Pliki nagÅ‚Ã³wkowe do tworzenia komponentÃ³w dla Nautilusa
+Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.14.1
-Requires:	gnome-vfs2-devel >= 2.14.0
-Requires:	librsvg-devel >= 1:2.9.5-2
+Requires:	eel-devel >= 2.17.90
+Requires:	gnome-vfs2-devel >= 2.17.91
+Requires:	librsvg-devel >= 1:2.16.1
 
 %description devel
 This package provides the necessary development libraries and include
 files to allow you to develop Nautilus components.
 
-%description devel -l pl
-Biblioteki i pliki nag³ówkowe potrzebne do programowania.
+%description devel -l pl.UTF-8
+Biblioteki i pliki nagÅ‚Ã³wkowe potrzebne do programowania.
 
-%description devel -l pt_BR
-Este pacote fornece os arquivos necessários para desenvolvimento
+%description devel -l pt_BR.UTF-8
+Este pacote fornece os arquivos necessÃ¡rios para desenvolvimento
 utilizando componentes do nautilus.
 
 %package static
 Summary:	Static Nautilus libraries
-Summary(pl):	Biblioteki statyczne Nautilusa
+Summary(pl.UTF-8):	Biblioteki statyczne Nautilusa
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Nautilus libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Nautilusa.
 
 %prep
@@ -116,6 +119,7 @@ Biblioteki statyczne Nautilusa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch4 -p0
 
 %build
 %{__glib_gettextize}
@@ -137,8 +141,6 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
-
 # kill it - use banner instead
 install %{SOURCE1} .
 
@@ -148,20 +150,18 @@ install %{SOURCE1} .
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
+%update_mime_database
 %gconf_schema_install apps_nautilus_preferences.schemas
 %update_desktop_database_post
+%update_icon_cache hicolor
 
 %preun
 %gconf_schema_uninstall apps_nautilus_preferences.schemas
 
 %postun
 %update_desktop_database_postun
-if [ $1 = 0 ]; then
-	umask 022
-	update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
-fi
+%update_mime_database
+%update_icon_cache hicolor
 
 %post	libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
@@ -175,7 +175,8 @@ fi
 %{_libdir}/bonobo/servers/*
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
+%{_iconsdir}/hicolor/*/*/nautilus.*
 %{_pixmapsdir}/nautilus
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
