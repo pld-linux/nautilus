@@ -1,21 +1,21 @@
-diff -urN aa/nautilus-2.6.0/nautilus-computer.desktop.in nautilus-2.6.0/nautilus-computer.desktop.in
---- aa/nautilus-2.6.0/nautilus-computer.desktop.in	2003-11-06 16:12:30.000000000 +0100
-+++ nautilus-2.6.0/nautilus-computer.desktop.in	2004-03-31 13:48:15.408408256 +0200
-@@ -8,6 +8,7 @@
- Terminal=false
+diff -urN nautilus-2.18.0.1/nautilus-computer.desktop.in.in nautilus-2.18.0.1.new/nautilus-computer.desktop.in.in
+--- nautilus-2.18.0.1/nautilus-computer.desktop.in.in	2007-03-12 11:32:43.000000000 +0100
++++ nautilus-2.18.0.1.new/nautilus-computer.desktop.in.in	2007-03-12 17:31:00.000000000 +0100
+@@ -9,6 +9,7 @@
+ StartupNotify=true
  Type=Application
- Categories=Application;Core;
+ Categories=GNOME;GTK;Core;
 +OnlyShowIn=GNOME;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=nautilus
  X-GNOME-Bugzilla-Component=general
-diff -urN aa/nautilus-2.6.0/nautilus-home.desktop.in nautilus-2.6.0/nautilus-home.desktop.in
---- aa/nautilus-2.6.0/nautilus-home.desktop.in	2003-11-06 16:32:39.000000000 +0100
-+++ nautilus-2.6.0/nautilus-home.desktop.in	2004-03-31 13:48:09.400321624 +0200
-@@ -8,6 +8,7 @@
- Terminal=false
+diff -urN nautilus-2.18.0.1/nautilus-home.desktop.in.in nautilus-2.18.0.1.new/nautilus-home.desktop.in.in
+--- nautilus-2.18.0.1/nautilus-home.desktop.in.in	2007-03-12 11:32:43.000000000 +0100
++++ nautilus-2.18.0.1.new/nautilus-home.desktop.in.in	2007-03-12 17:31:31.000000000 +0100
+@@ -9,6 +9,7 @@
+ StartupNotify=true
  Type=Application
- Categories=Application;Core;
+ Categories=GNOME;GTK;Core;
 +OnlyShowIn=GNOME;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=nautilus
