@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.16.3
+Version:	2.18.0.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	05a0fe98d524ca5287da21845ab8490c
+Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.18/%{name}-%{version}.tar.bz2
+# Source0-md5:	c8a50540efe62bba6ae1249ffc4b1237
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
@@ -19,33 +19,35 @@ Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-copy_label.patch
 Patch4:		%{name}-dnd-user-owned.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.16.0
-BuildRequires:	ORBit2-devel >= 1:2.14.3
+BuildRequires:	GConf2-devel >= 2.18.0.1
+BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.16.3
-BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	eel-devel >= 2.18.0.1
+BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.16.2
-BuildRequires:	gnome-vfs2-devel >= 2.16.3
-BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libart_lgpl-devel >= 2.3.17
+BuildRequires:	gnome-desktop-devel >= 2.17.92
+BuildRequires:	gnome-vfs2-devel >= 2.18.0
+BuildRequires:	intltool >= 0.35.5
+BuildRequires:	libart_lgpl-devel >= 2.3.19
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.16.1
+BuildRequires:	libgnomeui-devel >= 2.18.0
 BuildRequires:	librsvg-devel >= 1:2.16.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.27
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	startup-notification-devel >= 0.8
-Requires(post,preun):	GConf2 >= 2.16.0
+Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk+2
+Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.16.0.1
-Requires:	gnome-vfs2 >= 2.16.3
+Requires:	gnome-icon-theme >= 2.17.91
+Requires:	gnome-vfs2 >= 2.18.0
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -70,8 +72,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.16.3
-Requires:	gnome-vfs2-libs >= 2.16.3
+Requires:	eel >= 2.18.0.1
+Requires:	gnome-vfs2-libs >= 2.18.0
 
 %description libs
 Nautilus libraries.
@@ -85,8 +87,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.16.3
-Requires:	gnome-vfs2-devel >= 2.16.3
+Requires:	eel-devel >= 2.18.0.1
+Requires:	gnome-vfs2-devel >= 2.18.0
 Requires:	librsvg-devel >= 1:2.16.1
 
 %description devel
@@ -151,6 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %update_mime_database
 %gconf_schema_install apps_nautilus_preferences.schemas
 %update_desktop_database_post
+%update_icon_cache hicolor
 
 %preun
 %gconf_schema_uninstall apps_nautilus_preferences.schemas
@@ -158,6 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 %update_desktop_database_postun
 %update_mime_database
+%update_icon_cache hicolor
 
 %post	libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
@@ -172,6 +176,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
 %{_desktopdir}/*.desktop
+%{_iconsdir}/hicolor/*/*/nautilus.*
 %{_pixmapsdir}/nautilus
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
