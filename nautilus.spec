@@ -11,7 +11,7 @@ Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	c8a50540efe62bba6ae1249ffc4b1237
+# Source0-md5:	a4e98623e326c5daa201564eed218594
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
