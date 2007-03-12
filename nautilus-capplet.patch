@@ -1,0 +1,12 @@
+diff -urN nautilus-2.17.92/nautilus-file-management-properties.desktop.in.in nautilus-2.17.92.new/nautilus-file-management-properties.desktop.in.in
+--- nautilus-2.17.92/nautilus-file-management-properties.desktop.in.in	2007-01-31 11:17:55.000000000 +0100
++++ nautilus-2.17.92.new/nautilus-file-management-properties.desktop.in.in	2007-03-02 23:49:19.000000000 +0100
+@@ -7,7 +7,7 @@
+ Terminal=false
+ Type=Application
+ StartupNotify=true
+-Categories=GNOME;GTK;Settings;X-GNOME-PersonalSettings;
++Categories=GNOME;GTK;Settings;X-GNOME-PersonalSettings;X-Capplet;
+ OnlyShowIn=GNOME;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=nautilus
