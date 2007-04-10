@@ -34,7 +34,7 @@ BuildRequires:	gnome-vfs2-devel >= 2.18.1
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libart_lgpl-devel >= 2.3.19
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.18.0
+BuildRequires:	libgnomeui-devel >= 2.18.1
 BuildRequires:	librsvg-devel >= 1:2.16.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.27
@@ -46,8 +46,8 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires:	gnome-icon-theme >= 2.17.91
-Requires:	gnome-vfs2 >= 2.18.0
+Requires:	gnome-icon-theme >= 2.18.0
+Requires:	gnome-vfs2 >= 2.18.1
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
