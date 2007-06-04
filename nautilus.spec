@@ -1,6 +1,6 @@
 #
 # Conditinal build:
-%bcond_without	beagle		# enable beagle search
+%bcond_without	beagle		# disable beagle search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
