@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.18.1
+Version:	2.18.3
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	e4718f37080b7d98cd5707e617d43ae6
+# Source0-md5:	e027b4e1a925122ef3e7f54323cc3c44
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
@@ -25,7 +25,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.18.0.1
+BuildRequires:	eel-devel >= 2.18.3
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
@@ -35,9 +35,9 @@ BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libart_lgpl-devel >= 2.3.19
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libgnomeui-devel >= 2.18.1
-BuildRequires:	librsvg-devel >= 1:2.16.1
+BuildRequires:	librsvg-devel >= 1:2.18.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.27
+BuildRequires:	libxml2-devel >= 1:2.6.28
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	startup-notification-devel >= 0.8
@@ -72,7 +72,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.18.0.1
+Requires:	eel >= 2.18.3
 Requires:	gnome-vfs2-libs >= 2.18.0
 
 %description libs
@@ -87,9 +87,9 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.18.0.1
+Requires:	eel-devel >= 2.18.3
 Requires:	gnome-vfs2-devel >= 2.18.0
-Requires:	librsvg-devel >= 1:2.16.1
+Requires:	librsvg-devel >= 1:2.18.0
 
 %description devel
 This package provides the necessary development libraries and include
