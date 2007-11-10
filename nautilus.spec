@@ -7,10 +7,10 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.20.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/nautilus/2.20/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.20/%{name}-%{version}.tar.bz2
 # Source0-md5:	3856ec2ffeba786d12f8f6622e398c33
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-includes.patch
@@ -20,13 +20,13 @@ Patch3:		%{name}-copy_label.patch
 Patch4:		%{name}-dnd-user-owned.patch
 Patch5:		%{name}-pl.patch
 URL:		http://nautilus.eazel.com/
-BuildRequires:	GConf2-devel >= 2.18.0.1
+BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.18.3
+BuildRequires:	eel-devel >= 2.20.0
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel
 BuildRequires:	freetype-devel >= 2.1.4
@@ -36,7 +36,7 @@ BuildRequires:	gnome-vfs2-devel >= 2.20.0
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libart_lgpl-devel >= 2.3.19
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.18.1
+BuildRequires:	libgnomeui-devel >= 2.20.0
 BuildRequires:	librsvg-devel >= 1:2.18.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.28
@@ -54,6 +54,8 @@ Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,8 +76,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	eel >= 2.18.3
-Requires:	gnome-vfs2-libs >= 2.18.0
+Requires:	eel >= 2.20.0
+Requires:	gnome-vfs2-libs >= 2.20.0
 
 %description libs
 Nautilus libraries.
@@ -89,8 +91,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.18.3
-Requires:	gnome-vfs2-devel >= 2.18.0
+Requires:	eel-devel >= 2.20.0
+Requires:	gnome-vfs2-devel >= 2.20.0
 Requires:	librsvg-devel >= 1:2.18.0
 
 %description devel
@@ -123,6 +125,9 @@ Biblioteki statyczne Nautilusa.
 %patch2 -p1
 %patch4 -p0
 %patch5 -p1
+
+sed -i -e s#sr\@Latn#sr\@latin# po/LINGUAS
+mv -f po/sr\@{Latn,latin}.po
 
 %build
 %{__glib_gettextize}
