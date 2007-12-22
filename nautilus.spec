@@ -47,6 +47,7 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
+Requires:	gvfs
 Requires:	gnome-icon-theme >= 2.20.0
 Requires:	gnome-vfs2 >= 2.20.0
 Requires:	%{name}-libs = %{version}-%{release}
