@@ -6,19 +6,17 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.20.0
-Release:	3
+Version:	2.21.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	3856ec2ffeba786d12f8f6622e398c33
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.21/%{name}-%{version}.tar.bz2
+# Source0-md5:	c52c447617196434fc0fc81b48610f65
 Source1:	%{name}.PLD.readme
-Patch0:		%{name}-includes.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-copy_label.patch
 Patch4:		%{name}-dnd-user-owned.patch
-Patch5:		%{name}-pl.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	ORBit2-devel >= 1:2.14.7
@@ -26,11 +24,12 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.20.0
+BuildRequires:	eel-devel >= 2.21.1
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel
 BuildRequires:	freetype-devel >= 2.1.4
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 2.15.0
 BuildRequires:	gnome-desktop-devel >= 2.20.0
 BuildRequires:	gnome-vfs2-devel >= 2.20.0
 BuildRequires:	intltool >= 0.35.5
@@ -91,7 +90,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel-devel >= 2.20.0
+Requires:	eel-devel >= 2.21.1
 Requires:	gnome-vfs2-devel >= 2.20.0
 Requires:	librsvg-devel >= 1:2.18.0
 
@@ -120,11 +119,9 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch4 -p0
-%patch5 -p1
+#%patch4 -p0
 
 sed -i -e s#sr\@Latn#sr\@latin# po/LINGUAS
 mv -f po/sr\@{Latn,latin}.po
