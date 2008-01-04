@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.20.0
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.20/%{name}-%{version}.tar.bz2
@@ -19,6 +19,7 @@ Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-copy_label.patch
 Patch4:		%{name}-dnd-user-owned.patch
 Patch5:		%{name}-pl.patch
+Patch6:		%{name}-exempi-new-api.patch
 URL:		http://nautilus.eazel.com/
 BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	ORBit2-devel >= 1:2.14.7
@@ -125,6 +126,7 @@ Biblioteki statyczne Nautilusa.
 %patch2 -p1
 %patch4 -p0
 %patch5 -p1
+%patch6 -p1
 
 sed -i -e s#sr\@Latn#sr\@latin# po/LINGUAS
 mv -f po/sr\@{Latn,latin}.po
