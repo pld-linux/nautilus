@@ -1,4 +1,7 @@
 #
+# TODO:
+# - tracker bcond
+#
 # Conditinal build:
 %bcond_without	beagle		# disable beagle search
 #
@@ -6,12 +9,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.21.1
+Version:	2.21.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	c52c447617196434fc0fc81b48610f65
+# Source0-md5:	fa82ba45ba503a42caf51a82cf87b47a
 Source1:	%{name}.PLD.readme
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
@@ -25,10 +28,10 @@ BuildRequires:	automake
 BuildRequires:	docbook-utils >= 0.6.11
 BuildRequires:	eel-devel >= 2.21.1
 BuildRequires:	esound-devel >= 1:0.2.37
-BuildRequires:	exempi-devel
+BuildRequires:	exempi-devel >= 1.99.2
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.12.0
-BuildRequires:	glib2-devel >= 1:2.15.0
+BuildRequires:	glib2-devel >= 1:2.15.1
 BuildRequires:	gnome-desktop-devel >= 2.21.4
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -86,7 +89,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	gnome-vfs2-devel >= 2.20.0
+Requires:	glib2-devel >= 1:2.15.1
 Requires:	gtk+2-devel >= 2:2.12.0
 
 %description devel
@@ -136,7 +139,7 @@ mv -f po/sr@{Latn,latin}.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
+install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -171,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README THANKS nautilus.PLD.readme
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/nautilus
-%dir %{_libdir}/nautilus/extensions-1.0
+%dir %{_libdir}/nautilus/extensions-2.0
 %{_libdir}/bonobo/servers/Nautilus_shell.server
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
@@ -183,6 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libnautilus-extension.so.1
 
 %files devel
 %defattr(644,root,root,755)
