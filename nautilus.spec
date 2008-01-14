@@ -9,12 +9,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.21.2
+Version:	2.21.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	fa82ba45ba503a42caf51a82cf87b47a
+# Source0-md5:	cd1e6dbab5cd31678c0a8bc4ecd979fd
 Source1:	%{name}.PLD.readme
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
@@ -26,12 +26,12 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 %{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.21.1
+BuildRequires:	eel-devel >= 2.21.5
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel >= 1.99.2
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.12.0
-BuildRequires:	glib2-devel >= 1:2.15.1
+BuildRequires:	glib2-devel >= 1:2.15.2
 BuildRequires:	gnome-desktop-devel >= 2.21.4
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -47,7 +47,7 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires:	eel >= 2.21.1
+Requires:	eel >= 2.21.5
 Requires:	gvfs
 Requires:	gnome-icon-theme >= 2.20.0
 Requires:	%{name}-libs = %{version}-%{release}
@@ -89,7 +89,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.15.1
+Requires:	glib2-devel >= 1:2.15.2
 Requires:	gtk+2-devel >= 2:2.12.0
 
 %description devel
