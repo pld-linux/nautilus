@@ -9,18 +9,18 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.21.5
+Version:	2.21.6
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	cd1e6dbab5cd31678c0a8bc4ecd979fd
+# Source0-md5:	a6e26aaf6dfda451a56533c879f850b5
 Source1:	%{name}.PLD.readme
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-dnd-user-owned.patch
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	GConf2-devel >= 2.20.0
+BuildRequires:	GConf2-devel >= 2.21.2
 BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
@@ -31,11 +31,11 @@ BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel >= 1.99.2
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.12.0
-BuildRequires:	glib2-devel >= 1:2.15.2
+BuildRequires:	glib2-devel >= 1:2.15.3
 BuildRequires:	gnome-desktop-devel >= 2.21.4
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.20.1
+BuildRequires:	libgnomeui-devel >= 2.21.5
 BuildRequires:	librsvg-devel >= 1:2.18.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
@@ -89,7 +89,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.15.2
+Requires:	glib2-devel >= 1:2.15.3
 Requires:	gtk+2-devel >= 2:2.12.0
 
 %description devel
