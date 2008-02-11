@@ -25,7 +25,7 @@ BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
+%{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	docbook-utils >= 0.6.11
 BuildRequires:	eel-devel >= 2.20.0
 BuildRequires:	esound-devel >= 1:0.2.37
