@@ -38,6 +38,7 @@ BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libgnomeui-devel >= 2.21.90
 BuildRequires:	librsvg-devel >= 1:2.18.0
 BuildRequires:	libtool
+BuildRequires:	libtracker-devel
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
