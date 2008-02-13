@@ -1,57 +1,56 @@
 #
-# TODO:
-# - tracker bcond
-#
 # Conditinal build:
 %bcond_without	beagle		# disable beagle search
+%bcond_without	tracker		# disable tracker search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.21.90
+Version:	2.21.91
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa6ea3df14b738e4be9d9c67bbda7413
+# Source0-md5:	45da1d8e6ba3c4eaf90eddf58fcbf946
 Source1:	%{name}.PLD.readme
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-dnd-user-owned.patch
+Patch4:		%{name}-beagle.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	GConf2-devel >= 2.21.90
 BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	beagle-devel >= 0.2.13}
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.21.90
+BuildRequires:	eel-devel >= 2.21.91
 BuildRequires:	esound-devel >= 1:0.2.37
-BuildRequires:	exempi-devel >= 1.99.2
+BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 1:2.15.5
+BuildRequires:	gnome-desktop-devel >= 2.21.91
 BuildRequires:	gtk+2-devel >= 2:2.12.5
-BuildRequires:	glib2-devel >= 1:2.15.4
-BuildRequires:	gnome-desktop-devel >= 2.21.90
 BuildRequires:	intltool >= 0.37.0
+%{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.21.90
-BuildRequires:	librsvg-devel >= 1:2.18.0
+BuildRequires:	libgnomeui-devel >= 2.21.91
+BuildRequires:	librsvg-devel >= 1:2.18.2
 BuildRequires:	libtool
-BuildRequires:	libtracker-devel
+%{?with_tracker:BuildRequires:	libtracker-devel}
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	startup-notification-devel >= 0.8
-Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires:	eel >= 2.21.90
-Requires:	gvfs
-Requires:	gnome-icon-theme >= 2.20.0
+Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	eel >= 2.21.91
+Requires:	gnome-icon-theme >= 2.20.0
+Requires:	gvfs
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
@@ -90,7 +89,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.15.4
+Requires:	glib2-devel >= 1:2.15.5
 Requires:	gtk+2-devel >= 2:2.12.5
 
 %description devel
@@ -121,6 +120,7 @@ Biblioteki statyczne Nautilusa.
 %patch1 -p1
 %patch2 -p1
 #%patch3 -p0
+%patch4 -p1
 
 sed -i -e s#sr@Latn#sr@latin# po/LINGUAS
 mv -f po/sr@{Latn,latin}.po
@@ -131,10 +131,12 @@ mv -f po/sr@{Latn,latin}.po
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	--enable-static \
 	%{?!with_beagle:--disable-beagle} \
+	%{?!with_tracker:--disable-tracker} \
 	--disable-update-mimedb
 %{__make}
 
@@ -173,7 +175,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README THANKS nautilus.PLD.readme
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/nautilus
+%attr(755,root,root) %{_bindir}/nautilus-autorun-software
+%attr(755,root,root) %{_bindir}/nautilus-file-management-properties
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-2.0
 %{_libdir}/bonobo/servers/Nautilus_shell.server
