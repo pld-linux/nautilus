@@ -25,7 +25,6 @@ BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-%{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	docbook-utils >= 0.6.11
 BuildRequires:	eel-devel >= 2.20.0
 BuildRequires:	esound-devel >= 1:0.2.37
@@ -36,6 +35,7 @@ BuildRequires:	gnome-desktop-devel >= 2.20.0
 BuildRequires:	gnome-vfs2-devel >= 2.20.0
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libart_lgpl-devel >= 2.3.19
+%{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libgnomeui-devel >= 2.20.0
 BuildRequires:	librsvg-devel >= 1:2.18.0
@@ -141,7 +141,7 @@ mv -f po/sr\@{Latn,latin}.po
 %{__automake}
 %configure \
 	--enable-static \
-	%{?!with_beagle:--disable-beagle} \
+	%{!?with_beagle:--disable-beagle} \
 	--disable-update-mimedb
 %{__make}
 
