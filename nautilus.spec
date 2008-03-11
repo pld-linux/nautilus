@@ -7,18 +7,17 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.21.92
+Version:	2.22.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	2578ba7bc1d008debcad5e721aa8eab8
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	0fcc02e92cfad239af27e0b47438c44c
 Source1:	%{name}.PLD.readme
-Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-capplet.patch
 Patch3:		%{name}-dnd-user-owned.patch
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	GConf2-devel >= 2.21.90
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
@@ -27,13 +26,13 @@ BuildRequires:	eel-devel >= 2.21.92
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.15.6
-BuildRequires:	gnome-desktop-devel >= 2.21.91
+BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	gnome-desktop-devel >= 2.20.0
 BuildRequires:	gtk+2-devel >= 2:2.12.5
 BuildRequires:	intltool >= 0.37.0
 %{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.21.91
+BuildRequires:	libgnomeui-devel >= 2.22.0
 BuildRequires:	librsvg-devel >= 1:2.18.2
 BuildRequires:	libtool
 %{?with_tracker:BuildRequires:	libtracker-devel}
@@ -47,7 +46,7 @@ Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel >= 2.21.92
+Requires:	eel >= 2.22.0
 Requires:	gnome-icon-theme >= 2.20.0
 Requires:	gvfs
 Obsoletes:	gstreamer-player-nautilus
@@ -116,7 +115,6 @@ Biblioteki statyczne Nautilusa.
 
 %prep
 %setup -q
-%patch1 -p1
 %patch2 -p1
 #%patch3 -p0
 
