@@ -1,5 +1,6 @@
 #
 # Conditinal build:
+%bcond_without	apidocs		# disable API documentation
 %bcond_without	beagle		# disable beagle search
 %bcond_without	tracker		# disable tracker search
 #
@@ -7,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.22.2
+Version:	2.23.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	4758815c46f350bd314d9e104f0a1b72
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.23/%{name}-%{version}.tar.bz2
+# Source0-md5:	7a517f268ea76a04603835db4be49d45
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-capplet.patch
 Patch1:		%{name}-dnd-user-owned.patch
@@ -28,6 +29,7 @@ BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.16.1
 BuildRequires:	gnome-desktop-devel >= 2.22.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk+2-devel >= 2:2.12.9
 BuildRequires:	intltool >= 0.37.0
 %{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
@@ -113,6 +115,18 @@ Static Nautilus libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne Nautilusa.
 
+%package apidocs
+Summary:	Nautilus API documentation
+Summary(pl.UTF-8):	Dokumentacja API Nautilusa
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Nautilus API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API Nautilusa.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -120,8 +134,13 @@ Biblioteki statyczne Nautilusa.
 
 sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
 mv -f po/sr@{Latn,latin}.po
+sed -i -e 's#ca@valencia##' po/LINGUAS
+rm -f po/ca@valencia.po
+sed -i -e 's#io##' po/LINGUAS
+rm -f po/io.po
 
 %build
+%{?with_apidocs:%{__gtkdocize}}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
@@ -132,7 +151,9 @@ mv -f po/sr@{Latn,latin}.po
 %configure \
 	--enable-static \
 	%{?!with_beagle:--disable-beagle} \
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?!with_tracker:--disable-tracker} \
+	--with-html-dir=%{_gtkdocdir} \
 	--disable-update-mimedb
 %{__make}
 
@@ -200,3 +221,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libnautilus-extension.a
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libnautilus-extension
+%endif
