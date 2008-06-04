@@ -8,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.23.2
+Version:	2.23.3
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	8db158e2304f97cde8f0e4452a28ff82
+# Source0-md5:	b01fd36ca881d79d41430dc3ebc3f522
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-capplet.patch
 Patch1:		%{name}-dnd-user-owned.patch
@@ -23,12 +23,12 @@ BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.22.1
+BuildRequires:	eel-devel >= 2.23.2
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.16.1
-BuildRequires:	gnome-desktop-devel >= 2.22.0
+BuildRequires:	gnome-desktop-devel >= 2.23.3
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk+2-devel >= 2:2.12.9
 BuildRequires:	intltool >= 0.37.0
@@ -203,6 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/nautilus
 %{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/*/*/nautilus.*
+%{_mandir}/man1/nautilus*.1*
 %{_pixmapsdir}/nautilus
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
