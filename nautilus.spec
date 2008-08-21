@@ -8,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.23.6.1
+Version:	2.23.90
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	83a6ee496f994ee33272b86b3fdc81f9
+# Source0-md5:	b0e419946b9adc32e3deb7157096971c
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-capplet.patch
 Patch1:		%{name}-dnd-user-owned.patch
@@ -23,7 +23,7 @@ BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.23.2
+BuildRequires:	eel-devel >= 2.23.90
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
@@ -48,7 +48,7 @@ Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel >= 2.22.1
+Requires:	eel >= 2.23.90
 Requires:	gnome-icon-theme >= 2.22.0
 Requires:	gvfs >= 0.2.2
 Obsoletes:	gstreamer-player-nautilus
