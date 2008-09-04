@@ -8,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.23.90
+Version:	2.23.91
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	b0e419946b9adc32e3deb7157096971c
+# Source0-md5:	21a456d9c7fed80a89b294dd5718a61c
 Source1:	%{name}.PLD.readme
 Patch0:		%{name}-capplet.patch
 Patch1:		%{name}-dnd-user-owned.patch
@@ -132,8 +132,6 @@ Dokumentacja API Nautilusa.
 %patch0 -p1
 #%patch1 -p0
 
-sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
-mv -f po/sr@{Latn,latin}.po
 sed -i -e 's#ca@valencia##' po/LINGUAS
 rm -f po/ca@valencia.po
 sed -i -e 's#io##' po/LINGUAS
