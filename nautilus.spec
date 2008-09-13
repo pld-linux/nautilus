@@ -8,15 +8,13 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.23.91
+Version:	2.23.92
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	21a456d9c7fed80a89b294dd5718a61c
+# Source0-md5:	bb187a4352764067391b963aa153b72c
 Source1:	%{name}.PLD.readme
-Patch0:		%{name}-capplet.patch
-Patch1:		%{name}-dnd-user-owned.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	ORBit2-devel >= 1:2.14.8
@@ -48,7 +46,7 @@ Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel >= 2.23.90
+Requires:	eel >= 2.23.92
 Requires:	gnome-icon-theme >= 2.22.0
 Requires:	gvfs >= 0.2.2
 Obsoletes:	gstreamer-player-nautilus
@@ -129,8 +127,6 @@ Dokumentacja API Nautilusa.
 
 %prep
 %setup -q
-%patch0 -p1
-#%patch1 -p0
 
 sed -i -e 's#ca@valencia##' po/LINGUAS
 rm -f po/ca@valencia.po
