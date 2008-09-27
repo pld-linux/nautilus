@@ -1,5 +1,6 @@
 #
 # Conditinal build:
+%bcond_without	apidocs		# disable API documentation
 %bcond_without	beagle		# disable beagle search
 %bcond_without	tracker		# disable tracker search
 #
@@ -7,32 +8,31 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.22.5.1
+Version:	2.24.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	a63596ca4cccddc970d695d62c05154a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.24/%{name}-%{version}.tar.bz2
+# Source0-md5:	b80c29aaefa3a22cdf58f644ef3019d0
 Source1:	%{name}.PLD.readme
-Patch0:		%{name}-capplet.patch
-Patch1:		%{name}-dnd-user-owned.patch
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	GConf2-devel >= 2.22.0
+BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.22.1
+BuildRequires:	eel-devel >= 2.24.0
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.16.1
-BuildRequires:	gnome-desktop-devel >= 2.22.0
-BuildRequires:	gtk+2-devel >= 2:2.12.9
-BuildRequires:	intltool >= 0.37.0
+BuildRequires:	glib2-devel >= 1:2.18.0
+BuildRequires:	gnome-desktop-devel >= 2.24.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	intltool >= 0.40.0
 %{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libgnomeui-devel >= 2.22.0
+BuildRequires:	libgnomeui-devel >= 2.24.0
 BuildRequires:	librsvg-devel >= 1:2.22.0
 BuildRequires:	libtool
 %{?with_tracker:BuildRequires:	libtracker-devel}
@@ -46,9 +46,9 @@ Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel >= 2.22.1
-Requires:	gnome-icon-theme >= 2.22.0
-Requires:	gvfs >= 0.2.2
+Requires:	eel >= 2.24.0
+Requires:	gnome-icon-theme >= 2.24.0
+Requires:	gvfs >= 1.0.0
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
@@ -87,8 +87,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.16.1
-Requires:	gtk+2-devel >= 2:2.12.9
+Requires:	glib2-devel >= 1:2.18.0
+Requires:	gtk+2-devel >= 2:2.14.0
 
 %description devel
 This package provides the necessary development libraries and include
@@ -113,15 +113,28 @@ Static Nautilus libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne Nautilusa.
 
+%package apidocs
+Summary:	Nautilus API documentation
+Summary(pl.UTF-8):	Dokumentacja API Nautilusa
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Nautilus API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API Nautilusa.
+
 %prep
 %setup -q
-%patch0 -p1
-#%patch1 -p0
 
-sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
-mv -f po/sr@{Latn,latin}.po
+sed -i -e 's#ca@valencia##' po/LINGUAS
+rm -f po/ca@valencia.po
+sed -i -e 's#io##' po/LINGUAS
+rm -f po/io.po
 
 %build
+%{?with_apidocs:%{__gtkdocize}}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
@@ -132,7 +145,9 @@ mv -f po/sr@{Latn,latin}.po
 %configure \
 	--enable-static \
 	%{?!with_beagle:--disable-beagle} \
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?!with_tracker:--disable-tracker} \
+	--with-html-dir=%{_gtkdocdir} \
 	--disable-update-mimedb
 %{__make}
 
@@ -145,8 +160,6 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 # kill it - use banner instead
 install %{SOURCE1} .
-
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/ca@valencia
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -184,6 +197,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/nautilus
 %{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/*/*/nautilus.*
+%{_mandir}/man1/nautilus*.1*
 %{_pixmapsdir}/nautilus
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
@@ -202,3 +216,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libnautilus-extension.a
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libnautilus-extension
+%endif
