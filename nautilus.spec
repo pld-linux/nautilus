@@ -8,47 +8,43 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.24.2
+Version:	2.25.91
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	783e5f7be6391d6c46b4725e38af475a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.25/%{name}-%{version}.tar.bz2
+# Source0-md5:	2a19cefe832dc1e9458f9a09bf47cbea
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	GConf2-devel >= 2.24.0
-BuildRequires:	ORBit2-devel >= 1:2.14.8
+BuildRequires:	GConf2-devel >= 2.25.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	docbook-utils >= 0.6.11
-BuildRequires:	eel-devel >= 2.24.0
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.18.0
-BuildRequires:	gnome-desktop-devel >= 2.24.0
-BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	glib2-devel >= 1:2.19.7
+BuildRequires:	gnome-desktop-devel >= 2.25.90
+BuildRequires:	gtk+2-devel >= 2:2.15.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
-BuildRequires:	intltool >= 0.40.0
+BuildRequires:	intltool >= 0.40.1
 %{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
-BuildRequires:	libbonobo-devel >= 2.24.0
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libgnomeui-devel >= 2.24.0
-BuildRequires:	librsvg-devel >= 1:2.22.0
 BuildRequires:	libtool
 %{?with_tracker:BuildRequires:	libtracker-devel}
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	startup-notification-devel >= 0.8
+BuildRequires:	unique-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	eel >= 2.24.0
-Requires:	gnome-icon-theme >= 2.24.0
-Requires:	gvfs >= 1.0.0
+Requires:	gnome-icon-theme >= 2.25.0
+Requires:	gvfs >= 1.1.6
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
@@ -87,8 +83,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.18.0
-Requires:	gtk+2-devel >= 2:2.14.0
+Requires:	glib2-devel >= 1:2.19.7
+Requires:	gtk+2-devel >= 2:2.15.0
 
 %description devel
 This package provides the necessary development libraries and include
@@ -144,6 +140,7 @@ rm -f po/io.po
 %{__automake}
 %configure \
 	--enable-static \
+	--enable-packagekit \
 	%{?!with_beagle:--disable-beagle} \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?!with_tracker:--disable-tracker} \
@@ -192,7 +189,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nautilus-file-management-properties
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-2.0
-%{_libdir}/bonobo/servers/Nautilus_shell.server
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
 %{_desktopdir}/*.desktop
