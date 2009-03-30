@@ -26,7 +26,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.20.0
 BuildRequires:	gnome-desktop-devel >= 2.26.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 %{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -130,7 +130,7 @@ sed -i -e 's#io##' po/LINGUAS
 rm -f po/io.po
 
 %build
-%{?with_apidocs:%{__gtkdocize}}
+%{__gtkdocize}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
@@ -157,6 +157,8 @@ install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 # kill it - use banner instead
 install %{SOURCE1} .
+
+%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
 %find_lang %{name} --with-gnome --all-name
 
