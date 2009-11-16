@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.28.1
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.28/%{name}-%{version}.tar.bz2
@@ -20,6 +20,7 @@ BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-utils >= 0.6.11
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
@@ -30,12 +31,15 @@ BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 %{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
+BuildRequires:	libselinux-devel
 BuildRequires:	libtool
 %{?with_tracker:BuildRequires:	libtracker-devel}
 BuildRequires:	libunique-devel
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
+# libegg
+BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
@@ -84,6 +88,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.20.0
 Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	libselinux-devel
 
 %description devel
 This package provides the necessary development libraries and include
