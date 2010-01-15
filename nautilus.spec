@@ -143,9 +143,9 @@ rm -f po/io.po
 %configure \
 	--enable-static \
 	--enable-packagekit \
-	%{?!with_beagle:--disable-beagle} \
+	%{!?with_beagle:--disable-beagle} \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-	%{?!with_tracker:--disable-tracker} \
+	%{!?with_tracker:--disable-tracker} \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-update-mimedb
 %{__make}
