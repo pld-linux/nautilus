@@ -1,19 +1,17 @@
 #
 # Conditinal build:
 %bcond_without	apidocs		# disable API documentation
-%bcond_without	beagle		# disable beagle search
-%bcond_without	tracker		# disable tracker search
 #
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.29.91
+Version:	2.30.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.29/%{name}-%{version}.tar.bz2
-# Source0-md5:	e414156c53a4112101807531153e3b22
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.30/%{name}-%{version}.tar.bz2
+# Source0-md5:	e09aea66166c0a90d09955bd4d2672be
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	GConf2-devel >= 2.24.0
@@ -23,19 +21,17 @@ BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	docbook-utils >= 0.6.11
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.23.1
-BuildRequires:	gnome-desktop-devel >= 2.29.90
-BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	gnome-desktop-devel >= 2.30.0
+BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
-%{?with_beagle:BuildRequires:	libbeagle-devel >= 0.3.0}
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libtool
-%{?with_tracker:BuildRequires:	libtracker-devel}
+BuildRequires:	libunique-devel
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	libunique-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
@@ -43,7 +39,7 @@ Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gnome-icon-theme >= 2.26.0
-Requires:	gvfs >= 1.3.2
+Requires:	gvfs >= 1.6.0
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
@@ -82,8 +78,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.20.0
-Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	glib2-devel >= 1:2.24.0
+Requires:	gtk+2-devel >= 2:2.20.0
 
 %description devel
 This package provides the necessary development libraries and include
@@ -140,10 +136,9 @@ rm -f po/io.po
 %configure \
 	--enable-static \
 	--enable-packagekit \
-	%{?!with_beagle:--disable-beagle} \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-	%{?!with_tracker:--disable-tracker} \
 	--with-html-dir=%{_gtkdocdir} \
+	--disable-silent-rules \
 	--disable-update-mimedb
 %{__make}
 
