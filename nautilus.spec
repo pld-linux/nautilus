@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	2.30.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.30/%{name}-%{version}.tar.bz2
@@ -43,6 +43,7 @@ Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gnome-icon-theme >= 2.26.0
 Requires:	gvfs >= 1.6.0
+Obsoletes:	eel
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
@@ -84,6 +85,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	gtk+2-devel >= 2:2.20.0
 Requires:	libselinux-devel
+Obsoletes:	eel-devel
 
 %description devel
 This package provides the necessary development libraries and include
