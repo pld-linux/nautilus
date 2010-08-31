@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.30.1
-Release:	2
+Version:	2.31.90
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.30/%{name}-%{version}.tar.bz2
-# Source0-md5:	e1bda55f9c6cd223561da066dbc4e863
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.31/%{name}-%{version}.tar.bz2
+# Source0-md5:	522597aab3c21f2b609e1ed57d2abdaf
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	GConf2-devel >= 2.24.0
@@ -23,6 +23,7 @@ BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gnome-desktop-devel >= 2.30.0
+BuildRequires:	gobject-introspection-devel
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
@@ -204,6 +205,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libnautilus-extension.so.1
+%{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -211,6 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libnautilus-extension.la
 %{_includedir}/nautilus
 %{_pkgconfigdir}/libnautilus-extension.pc
+%{_datadir}/gir-1.0/*.gir
 
 %files static
 %defattr(644,root,root,755)
