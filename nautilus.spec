@@ -6,24 +6,24 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.30.1
-Release:	2
+Version:	2.32.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.30/%{name}-%{version}.tar.bz2
-# Source0-md5:	e1bda55f9c6cd223561da066dbc4e863
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.32/%{name}-%{version}.tar.bz2
+# Source0-md5:	d00f0735cead5fa0fedc3e6ff11831b1
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-desktop-devel >= 2.30.0
-BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	gobject-introspection-devel >= 0.6.4
+BuildRequires:	gtk+2-devel >= 2:2.22.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -41,6 +41,7 @@ Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	glib2 >= 1:2.26.0
 Requires:	gnome-icon-theme >= 2.26.0
 Requires:	gvfs >= 1.6.0
 Obsoletes:	eel
@@ -82,8 +83,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.24.0
-Requires:	gtk+2-devel >= 2:2.20.0
+Requires:	glib2-devel >= 1:2.26.0
+Requires:	gtk+2-devel >= 2:2.22.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -204,6 +205,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libnautilus-extension.so.1
+%{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -211,6 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libnautilus-extension.la
 %{_includedir}/nautilus
 %{_pkgconfigdir}/libnautilus-extension.pc
+%{_datadir}/gir-1.0/*.gir
 
 %files static
 %defattr(644,root,root,755)
