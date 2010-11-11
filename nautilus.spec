@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.32.0
+Version:	2.91.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.32/%{name}-%{version}.tar.bz2
-# Source0-md5:	d00f0735cead5fa0fedc3e6ff11831b1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.91/%{name}-%{version}.tar.bz2
+# Source0-md5:	60714ce5d64c6ab40bcd12b75531a13a
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	GConf2-devel >= 2.24.0
@@ -20,16 +20,16 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.26.0
-BuildRequires:	gnome-desktop-devel >= 2.30.0
+BuildRequires:	glib2-devel >= 1:2.27.2
+BuildRequires:	gnome-desktop3-devel >= 2.91.1
 BuildRequires:	gobject-introspection-devel >= 0.6.4
-BuildRequires:	gtk+2-devel >= 2:2.22.0
+BuildRequires:	gsettings-desktop-schemas-devel
+BuildRequires:	gtk+3-devel >= 2.91.4
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libselinux-devel
 BuildRequires:	libtool
-BuildRequires:	libunique-devel
 BuildRequires:	libxml2-devel >= 1:2.6.31
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
@@ -39,10 +39,11 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires(post,preun):	GConf2
+Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.27.2
 Requires:	gnome-icon-theme >= 2.26.0
+Requires:	gsettings-desktop-schemas
 Requires:	gvfs >= 1.6.0
 Obsoletes:	eel
 Obsoletes:	gstreamer-player-nautilus
@@ -83,8 +84,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.26.0
-Requires:	gtk+2-devel >= 2:2.22.0
+Requires:	glib2-devel >= 1:2.27.2
+Requires:	gtk+3-devel >= 2.91.4
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -151,13 +152,14 @@ rm -f po/io.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # kill it - use banner instead
 install %{SOURCE1} .
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0/*.{a,la}
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
@@ -168,17 +170,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_mime_database
-%gconf_schema_install apps_nautilus_preferences.schemas
 %update_desktop_database_post
 %update_icon_cache hicolor
-
-%preun
-%gconf_schema_uninstall apps_nautilus_preferences.schemas
+%{_bindir}/glib-compile-schemas %{_datadir}/glib-2.0/schemas
 
 %postun
 %update_desktop_database_postun
 %update_mime_database
 %update_icon_cache hicolor
+if [ "$1" = "0" ]; then
+	%{_bindir}/glib-compile-schemas %{_datadir}/glib-2.0/schemas
+fi
 
 %post	libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
@@ -193,13 +195,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/nautilus-convert-metadata
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-2.0
+%attr(755,root,root) %{_libdir}/nautilus/extensions-2.0/libnautilus-sendto.so
+%{_datadir}/GConf/gsettings/nautilus.convert
+%{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
 %{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/*/*/nautilus.*
 %{_mandir}/man1/nautilus*.1*
 %{_pixmapsdir}/nautilus
-%{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
 %files libs
 %defattr(644,root,root,755)
