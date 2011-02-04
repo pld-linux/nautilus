@@ -6,25 +6,24 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.91.7
+Version:	2.91.8
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	56a85ad12e76eb8fbfe1a6765b7a8954
+# Source0-md5:	221a5e1cd064c3eb60a647c6d37a6641
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.27.2
+BuildRequires:	glib2-devel >= 1:2.27.5
 BuildRequires:	gnome-desktop3-devel >= 2.91.4
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 2.91.7
+BuildRequires:	gtk+3-devel >= 2.99.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -36,15 +35,15 @@ BuildRequires:	rpmbuild(macros) >= 1.311
 # libegg
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+2
-Requires(post,postun):	hicolor-icon-theme
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2 >= 1:2.27.2
+Requires:	glib2 >= 1:2.27.5
 Requires:	gnome-icon-theme >= 2.26.0
 Requires:	gsettings-desktop-schemas
 Requires:	gvfs >= 1.6.0
+Requires:	hicolor-icon-theme
 Obsoletes:	eel
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
@@ -84,8 +83,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.27.2
-Requires:	gtk+3-devel >= 2.91.7
+Requires:	glib2-devel >= 1:2.27.5
+Requires:	gtk+3-devel >= 2.99.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -127,9 +126,7 @@ Dokumentacja API Nautilusa.
 %prep
 %setup -q
 
-sed -i -e 's#^en@shaw##' po/LINGUAS
 sed -i -e 's#^io##' po/LINGUAS
-rm -f po/en@shaw.po
 rm -f po/io.po
 
 %build
@@ -172,14 +169,14 @@ rm -rf $RPM_BUILD_ROOT
 %update_mime_database
 %update_desktop_database_post
 %update_icon_cache hicolor
-%{_bindir}/glib-compile-schemas %{_datadir}/glib-2.0/schemas
+%glib_compile_schemas
 
 %postun
 %update_desktop_database_postun
 %update_mime_database
 %update_icon_cache hicolor
 if [ "$1" = "0" ]; then
-	%{_bindir}/glib-compile-schemas %{_datadir}/glib-2.0/schemas
+	%glib_compile_schemas
 fi
 
 %post	libs -p /sbin/ldconfig
