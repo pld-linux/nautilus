@@ -157,6 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 install %{SOURCE1} .
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
@@ -210,7 +211,6 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so
-%{_libdir}/libnautilus-extension.la
 %{_includedir}/nautilus
 %{_pkgconfigdir}/libnautilus-extension.pc
 %{_datadir}/gir-1.0/*.gir
