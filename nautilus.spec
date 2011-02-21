@@ -48,7 +48,6 @@ Obsoletes:	eel
 Obsoletes:	gstreamer-player-nautilus
 Obsoletes:	nautilus-gtkhtml
 Obsoletes:	nautilus-media
-Obsoletes:	nautilus-sendto
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -88,7 +87,6 @@ Requires:	glib2-devel >= 1:2.28.0
 Requires:	gtk+3-devel >= 3.0.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
-Obsoletes:	nautilus-sendto-devel
 
 %description devel
 This package provides the necessary development libraries and include
