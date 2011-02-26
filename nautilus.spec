@@ -27,7 +27,7 @@ BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libnotify-devel
+BuildRequires:	libnotify-devel >= 0.7
 BuildRequires:	libselinux-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.31
