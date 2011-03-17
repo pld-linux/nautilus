@@ -23,7 +23,7 @@ BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-desktop3-devel >= 2.91.4
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gtk+3-devel >= 3.0.2
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -85,7 +85,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.28.0
-Requires:	gtk+3-devel >= 3.0.0
+Requires:	gtk+3-devel >= 3.0.2
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
