@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.91.91
+Version:	2.91.92
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	471760344a7395c41288ac1f287b91f2
+# Source0-md5:	eccf0b30469bc70622c77161af8cb1d7
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -23,7 +23,7 @@ BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-desktop3-devel >= 2.91.4
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 3.0.2
+BuildRequires:	gtk+3-devel >= 3.0.4
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.13
@@ -85,7 +85,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.28.0
-Requires:	gtk+3-devel >= 3.0.2
+Requires:	gtk+3-devel >= 3.0.4
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -128,7 +128,7 @@ Dokumentacja API Nautilusa.
 %setup -q
 
 sed -i -e 's#^io##' po/LINGUAS
-rm -f po/io.po
+%{__rm} po/io.po
 
 %build
 %{__gtkdocize}
