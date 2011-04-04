@@ -6,44 +6,45 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	2.32.2.1
-Release:	2
+Version:	3.0.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/2.32/%{name}-%{version}.tar.bz2
-# Source0-md5:	f75f387d1b439079967581d876009426
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	9adbdb30d988e4a200fc76863b3bafae
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	exempi-devel >= 1.99.5
+BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.26.0
-BuildRequires:	gnome-desktop-devel >= 2.30.0
+BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	gnome-desktop-devel >= 3.0.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
-BuildRequires:	gtk+2-devel >= 2:2.22.0
+BuildRequires:	gsettings-desktop-schemas-devel
+BuildRequires:	gtk+3-devel >= 3.0.8
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
-BuildRequires:	libexif-devel >= 1:0.6.13
+BuildRequires:	libexif-devel >= 1:0.6.20
+BuildRequires:	libnotify-devel >= 0.7
 BuildRequires:	libselinux-devel
 BuildRequires:	libtool
-BuildRequires:	libunique-devel
-BuildRequires:	libxml2-devel >= 1:2.6.31
+BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.601
 # libegg
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	shared-mime-info
-Requires(post,preun):	GConf2
+Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.28.0
 Requires:	gnome-icon-theme >= 2.26.0
-Requires:	gvfs >= 1.6.0
+Requires:	gsettings-desktop-schemas
+Requires:	gvfs >= 1.8.0
+Requires:	hicolor-icon-theme
 Provides:	gnome-volume-manager
 Obsoletes:	eel
 Obsoletes:	gnome-volume-manager
@@ -85,8 +86,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.26.0
-Requires:	gtk+2-devel >= 2:2.22.0
+Requires:	glib2-devel >= 1:2.28.0
+Requires:	gtk+3-devel >= 3.0.8
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -128,10 +129,8 @@ Dokumentacja API Nautilusa.
 %prep
 %setup -q
 
-sed -i -e 's#^en@shaw##' po/LINGUAS
 sed -i -e 's#^io##' po/LINGUAS
-rm -f po/en@shaw.po
-rm -f po/io.po
+%{__rm} po/io.po
 
 %build
 %{__gtkdocize}
@@ -153,13 +152,15 @@ rm -f po/io.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # kill it - use banner instead
 install %{SOURCE1} .
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
@@ -170,17 +171,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_mime_database
-%gconf_schema_install apps_nautilus_preferences.schemas
 %update_desktop_database_post
 %update_icon_cache hicolor
-
-%preun
-%gconf_schema_uninstall apps_nautilus_preferences.schemas
+%glib_compile_schemas
 
 %postun
 %update_desktop_database_postun
 %update_mime_database
 %update_icon_cache hicolor
+if [ "$1" = "0" ]; then
+	%glib_compile_schemas
+fi
 
 %post	libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
@@ -191,17 +192,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nautilus
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
 %attr(755,root,root) %{_bindir}/nautilus-connect-server
-%attr(755,root,root) %{_bindir}/nautilus-file-management-properties
 %attr(755,root,root) %{_libexecdir}/nautilus-convert-metadata
 %dir %{_libdir}/nautilus
-%dir %{_libdir}/nautilus/extensions-2.0
+%dir %{_libdir}/nautilus/extensions-3.0
+%attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
+%{_datadir}/GConf/gsettings/nautilus.convert
+%{_datadir}/dbus-1/services/org.gnome.Nautilus.service
+%{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/nautilus
 %{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/*/*/nautilus.*
 %{_mandir}/man1/nautilus*.1*
 %{_pixmapsdir}/nautilus
-%{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 
 %files libs
 %defattr(644,root,root,755)
@@ -212,7 +215,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so
-%{_libdir}/libnautilus-extension.la
 %{_includedir}/nautilus
 %{_pkgconfigdir}/libnautilus-extension.pc
 %{_datadir}/gir-1.0/*.gir
