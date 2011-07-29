@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.1.3
+Version:	3.1.4
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	2c3ae9830f1e15f387f3b96e94ea1453
+# Source0-md5:	0abef9fea711ab6f2e6b5d635e373811
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -20,7 +20,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.28.0
-BuildRequires:	gnome-desktop-devel >= 3.0.0
+BuildRequires:	gnome-desktop-devel >= 3.1.3
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gtk+3-devel >= 3.1.8
@@ -44,6 +44,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2 >= 1:2.28.0
 Requires:	gnome-icon-theme >= 2.26.0
 Requires:	gsettings-desktop-schemas
+Requires:	gtk+3 >= 3.1.8
 Requires:	gvfs >= 1.8.0
 Requires:	hicolor-icon-theme
 Provides:	gnome-volume-manager
