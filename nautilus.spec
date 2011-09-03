@@ -10,8 +10,8 @@ Version:	3.1.90
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	588a6df79ddadd1a85161af7a3a9c216
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.1/%{name}-%{version}.tar.xz
+# Source0-md5:	ec0673e55c782be957896756b627b63b
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
