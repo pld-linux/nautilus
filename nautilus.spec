@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.0.2
+Version:	3.2.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	949187b1f241137ad3a5e6bdca3dfb0b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.2/%{name}-%{version}.tar.xz
+# Source0-md5:	d561afbb8730557c834b5b5945559b44
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -19,11 +19,11 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.28.0
-BuildRequires:	gnome-desktop-devel >= 3.0.0
+BuildRequires:	glib2-devel >= 1:2.29.13
+BuildRequires:	gnome-desktop-devel >= 3.1.3
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 3.0.8
+BuildRequires:	gtk+3-devel >= 3.1.8
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -41,9 +41,10 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2 >= 1:2.28.0
-Requires:	gnome-icon-theme >= 2.26.0
+Requires:	glib2 >= 1:2.29.13
+Requires:	gnome-icon-theme >= 3.0.0
 Requires:	gsettings-desktop-schemas
+Requires:	gtk+3 >= 3.1.8
 Requires:	gvfs >= 1.8.0
 Requires:	hicolor-icon-theme
 Provides:	gnome-volume-manager
@@ -87,8 +88,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.28.0
-Requires:	gtk+3-devel >= 3.0.8
+Requires:	glib2-devel >= 1:2.29.13
+Requires:	gtk+3-devel >= 3.1.8
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -206,6 +207,7 @@ fi
 %{_iconsdir}/hicolor/*/*/nautilus.*
 %{_mandir}/man1/nautilus*.1*
 %{_pixmapsdir}/nautilus
+%{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 
 %files libs
 %defattr(644,root,root,755)
