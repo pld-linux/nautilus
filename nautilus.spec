@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.2.1
+Version:	3.4.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.2/%{name}-%{version}.tar.xz
-# Source0-md5:	12314328b59aa1dfd83619f718b81bd5
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.4/%{name}-%{version}.tar.xz
+# Source0-md5:	dc7ccd81b3441d47a253d46c0df06d6c
 Source1:	%{name}.PLD.readme
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -19,11 +19,11 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.29.13
+BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gnome-desktop-devel >= 3.1.3
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 3.1.8
+BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -34,6 +34,7 @@ BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	pango-devel >= 1.28.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
+BuildRequires:	tracker-devel
 # libegg
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
@@ -41,11 +42,11 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2 >= 1:2.29.13
-Requires:	gnome-icon-theme >= 3.0.0
+Requires:	glib2 >= 1:2.32.0
+Requires:	gnome-icon-theme >= 3.2.0
 Requires:	gsettings-desktop-schemas
-Requires:	gtk+3 >= 3.1.8
-Requires:	gvfs >= 1.8.0
+Requires:	gtk+3 >= 3.4.0
+Requires:	gvfs >= 1.12.0
 Requires:	hicolor-icon-theme
 Provides:	gnome-volume-manager
 Obsoletes:	eel
@@ -88,8 +89,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.29.13
-Requires:	gtk+3-devel >= 3.1.8
+Requires:	glib2-devel >= 1:2.32.0
+Requires:	gtk+3-devel >= 3.4.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -199,6 +200,7 @@ fi
 %dir %{_libdir}/nautilus/extensions-3.0
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
 %{_datadir}/GConf/gsettings/nautilus.convert
+%{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/mime/packages/*.xml
@@ -206,7 +208,6 @@ fi
 %{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/*/*/nautilus.*
 %{_mandir}/man1/nautilus*.1*
-%{_pixmapsdir}/nautilus
 %{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 
 %files libs
