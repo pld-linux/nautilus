@@ -132,8 +132,8 @@ Dokumentacja API Nautilusa.
 %prep
 %setup -q
 
-sed -i -e 's#^io##' -e 's#^bo##' po/LINGUAS
-%{__rm} po/io.po po/bo.po
+sed -i -e 's#^io##' po/LINGUAS
+%{__rm} po/io.po
 
 %build
 %{__gtkdocize}
