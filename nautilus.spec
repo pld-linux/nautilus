@@ -34,7 +34,7 @@ BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	pango-devel >= 1.28.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
-BuildRequires:	tracker-devel
+BuildRequires:	tracker-devel >= 0.14
 # libegg
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
