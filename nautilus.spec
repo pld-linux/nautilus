@@ -12,8 +12,7 @@ License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.6/%{name}-%{version}.tar.xz
 # Source0-md5:	ace8d57a9989995c5b186bb7e4f604be
-Source1:	%{name}.PLD.readme
-Patch0:	autostart-desc.patch
+Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
@@ -158,9 +157,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# TODO: kill it - use banner instead
-cp -p %{SOURCE1} .
-
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.{a,la}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
@@ -188,7 +184,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog MAINTAINERS NEWS README THANKS nautilus.PLD.readme
+%doc AUTHORS ChangeLog MAINTAINERS NEWS README THANKS
 %attr(755,root,root) %{_bindir}/nautilus
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
 %attr(755,root,root) %{_bindir}/nautilus-connect-server
