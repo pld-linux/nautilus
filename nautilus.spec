@@ -1,18 +1,19 @@
 #
 # Conditinal build:
 %bcond_without	apidocs		# disable API documentation
-#
+
 Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	3.6.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.6/%{name}-%{version}.tar.xz
 # Source0-md5:	ace8d57a9989995c5b186bb7e4f604be
 Source1:	%{name}.PLD.readme
+Patch0:	autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.9
@@ -128,8 +129,9 @@ Dokumentacja API Nautilusa.
 
 %prep
 %setup -q
+%patch0 -p1
 
-sed -i -e 's#^io##' po/LINGUAS
+%{__sed} -i -e 's#^io##' po/LINGUAS
 %{__rm} po/io.po
 
 %build
@@ -156,8 +158,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# kill it - use banner instead
-install %{SOURCE1} .
+# TODO: kill it - use banner instead
+cp -p %{SOURCE1} .
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.{a,la}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
