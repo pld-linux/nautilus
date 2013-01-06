@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	3.6.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.6/%{name}-%{version}.tar.xz
@@ -15,7 +15,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.6/%{name}-%{version}.
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-devel
@@ -31,20 +31,25 @@ BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libselinux-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.7.8
-BuildRequires:	pango-devel >= 1.28.3
+BuildRequires:	pango-devel >= 1:1.28.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tracker-devel >= 0.14
-# libegg
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.34.0
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	exempi >= 2.1.0
 Requires:	glib2 >= 1:2.34.0
+Requires:	gnome-desktop >= 3.2.0
 Requires:	gsettings-desktop-schemas
-Requires:	gtk+3 >= 3.6.0
 Requires:	gvfs >= 1.12.0
+Requires:	libexif >= 1:0.6.20
+Requires:	libnotify >= 0.7.0
+Requires:	libxml2 >= 1:2.7.8
+Requires:	pango >= 1:1.28.3
+Requires:	tracker >= 0.14
 Provides:	gnome-volume-manager
 Obsoletes:	eel
 Obsoletes:	gnome-volume-manager
@@ -73,6 +78,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
+Requires:	glib2 >= 1:2.34.0
+Requires:	gtk+3 >= 3.6.0
 
 %description libs
 Nautilus libraries.
@@ -130,9 +137,6 @@ Dokumentacja API Nautilusa.
 %setup -q
 %patch0 -p1
 
-%{__sed} -i -e 's#^io##' po/LINGUAS
-%{__rm} po/io.po
-
 %build
 %{__gtkdocize}
 %{__glib_gettextize}
@@ -161,6 +165,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
+
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
+# not supported by glibc
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -197,10 +205,10 @@ fi
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.SearchProvider.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
-%{_datadir}/glib-2.0/schemas/*.gschema.xml
-%{_datadir}/mime/packages/*.xml
+%{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
+%{_datadir}/mime/packages/nautilus.xml
 %{_datadir}/nautilus
-%{_desktopdir}/*.desktop
+%{_desktopdir}/nautilus*.desktop
 %{_mandir}/man1/nautilus*.1*
 %{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 %{_datadir}/gnome-shell/search-providers/nautilus-search-provider.ini
@@ -209,14 +217,14 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libnautilus-extension.so.1
-%{_libdir}/girepository-1.0/*.typelib
+%{_libdir}/girepository-1.0/Nautilus-3.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnautilus-extension.so
 %{_includedir}/nautilus
+%{_datadir}/gir-1.0/Nautilus-3.0.gir
 %{_pkgconfigdir}/libnautilus-extension.pc
-%{_datadir}/gir-1.0/*.gir
 
 %files static
 %defattr(644,root,root,755)
