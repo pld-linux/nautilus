@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.6.3
-Release:	2
+Version:	3.8.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	a0ef8ce24933aa897568aef98645d4e8
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	f4a6cce944a0f5d1237c3ca2b561a4ee
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -19,11 +19,11 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.34.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 3.6.0
+BuildRequires:	gtk+3-devel >= 3.8.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -34,22 +34,22 @@ BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	pango-devel >= 1:1.28.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
-BuildRequires:	tracker-devel >= 0.14
+BuildRequires:	tracker-devel >= 0.16.0
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires(post,postun):	glib2 >= 1:2.34.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	exempi >= 2.1.0
-Requires:	glib2 >= 1:2.34.0
+Requires:	glib2 >= 1:2.36.0
 Requires:	gnome-desktop >= 3.2.0
 Requires:	gsettings-desktop-schemas
-Requires:	gvfs >= 1.12.0
+Requires:	gvfs >= 1.16.0
 Requires:	libexif >= 1:0.6.20
 Requires:	libnotify >= 0.7.0
 Requires:	libxml2 >= 1:2.7.8
 Requires:	pango >= 1:1.28.3
-Requires:	tracker >= 0.14
+Requires:	tracker >= 0.16.0
 Provides:	gnome-volume-manager
 Obsoletes:	eel
 Obsoletes:	gnome-volume-manager
@@ -78,8 +78,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.34.0
-Requires:	gtk+3 >= 3.6.0
+Requires:	glib2 >= 1:2.36.0
+Requires:	gtk+3 >= 3.8.0
 
 %description libs
 Nautilus libraries.
@@ -93,8 +93,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34.0
-Requires:	gtk+3-devel >= 3.6.0
+Requires:	glib2-devel >= 1:2.36.0
+Requires:	gtk+3-devel >= 3.8.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -197,7 +197,6 @@ fi
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
 %attr(755,root,root) %{_bindir}/nautilus-connect-server
 %attr(755,root,root) %{_libexecdir}/nautilus-convert-metadata
-%attr(755,root,root) %{_libexecdir}/nautilus-shell-search-provider
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-3.0
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
