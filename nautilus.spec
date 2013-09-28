@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.8.2
+Version:	3.10.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	3725deae73d9b45f7f69a87c64c29941
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	7260e6743df36f358aa468bb20f2b8e5
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -22,8 +22,8 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
-BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gtk+3-devel >= 3.8.0
+BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
+BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -43,7 +43,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	exempi >= 2.1.0
 Requires:	glib2 >= 1:2.36.0
 Requires:	gnome-desktop >= 3.2.0
-Requires:	gsettings-desktop-schemas
+Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	libexif >= 1:0.6.20
 Requires:	libnotify >= 0.7.0
@@ -79,7 +79,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.8.0
+Requires:	gtk+3 >= 3.10.0
 
 %description libs
 Nautilus libraries.
@@ -94,7 +94,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
-Requires:	gtk+3-devel >= 3.8.0
+Requires:	gtk+3-devel >= 3.10.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -192,7 +192,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog MAINTAINERS NEWS README THANKS
+%doc AUTHORS MAINTAINERS NEWS README THANKS
 %attr(755,root,root) %{_bindir}/nautilus
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
 %attr(755,root,root) %{_bindir}/nautilus-connect-server
