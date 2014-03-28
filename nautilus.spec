@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.10.1
+Version:	3.12.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	91a3a9364489a9e98ab9730beb199d1c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	6a8c0916c8c44f37fbb6d9279cdafbe2
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -23,7 +23,7 @@ BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
-BuildRequires:	gtk+3-devel >= 3.10.0
+BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -34,7 +34,7 @@ BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	pango-devel >= 1:1.28.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
-BuildRequires:	tracker-devel >= 0.16.0
+BuildRequires:	tracker-devel >= 1.0.0
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
@@ -49,7 +49,7 @@ Requires:	libexif >= 1:0.6.20
 Requires:	libnotify >= 0.7.0
 Requires:	libxml2 >= 1:2.7.8
 Requires:	pango >= 1:1.28.3
-Requires:	tracker >= 0.16.0
+Requires:	tracker >= 1.0.0
 Provides:	gnome-volume-manager
 Obsoletes:	eel
 Obsoletes:	gnome-volume-manager
@@ -79,7 +79,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.10.0
+Requires:	gtk+3 >= 3.12.0
 
 %description libs
 Nautilus libraries.
@@ -94,7 +94,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
-Requires:	gtk+3-devel >= 3.10.0
+Requires:	gtk+3-devel >= 3.12.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -201,6 +201,7 @@ fi
 %dir %{_libdir}/nautilus/extensions-3.0
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
 %{_datadir}/GConf/gsettings/nautilus.convert
+%{_datadir}/appdata/nautilus.appdata.xml
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.SearchProvider.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
