@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.12.2
+Version:	3.14.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	cc802f9b49504b8ca5f5ec11fd4418c6
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	fd951916829c91351a539573bbabab4d
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -23,7 +23,7 @@ BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
-BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gtk+3-devel >= 3.13.2
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -79,7 +79,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.12.0
+Requires:	gtk+3 >= 3.13.2
 
 %description libs
 Nautilus libraries.
@@ -94,7 +94,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
-Requires:	gtk+3-devel >= 3.12.0
+Requires:	gtk+3-devel >= 3.13.2
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -204,15 +204,17 @@ fi
 %dir %{_libdir}/nautilus/extensions-3.0
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
 %{_datadir}/GConf/gsettings/nautilus.convert
-%{_datadir}/appdata/nautilus.appdata.xml
+%{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
-%{_datadir}/dbus-1/services/org.gnome.Nautilus.SearchProvider.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_datadir}/mime/packages/nautilus.xml
-%{_datadir}/nautilus
-%{_desktopdir}/nautilus*.desktop
-%{_mandir}/man1/nautilus*.1*
+%{_desktopdir}/nautilus-autorun-software.desktop
+%{_desktopdir}/nautilus-classic.desktop
+%{_desktopdir}/nautilus-connect-server.desktop
+%{_desktopdir}/org.gnome.Nautilus.desktop
+%{_mandir}/man1/nautilus-connect-server.1*
+%{_mandir}/man1/nautilus.1*
 %{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 %{_datadir}/gnome-shell/search-providers/nautilus-search-provider.ini
 
