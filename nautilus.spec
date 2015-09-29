@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.16.2
+Version:	3.18.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.16/%{name}-%{version}.tar.xz
-# Source0-md5:	4a5c73bac8e26a883684b591b380f930
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.18/%{name}-%{version}.tar.xz
+# Source0-md5:	a66655cb64dedced9ef17d5ac62e195c
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -19,12 +19,12 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.43.4
+BuildRequires:	glib2-devel >= 1:2.45.7
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
-BuildRequires:	gtk+3-devel >= 3.15.2
-BuildRequires:	gtk-doc >= 1.8
+BuildRequires:	gtk+3-devel >= 3.17.5
+BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
 BuildRequires:	libselinux-devel
@@ -36,10 +36,10 @@ BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tracker-devel >= 1.0.0
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.43.4
+Requires(post,postun):	glib2 >= 1:2.45.7
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	exempi >= 2.1.0
-Requires:	glib2 >= 1:2.43.4
+Requires:	glib2 >= 1:2.45.7
 Requires:	gnome-desktop >= 3.2.0
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
@@ -75,8 +75,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.43.4
-Requires:	gtk+3 >= 3.15.2
+Requires:	glib2 >= 1:2.45.7
+Requires:	gtk+3 >= 3.17.5
 
 %description libs
 Nautilus libraries.
@@ -90,8 +90,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.43.4
-Requires:	gtk+3-devel >= 3.15.2
+Requires:	glib2-devel >= 1:2.45.7
+Requires:	gtk+3-devel >= 3.17.5
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -193,7 +193,6 @@ fi
 %doc AUTHORS MAINTAINERS NEWS README THANKS
 %attr(755,root,root) %{_bindir}/nautilus
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
-%attr(755,root,root) %{_bindir}/nautilus-connect-server
 %attr(755,root,root) %{_libexecdir}/nautilus-convert-metadata
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-3.0
@@ -205,9 +204,7 @@ fi
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_desktopdir}/nautilus-autorun-software.desktop
 %{_desktopdir}/nautilus-classic.desktop
-%{_desktopdir}/nautilus-connect-server.desktop
 %{_desktopdir}/org.gnome.Nautilus.desktop
-%{_mandir}/man1/nautilus-connect-server.1*
 %{_mandir}/man1/nautilus.1*
 %{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 %{_datadir}/gnome-shell/search-providers/nautilus-search-provider.ini
