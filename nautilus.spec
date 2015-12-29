@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.18.2
+Version:	3.18.4
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	75321b4986fdb3d7d3833ffae73de2b9
+# Source0-md5:	cb7f682afd2cbc814d39247e1fa6a4b4
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	autoconf >= 2.54
@@ -23,7 +23,7 @@ BuildRequires:	glib2-devel >= 1:2.45.7
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
-BuildRequires:	gtk+3-devel >= 3.17.5
+BuildRequires:	gtk+3-devel >= 3.18.5
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	libexif-devel >= 1:0.6.20
@@ -76,7 +76,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.45.7
-Requires:	gtk+3 >= 3.17.5
+Requires:	gtk+3 >= 3.18.5
 
 %description libs
 Nautilus libraries.
@@ -91,7 +91,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.45.7
-Requires:	gtk+3-devel >= 3.17.5
+Requires:	gtk+3-devel >= 3.18.5
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
