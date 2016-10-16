@@ -5,6 +5,6 @@
  Type=Application
 -Name=Files
 +Name=Files (Nautilus Desktop Icons)
- Exec=nautilus -n
+ Exec=nautilus-desktop
  OnlyShowIn=GNOME;Unity;
  AutostartCondition=GSettings org.gnome.desktop.background show-desktop-icons

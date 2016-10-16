@@ -6,26 +6,26 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.20.0
+Version:	3.22.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	fb7e59e26a66ccd0168ea4d502d07f22
+# Source0-md5:	6a7d8a57fa8324cf446dc8b9bee235a6
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	autoconf >= 2.54
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
-BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.45.7
+BuildRequires:	gettext-tools >= 0.19.7
+BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	gnome-autoar-devel >= 0.1
 BuildRequires:	gnome-desktop-devel >= 3.2.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
-BuildRequires:	gtk+3-devel >= 3.20.0
+BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libexif-devel >= 1:0.6.20
 BuildRequires:	libselinux-devel
 BuildRequires:	libtool
@@ -36,13 +36,15 @@ BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	tracker-devel >= 1.0.0
 BuildRequires:	xorg-lib-libSM-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.45.7
+Requires(post,postun):	glib2 >= 1:2.50.0
+Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	exempi >= 2.1.0
-Requires:	glib2 >= 1:2.45.7
+Requires:	glib2 >= 1:2.50.0
 Requires:	gnome-desktop >= 3.2.0
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
+Requires:	hicolor-icon-theme
 Requires:	libexif >= 1:0.6.20
 Requires:	libxml2 >= 1:2.7.8
 Requires:	pango >= 1:1.28.3
@@ -75,8 +77,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.45.7
-Requires:	gtk+3 >= 3.20.0
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22.0
 
 %description libs
 Nautilus libraries.
@@ -90,8 +92,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.45.7
-Requires:	gtk+3-devel >= 3.20.0
+Requires:	glib2-devel >= 1:2.50.0
+Requires:	gtk+3-devel >= 3.22.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
 
@@ -139,8 +141,6 @@ Dokumentacja API Nautilusa.
 
 %build
 %{__gtkdocize}
-%{__glib_gettextize}
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4 -I libgd
 %{__autoconf}
@@ -176,10 +176,12 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post
+%update_icon_cache hicolor
 %update_desktop_database_post
 %glib_compile_schemas
 
 %postun
+%update_icon_cache hicolor
 %update_desktop_database_postun
 if [ "$1" = "0" ]; then
 	%glib_compile_schemas
@@ -192,6 +194,7 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS MAINTAINERS NEWS README THANKS
 %attr(755,root,root) %{_bindir}/nautilus
+%attr(755,root,root) %{_bindir}/nautilus-desktop
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-3.0
@@ -206,6 +209,8 @@ fi
 %{_mandir}/man1/nautilus.1*
 %{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 %{_datadir}/gnome-shell/search-providers/nautilus-search-provider.ini
+%{_iconsdir}/hicolor/*/*/org.gnome.Nautilus.png
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Nautilus-symbolic.svg
 
 %files libs
 %defattr(644,root,root,755)
