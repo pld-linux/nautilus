@@ -10,7 +10,7 @@ Version:	3.22.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.20/%{name}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.22/%{name}-%{version}.tar.xz
 # Source0-md5:	6a7d8a57fa8324cf446dc8b9bee235a6
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
