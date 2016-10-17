@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	3.22.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.22/%{name}-%{version}.tar.xz
@@ -168,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{io,ln}
 
 %find_lang %{name} --with-gnome --all-name
 
