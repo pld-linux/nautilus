@@ -6,16 +6,14 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.24.1
+Version:	3.26.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.24/%{name}-%{version}.tar.xz
-# Source0-md5:	ab342340fd2a02546b60f1558c952b15
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.26/%{name}-%{version}.tar.xz
+# Source0-md5:	ad06281b84f9acb188aa59d8abeae98c
 Patch0:		autostart-desc.patch
 URL:		http://www.gnome.org/projects/nautilus/
-BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
 BuildRequires:	gettext-tools >= 0.19.7
@@ -30,6 +28,8 @@ BuildRequires:	libexif-devel >= 1:0.6.20
 BuildRequires:	libselinux-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.7.8
+BuildRequires:	meson
+BuildRequires:	ninja
 BuildRequires:	pango-devel >= 1:1.28.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
@@ -97,6 +97,7 @@ Requires:	glib2-devel >= 1:2.52.0
 Requires:	gtk+3-devel >= 3.22.0
 Requires:	libselinux-devel
 Obsoletes:	eel-devel
+Obsoletes:	nautils-static
 
 %description devel
 This package provides the necessary development libraries and include
@@ -108,18 +109,6 @@ Biblioteki i pliki nagłówkowe potrzebne do programowania.
 %description devel -l pt_BR.UTF-8
 Este pacote fornece os arquivos necessários para desenvolvimento
 utilizando componentes do nautilus.
-
-%package static
-Summary:	Static Nautilus libraries
-Summary(pl.UTF-8):	Biblioteki statyczne Nautilusa
-Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-Static Nautilus libraries.
-
-%description static -l pl.UTF-8
-Biblioteki statyczne Nautilusa.
 
 %package apidocs
 Summary:	Nautilus API documentation
@@ -141,29 +130,16 @@ Dokumentacja API Nautilusa.
 %patch0 -p1
 
 %build
-%{__gtkdocize}
-%{__libtoolize}
-%{__aclocal} -I m4 -I libgd
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--enable-static \
-	--enable-packagekit \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules \
-	--disable-update-mimedb
-%{__make}
+%meson build \
+	-Denable-packagekit=true \
+	-Denable-gtk-doc=%{__true_false apidocs}
+
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.{a,la}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+%meson_install -C build
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
@@ -193,7 +169,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README THANKS
+%doc NEWS README.md
 %attr(755,root,root) %{_bindir}/nautilus
 %attr(755,root,root) %{_bindir}/nautilus-desktop
 %attr(755,root,root) %{_bindir}/nautilus-autorun-software
@@ -225,10 +201,6 @@ fi
 %{_includedir}/nautilus
 %{_datadir}/gir-1.0/Nautilus-3.0.gir
 %{_pkgconfigdir}/libnautilus-extension.pc
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libnautilus-extension.a
 
 %if %{with apidocs}
 %files apidocs
