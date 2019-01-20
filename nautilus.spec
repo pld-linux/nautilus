@@ -6,12 +6,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.28.0.1
+Version:	3.30.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.28/%{name}-%{version}.tar.xz
-# Source0-md5:	48fb205089ea8e5d85d11285111af7cb
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.30/%{name}-%{version}.tar.xz
+# Source0-md5:	e9d392e7a11440d4d981ce49d8960d5b
 URL:		http://www.gnome.org/projects/nautilus/
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 2.1.0
@@ -180,7 +180,7 @@ fi
 %{_desktopdir}/nautilus-autorun-software.desktop
 %{_desktopdir}/org.gnome.Nautilus.desktop
 %{_mandir}/man1/nautilus.1*
-%{_datadir}/gnome-shell/search-providers/nautilus-search-provider.ini
+%{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
 %{_iconsdir}/hicolor/*/*/org.gnome.Nautilus.png
 %{_iconsdir}/hicolor/symbolic/apps/org.gnome.Nautilus-symbolic.svg
 
