@@ -12,12 +12,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.36.3
+Version:	3.38.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.36/%{name}-%{version}.tar.xz
-# Source0-md5:	c3c8dbb90d8eeed6c127aa568e131395
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.38/%{name}-%{version}.tar.xz
+# Source0-md5:	47a75abba82f2b3fb21ec19e628106a8
 URL:		https://wiki.gnome.org/Apps/Files
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fontconfig-devel
@@ -25,7 +25,7 @@ BuildRequires:	fontconfig-devel
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools >= 0.19.7
 BuildRequires:	gexiv2-devel >= 0.10.0
-BuildRequires:	glib2-devel >= 1:2.58.1
+BuildRequires:	glib2-devel >= 1:2.62.0
 BuildRequires:	gnome-autoar-devel >= 0.2.1
 BuildRequires:	gnome-desktop-devel >= 3.0.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
@@ -38,26 +38,28 @@ BuildRequires:	libseccomp-devel
 %endif
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.0}
 BuildRequires:	libxml2-devel >= 1:2.7.8
-BuildRequires:	meson >= 0.47.0
+BuildRequires:	meson >= 0.49.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	tracker-devel >= 2.0
+BuildRequires:	tracker3-devel >= 3.0
+# for tests
+#BuildRequires:	tracker3-testutils >= 3.0
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.58.1
+Requires(post,postun):	glib2 >= 1:2.62.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gexiv2 >= 0.10.0
-Requires:	glib2 >= 1:2.58.1
+Requires:	glib2 >= 1:2.62.0
 Requires:	gnome-autoar >= 0.2.1
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
 Requires:	libxml2 >= 1:2.7.8
-Requires:	tracker >= 2.0
+Requires:	tracker3 >= 3.0
 Provides:	gnome-volume-manager
 Obsoletes:	eel
 Obsoletes:	gnome-volume-manager
@@ -84,7 +86,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.58.1
+Requires:	glib2 >= 1:2.62.0
 Requires:	gtk+3 >= 3.22.27
 
 %description libs
@@ -99,7 +101,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.58.1
+Requires:	glib2-devel >= 1:2.62.0
 Requires:	gtk+3-devel >= 3.22.27
 Obsoletes:	eel-devel
 Obsoletes:	nautils-static
@@ -137,7 +139,8 @@ Dokumentacja API Nautilusa.
 %meson build \
 	-Ddocs=%{__true_false apidocs} \
 	-Dpackagekit=true \
-	%{?with_selinux:-Dselinux=true}
+	%{?with_selinux:-Dselinux=true} \
+	-Dtests=none
 
 %meson_build -C build
 
@@ -145,8 +148,6 @@ Dokumentacja API Nautilusa.
 rm -rf $RPM_BUILD_ROOT
 
 %meson_install -C build
-
-%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 # not supported by glibc
@@ -185,14 +186,18 @@ fi
 %{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
+%{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Extract.service
+%{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Files.service
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
+%{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
+%{_datadir}/nautilus
+%{_datadir}/tracker3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_desktopdir}/nautilus-autorun-software.desktop
 %{_desktopdir}/org.gnome.Nautilus.desktop
-%{_mandir}/man1/nautilus.1*
-%{_mandir}/man1/nautilus-autorun-software.1*
-%{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.Nautilus.svg
 %{_iconsdir}/hicolor/symbolic/apps/org.gnome.Nautilus-symbolic.svg
+%{_mandir}/man1/nautilus.1*
+%{_mandir}/man1/nautilus-autorun-software.1*
 
 %files libs
 %defattr(644,root,root,755)
