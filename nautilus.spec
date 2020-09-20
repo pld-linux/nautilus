@@ -191,6 +191,8 @@ fi
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
 %{_datadir}/nautilus
+# XXX: tracker3 owns datadir/tracker3/ontologies, tracker3-miners own datadir/tracker3-miners/domain-ontologies - 3rd variant here?
+%dir %{_datadir}/tracker3/domain-ontologies
 %{_datadir}/tracker3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_desktopdir}/nautilus-autorun-software.desktop
 %{_desktopdir}/org.gnome.Nautilus.desktop
