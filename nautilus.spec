@@ -12,12 +12,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.38.0
+Version:	3.38.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/3.38/%{name}-%{version}.tar.xz
-# Source0-md5:	47a75abba82f2b3fb21ec19e628106a8
+# Source0-md5:	d635012bc7d2b699e2bda950d0ea705a
 URL:		https://wiki.gnome.org/Apps/Files
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fontconfig-devel
@@ -41,7 +41,7 @@ BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	meson >= 0.49.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	tracker3-devel >= 3.0
 # for tests
@@ -122,9 +122,7 @@ Summary:	Nautilus API documentation
 Summary(pl.UTF-8):	Dokumentacja API Nautilusa
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 Nautilus API documentation.
