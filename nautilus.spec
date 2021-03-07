@@ -122,7 +122,7 @@ Summary:	Nautilus API documentation
 Summary(pl.UTF-8):	Dokumentacja API Nautilusa
 Group:		Documentation
 Requires:	gtk-doc-common
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 Nautilus API documentation.
