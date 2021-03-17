@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
 Version:	3.38.2
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/nautilus/3.38/%{name}-%{version}.tar.xz
@@ -60,6 +60,7 @@ Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
 Requires:	libxml2 >= 1:2.7.8
 Requires:	tracker3 >= 3.0
+Requires:	tracker3-miners >= 3.0
 Provides:	gnome-volume-manager
 Obsoletes:	eel
 Obsoletes:	gnome-volume-manager
