@@ -1,6 +1,7 @@
 #
 # Conditinal build:
 %bcond_without	apidocs		# disable API documentation
+%bcond_without	libportal	# xdg-desktop-portals integration
 %bcond_without	selinux		# SELinux context support in file properties dialog
 
 %ifarch alpha ia64 m68k parisc parisc64 sh4 sparc sparcv9 sparc64
@@ -12,12 +13,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	3.38.2
-Release:	2
+Version:	40.0
+Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/3.38/%{name}-%{version}.tar.xz
-# Source0-md5:	a94c730fe79104859035ae51e0ba0bd7
+Source0:	https://download.gnome.org/sources/nautilus/40/%{name}-%{version}.tar.xz
+# Source0-md5:	319404aeb542ecbdfd249053878bdca2
 URL:		https://wiki.gnome.org/Apps/Files
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fontconfig-devel
@@ -25,14 +26,16 @@ BuildRequires:	fontconfig-devel
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools >= 0.19.7
 BuildRequires:	gexiv2-devel >= 0.10.0
-BuildRequires:	glib2-devel >= 1:2.62.0
-BuildRequires:	gnome-autoar-devel >= 0.2.1
+BuildRequires:	glib2-devel >= 1:2.67.1
+BuildRequires:	gnome-autoar-devel >= 0.3.0
 BuildRequires:	gnome-desktop-devel >= 3.0.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
 BuildRequires:	gtk+3-devel >= 3.22.27
 BuildRequires:	gtk-doc >= 1.10
+BuildRequires:	libhandy1-devel >= 1.1.90
+%{?with_libportal:BuildRequires:	libportal-devel >= 0.3}
 %if %{use_seccomp}
 BuildRequires:	libseccomp-devel
 %endif
@@ -49,24 +52,26 @@ BuildRequires:	tracker3-devel >= 3.0
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.62.0
+Requires(post,postun):	glib2 >= 1:2.67.1
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gexiv2 >= 0.10.0
-Requires:	glib2 >= 1:2.62.0
-Requires:	gnome-autoar >= 0.2.1
+Requires:	glib2 >= 1:2.67.1
+Requires:	gnome-autoar >= 0.3.0
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
+Requires:	libhandy1 >= 1.1.90
+%{?with_libportal:Requires:	libportal >= 0.3}
 Requires:	libxml2 >= 1:2.7.8
 Requires:	tracker3 >= 3.0
 Requires:	tracker3-miners >= 3.0
 Provides:	gnome-volume-manager
-Obsoletes:	eel
-Obsoletes:	gnome-volume-manager
-Obsoletes:	gstreamer-player-nautilus
-Obsoletes:	nautilus-gtkhtml
-Obsoletes:	nautilus-media
+Obsoletes:	eel < 2.21
+Obsoletes:	gnome-volume-manager < 2.23
+Obsoletes:	gstreamer-player-nautilus < 0.9
+Obsoletes:	nautilus-gtkhtml < 0.4
+Obsoletes:	nautilus-media < 0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -87,7 +92,7 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.62.0
+Requires:	glib2 >= 1:2.67.1
 Requires:	gtk+3 >= 3.22.27
 
 %description libs
@@ -102,10 +107,10 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.62.0
+Requires:	glib2-devel >= 1:2.67.1
 Requires:	gtk+3-devel >= 3.22.27
-Obsoletes:	eel-devel
-Obsoletes:	nautils-static
+Obsoletes:	eel-devel < 2.21
+Obsoletes:	nautilus-static < 3.26
 
 %description devel
 This package provides the necessary development libraries and include
@@ -137,6 +142,7 @@ Dokumentacja API Nautilusa.
 %build
 %meson build \
 	-Ddocs=%{__true_false apidocs} \
+	%{!?with_libportal:-Dlibportal=false} \
 	-Dpackagekit=true \
 	%{?with_selinux:-Dselinux=true} \
 	-Dtests=none
