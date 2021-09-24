@@ -13,21 +13,20 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	40.2
+Version:	41.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/40/%{name}-%{version}.tar.xz
-# Source0-md5:	62f856359dcb2964b5cb2e02e90ad2dd
+Source0:	https://download.gnome.org/sources/nautilus/41/%{name}-%{version}.tar.xz
+# Source0-md5:	b4ffeb816dc37c5ceb3e292d08483064
 URL:		https://wiki.gnome.org/Apps/Files
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	fontconfig-devel
 # -std=c11
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools >= 0.19.7
-BuildRequires:	gexiv2-devel >= 0.10.0
+BuildRequires:	gexiv2-devel >= 0.12.2
 BuildRequires:	glib2-devel >= 1:2.67.1
-BuildRequires:	gnome-autoar-devel >= 0.3.0
+BuildRequires:	gnome-autoar-devel >= 0.4.0
 BuildRequires:	gnome-desktop-devel >= 3.0.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
@@ -55,9 +54,9 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.67.1
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	gexiv2 >= 0.10.0
+Requires:	gexiv2 >= 0.12.2
 Requires:	glib2 >= 1:2.67.1
-Requires:	gnome-autoar >= 0.3.0
+Requires:	gnome-autoar >= 0.4.0
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
