@@ -13,18 +13,18 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	41.2
+Version:	42.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/41/%{name}-%{version}.tar.xz
-# Source0-md5:	752b0d767a3f7e74ec36d5b7c67e6dfd
+Source0:	https://download.gnome.org/sources/nautilus/42/%{name}-%{version}.tar.xz
+# Source0-md5:	01b42ad3885737517ced931cf47bd96f
 URL:		https://wiki.gnome.org/Apps/Files
 BuildRequires:	docbook-dtd412-xml
 # -std=c11
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools >= 0.19.7
-BuildRequires:	gexiv2-devel >= 0.12.2
+BuildRequires:	gexiv2-devel >= 0.14.0
 BuildRequires:	glib2-devel >= 1:2.67.1
 BuildRequires:	gnome-autoar-devel >= 0.4.0
 BuildRequires:	gnome-desktop-devel >= 3.0.0
@@ -33,8 +33,9 @@ BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
 BuildRequires:	gtk+3-devel >= 3.22.27
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	libhandy1-devel >= 1.1.90
-%{?with_libportal:BuildRequires:	libportal-devel >= 0.3}
+BuildRequires:	libhandy1-devel >= 1.5.0
+%{?with_libportal:BuildRequires:	libportal-devel >= 0.5}
+%{?with_libportal:BuildRequires:	libportal-gtk3-devel >= 0.5}
 %if %{use_seccomp}
 BuildRequires:	libseccomp-devel
 %endif
@@ -43,6 +44,7 @@ BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	meson >= 0.49.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	tracker3-devel >= 3.0
@@ -54,13 +56,13 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.67.1
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	gexiv2 >= 0.12.2
+Requires:	gexiv2 >= 0.14.0
 Requires:	glib2 >= 1:2.67.1
 Requires:	gnome-autoar >= 0.4.0
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
-Requires:	libhandy1 >= 1.1.90
+Requires:	libhandy1 >= 1.5.0
 %{?with_libportal:Requires:	libportal >= 0.3}
 Requires:	libxml2 >= 1:2.7.8
 Requires:	tracker3 >= 3.0
