@@ -204,8 +204,10 @@ fi
 %{_desktopdir}/org.gnome.Nautilus.desktop
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.Nautilus.svg
 %{_iconsdir}/hicolor/symbolic/apps/org.gnome.Nautilus-symbolic.svg
+%if %{with apidocs}
 %{_mandir}/man1/nautilus.1*
 %{_mandir}/man1/nautilus-autorun-software.1*
+%endif
 
 %files libs
 %defattr(644,root,root,755)
