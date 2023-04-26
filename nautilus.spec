@@ -148,12 +148,12 @@ Dokumentacja API Nautilusa.
 	%{?with_selinux:-Dselinux=true} \
 	-Dtests=none
 
-%meson_build -C build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%meson_install -C build
+%ninja_install -C build
 
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 # not supported by glibc
