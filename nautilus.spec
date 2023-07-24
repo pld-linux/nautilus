@@ -8,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	43.4
+Version:	44.2.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/43/%{name}-%{version}.tar.xz
-# Source0-md5:	da5de70bf385f7570653b1302494adbc
+Source0:	https://download.gnome.org/sources/nautilus/44/%{name}-%{version}.tar.xz
+# Source0-md5:	aa72cb40ee0ac4555b9e8babf74ced57
 URL:		https://wiki.gnome.org/Apps/Files
 # -std=c11
 BuildRequires:	gcc >= 6:4.7
@@ -21,14 +21,14 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.30.0
 BuildRequires:	gettext-tools >= 0.19.7
 BuildRequires:	gexiv2-devel >= 0.14.0
 BuildRequires:	glib2-devel >= 1:2.72.0
-BuildRequires:	gnome-autoar-devel >= 0.4.0
+BuildRequires:	gnome-autoar-devel >= 0.4.4
 BuildRequires:	gnome-desktop4-devel >= 43
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
-BuildRequires:	gtk4-devel >= 4.7.2
+BuildRequires:	gtk4-devel >= 4.10.3
 %{?with_apidocs:BuildRequires:	gi-docgen}
-BuildRequires:	libadwaita-devel >= 1.2
+BuildRequires:	libadwaita-devel >= 1.3.0
 BuildRequires:	libcloudproviders-devel >= 0.3.1
 BuildRequires:	libportal-devel >= 0.5
 BuildRequires:	libportal-gtk4-devel >= 0.5
@@ -51,11 +51,11 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gdk-pixbuf2 >= 2.30.0
 Requires:	gexiv2 >= 0.14.0
 Requires:	glib2 >= 1:2.72.0
-Requires:	gnome-autoar >= 0.4.0
+Requires:	gnome-autoar >= 0.4.4
 Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
-Requires:	libadwaita >= 1.2
+Requires:	libadwaita >= 1.3.0
 Requires:	libcloudproviders >= 0.3.1
 Requires:	libportal >= 0.5
 Requires:	libxml2 >= 1:2.7.8
@@ -90,7 +90,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.72.0
-Requires:	gtk4 >= 4.7.2
+Requires:	gtk4 >= 4.10.3
 
 %description libs
 Nautilus libraries.
@@ -105,7 +105,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.72.0
-Requires:	gtk4-devel >= 4.7.2
+Requires:	gtk4-devel >= 4.10.3
 Obsoletes:	eel-devel < 2.21
 Obsoletes:	nautilus-static < 3.26
 
