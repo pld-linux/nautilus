@@ -1,0 +1,19 @@
+--- nautilus-46.1/src/nautilus-date-utilities.c.orig	2024-04-21 15:10:54.000000000 +0200
++++ nautilus-46.1/src/nautilus-date-utilities.c	2024-05-06 20:15:55.179148200 +0200
+@@ -21,14 +21,14 @@ static gboolean use_24_hour;
+ static gboolean use_detailed_date_format;
+ 
+ static void
+-clock_format_changed_callback (gpointer)
++clock_format_changed_callback (gpointer x __attribute__((unused)))
+ {
+     gint clock_format = g_settings_get_enum (gnome_interface_preferences, "clock-format");
+     use_24_hour = (clock_format == G_DESKTOP_CLOCK_FORMAT_24H);
+ }
+ 
+ static void
+-date_format_changed_callback (gpointer)
++date_format_changed_callback (gpointer x __attribute__((unused)))
+ {
+     NautilusDateTimeFormat format = g_settings_get_enum (nautilus_preferences,
+                                                          NAUTILUS_PREFERENCES_DATE_TIME_FORMAT);

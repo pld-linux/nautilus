@@ -8,12 +8,13 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	45.2.1
+Version:	46.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/45/%{name}-%{version}.tar.xz
-# Source0-md5:	88aadc5165a20442e63afc97348f5586
+Source0:	https://download.gnome.org/sources/nautilus/46/%{name}-%{version}.tar.xz
+# Source0-md5:	5f7bbc0072c3f520c4d417d6f014c590
+Patch0:		%{name}-no-c23.patch
 URL:		https://wiki.gnome.org/Apps/Files
 # -std=c11
 BuildRequires:	gcc >= 6:4.7
@@ -21,19 +22,17 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.30.0
 BuildRequires:	gettext-tools >= 0.19.7
 BuildRequires:	gexiv2-devel >= 0.14.2
 %{?with_apidocs:BuildRequires:	gi-docgen}
-BuildRequires:	glib2-devel >= 1:2.77.0
+BuildRequires:	glib2-devel >= 1:2.79.0
 BuildRequires:	gnome-autoar-devel >= 0.4.4
 BuildRequires:	gnome-desktop4-devel >= 43
 BuildRequires:	gobject-introspection-devel >= 0.6.4
-BuildRequires:	gsettings-desktop-schemas-devel >= 3.8.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
-BuildRequires:	gtk4-devel >= 4.11.2
+BuildRequires:	gtk4-devel >= 4.13.6
 BuildRequires:	libadwaita-devel >= 1.4
 BuildRequires:	libcloudproviders-devel >= 0.3.1
 BuildRequires:	libportal-devel >= 0.5
 BuildRequires:	libportal-gtk4-devel >= 0.5
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.0}
-BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
@@ -45,20 +44,18 @@ BuildRequires:	tracker3-devel >= 3.0
 #BuildRequires:	tracker3-testutils >= 3.0
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.77.0
+Requires(post,postun):	glib2 >= 1:2.79.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gdk-pixbuf2 >= 2.30.0
 Requires:	gexiv2 >= 0.14.2
-Requires:	glib2 >= 1:2.77.0
+Requires:	glib2 >= 1:2.79.0
 Requires:	gnome-autoar >= 0.4.4
-Requires:	gsettings-desktop-schemas >= 3.8.0
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
 Requires:	libadwaita >= 1.4
 Requires:	libcloudproviders >= 0.3.1
 Requires:	libportal >= 0.5
-Requires:	libxml2 >= 1:2.7.8
 Requires:	tracker3 >= 3.0
 Requires:	tracker3-miners >= 3.0
 Provides:	gnome-volume-manager
@@ -89,8 +86,8 @@ O nautilus é um excelente gerenciador de arquivos para o GNOME.
 Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.77.0
-Requires:	gtk4 >= 4.11.2
+Requires:	glib2 >= 1:2.79.0
+Requires:	gtk4 >= 4.13.6
 
 %description libs
 Nautilus libraries.
@@ -104,8 +101,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia komponentów dla Nautilusa
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.77.0
-Requires:	gtk4-devel >= 4.11.2
+Requires:	glib2-devel >= 1:2.79.0
+Requires:	gtk4-devel >= 4.13.6
 Obsoletes:	eel-devel < 2.21
 Obsoletes:	nautilus-static < 3.26
 
@@ -134,6 +131,7 @@ Dokumentacja API Nautilusa.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %meson build \
@@ -187,13 +185,13 @@ fi
 %dir %{_libdir}/nautilus/extensions-4
 %attr(755,root,root) %{_libdir}/nautilus/extensions-4/libnautilus-image-properties.so
 %attr(755,root,root) %{_libdir}/nautilus/extensions-4/libtotem-properties-page.so
-%{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Extract.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Files.service
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
+%{_datadir}/metainfo/org.gnome.Nautilus.metainfo.xml
 %{_datadir}/nautilus
 # XXX: tracker3 owns datadir/tracker3/ontologies, tracker3-miners own datadir/tracker3-miners/domain-ontologies - 3rd variant here?
 %dir %{_datadir}/tracker3/domain-ontologies
