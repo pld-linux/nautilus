@@ -8,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	46.2
+Version:	47.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/46/%{name}-%{version}.tar.xz
-# Source0-md5:	88acd6bd9c5d01fb02c8827222c07bc5
+Source0:	https://download.gnome.org/sources/nautilus/47/%{name}-%{version}.tar.xz
+# Source0-md5:	76d2af66902a174dae0a5c69a9b35c70
 Patch0:		%{name}-no-c23.patch
 Patch1:		no-cache-update.patch
 URL:		https://wiki.gnome.org/Apps/Files
@@ -28,10 +28,10 @@ BuildRequires:	gnome-autoar-devel >= 0.4.4
 BuildRequires:	gnome-desktop4-devel >= 43
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
-BuildRequires:	gtk4-devel >= 4.13.6
-BuildRequires:	libadwaita-devel >= 1.4
+BuildRequires:	gtk4-devel >= 4.15.2
+BuildRequires:	libadwaita-devel >= 1.6
 BuildRequires:	libcloudproviders-devel >= 0.3.1
-BuildRequires:	libportal-devel >= 0.5
+BuildRequires:	libportal-devel >= 0.7
 BuildRequires:	libportal-gtk4-devel >= 0.5
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.0}
 BuildRequires:	meson >= 0.59.0
@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.029
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	tracker3-devel >= 3.0
+BuildRequires:	tinysparql-devel >= 3.8
 # for tests
 #BuildRequires:	tracker3-testutils >= 3.0
 BuildRequires:	xz
@@ -54,11 +54,10 @@ Requires:	glib2 >= 1:2.79.0
 Requires:	gnome-autoar >= 0.4.4
 Requires:	gvfs >= 1.16.0
 Requires:	hicolor-icon-theme
-Requires:	libadwaita >= 1.4
+Requires:	libadwaita >= 1.6
 Requires:	libcloudproviders >= 0.3.1
-Requires:	libportal >= 0.5
-Requires:	tracker3 >= 3.0
-Requires:	tracker3-miners >= 3.0
+Requires:	libportal >= 0.7
+Requires:	localsearch >= 3.8
 Provides:	gnome-volume-manager
 Obsoletes:	eel < 2.21
 Obsoletes:	gnome-volume-manager < 2.23
@@ -88,7 +87,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.79.0
-Requires:	gtk4 >= 4.13.6
+Requires:	gtk4 >= 4.15.2
 
 %description libs
 Nautilus libraries.
@@ -103,7 +102,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.79.0
-Requires:	gtk4-devel >= 4.13.6
+Requires:	gtk4-devel >= 4.15.2
 Obsoletes:	eel-devel < 2.21
 Obsoletes:	nautilus-static < 3.26
 
@@ -193,11 +192,9 @@ fi
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Files.service
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
+%{_datadir}/localsearch3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_datadir}/metainfo/org.gnome.Nautilus.metainfo.xml
 %{_datadir}/nautilus
-# XXX: tracker3 owns datadir/tracker3/ontologies, tracker3-miners own datadir/tracker3-miners/domain-ontologies - 3rd variant here?
-%dir %{_datadir}/tracker3/domain-ontologies
-%{_datadir}/tracker3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_desktopdir}/nautilus-autorun-software.desktop
 %{_desktopdir}/org.gnome.Nautilus.desktop
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.Nautilus.svg
