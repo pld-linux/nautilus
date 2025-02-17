@@ -8,12 +8,12 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	47.1
+Version:	47.2
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/nautilus/47/%{name}-%{version}.tar.xz
-# Source0-md5:	01306e9913c0ba1a97ec6867de0822a2
+# Source0-md5:	731bc0b5189c8ea9853d51c10c8764f7
 Patch0:		%{name}-no-c23.patch
 Patch1:		no-cache-update.patch
 URL:		https://wiki.gnome.org/Apps/Files
@@ -38,7 +38,7 @@ BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 2.029
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	tinysparql-devel >= 3.8
 # for tests
@@ -135,18 +135,18 @@ Dokumentacja API Nautilusa.
 %patch -P1 -p1
 
 %build
-%meson build \
+%meson \
 	-Ddocs=%{__true_false apidocs} \
 	-Dpackagekit=true \
 	%{?with_selinux:-Dselinux=true} \
 	-Dtests=none
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 # not supported by glibc
