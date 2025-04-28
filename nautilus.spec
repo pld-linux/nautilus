@@ -8,15 +8,15 @@ Summary:	Nautilus is a file manager for the GNOME desktop environment
 Summary(pl.UTF-8):	Nautilus - powłoka GNOME i zarządca plików
 Summary(pt_BR.UTF-8):	Nautilus é um gerenciador de arquivos para o GNOME
 Name:		nautilus
-Version:	47.4
+Version:	48.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/nautilus/47/%{name}-%{version}.tar.xz
-# Source0-md5:	1d8d3ccd51e9a4cab5a31fb2d4787ec0
+Source0:	https://download.gnome.org/sources/nautilus/48/%{name}-%{version}.tar.xz
+# Source0-md5:	25a894475b4afbcaf41e599f637ff40a
 Patch0:		%{name}-no-c23.patch
 Patch1:		no-cache-update.patch
-URL:		https://wiki.gnome.org/Apps/Files
+URL:		https://apps.gnome.org/Nautilus/
 # -std=c11
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gdk-pixbuf2-devel >= 2.30.0
@@ -28,7 +28,7 @@ BuildRequires:	gnome-autoar-devel >= 0.4.4
 BuildRequires:	gnome-desktop4-devel >= 43
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
-BuildRequires:	gtk4-devel >= 4.15.2
+BuildRequires:	gtk4-devel >= 4.17.5
 BuildRequires:	libadwaita-devel >= 1.6
 BuildRequires:	libcloudproviders-devel >= 0.3.1
 BuildRequires:	libportal-devel >= 0.7
@@ -87,7 +87,7 @@ Summary:	Nautilus libraries
 Summary(pl.UTF-8):	Biblioteki Nautilusa
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.79.0
-Requires:	gtk4 >= 4.15.2
+Requires:	gtk4 >= 4.17.5
 
 %description libs
 Nautilus libraries.
@@ -102,7 +102,7 @@ Summary(pt_BR.UTF-8):	Bibliotecas e arquivos para desenvolvimento com o nautilus
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.79.0
-Requires:	gtk4-devel >= 4.15.2
+Requires:	gtk4-devel >= 4.17.5
 Obsoletes:	eel-devel < 2.21
 Obsoletes:	nautilus-static < 3.26
 
@@ -188,11 +188,8 @@ fi
 %attr(755,root,root) %{_libdir}/nautilus/extensions-4/libtotem-properties-page.so
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
-%{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Extract.service
-%{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Files.service
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
-%{_datadir}/localsearch3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_datadir}/metainfo/org.gnome.Nautilus.metainfo.xml
 %{_datadir}/nautilus
 %{_desktopdir}/nautilus-autorun-software.desktop

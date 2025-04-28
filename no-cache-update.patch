@@ -1,6 +1,6 @@
---- nautilus-46.2/meson.build.orig	2024-05-26 02:34:37.000000000 +0200
-+++ nautilus-46.2/meson.build	2024-09-10 19:10:08.087068720 +0200
-@@ -228,7 +228,7 @@
+--- nautilus-48.1/meson.build.orig	2025-04-13 08:56:22.000000000 +0200
++++ nautilus-48.1/meson.build	2025-04-28 19:52:21.069650319 +0200
+@@ -247,9 +247,9 @@ endforeach
  #############
  
  gnome.post_install(
@@ -11,3 +11,5 @@
 +  glib_compile_schemas: false,
 +  update_desktop_database: false,
  )
+ 
+ #### Summary ####
